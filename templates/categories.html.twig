@@ -1,0 +1,324 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Écran des thèmes de veille.
+ #}
+
+{% set list_url = path('/plugins/veilletool/front/category.php') %}
+{% set form_url = path('/plugins/veilletool/front/category.form.php') %}
+
+<div class="veille-categories">
+
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+        <h2 class="mb-0">
+            <i class="ti ti-tags me-1"></i>{{ __('Thèmes de veille', 'veilletool') }}
+            {% if total_count > 0 %}
+                <span class="badge bg-secondary-lt ms-2"
+                      title="{{ __('Thèmes actifs sur le total défini.', 'veilletool') }}">
+                    {{ active_count }} / {{ total_count }}
+                </span>
+            {% endif %}
+        </h2>
+
+        <div class="d-flex flex-wrap gap-2">
+            {% if can_create %}
+                <a class="btn btn-primary" href="{{ form_url }}">
+                    <i class="ti ti-plus me-1"></i>{{ __('Ajouter un thème', 'veilletool') }}
+                </a>
+            {% endif %}
+            <a class="btn btn-outline-secondary" href="{{ path('/plugins/veilletool/front/source.php') }}">
+                <i class="ti ti-rss me-1"></i>{{ __('Flux RSS / ATOM', 'veilletool') }}
+            </a>
+        </div>
+    </div>
+
+    <div class="alert alert-info">
+        <i class="ti ti-info-circle me-1"></i>
+        {{ __('Un thème est une étiquette posée sur les cartes : c\'est lui qui fait les onglets de filtrage de l\'observatoire, et sa note d\'intérêt pèse sur le score des cartes qui le portent.', 'veilletool') }}
+        {{ __('L\'ordre du tableau ci-dessous est celui des onglets : déplacez les lignes pour le changer.', 'veilletool') }}
+    </div>
+
+    {# ---------------------------------------------------------------- #}
+    {# Recherche                                                         #}
+    {# ---------------------------------------------------------------- #}
+    {% if total_count > 0 %}
+        <form method="get" action="{{ list_url }}" class="card card-sm mb-3" data-veille-filters>
+            <div class="card-body row g-2 align-items-end">
+                <div class="col-12 col-md-7">
+                    <label class="form-label" for="veille-cat-q">{{ __('Mot clé', 'veilletool') }}</label>
+                    <div class="input-icon">
+                        <span class="input-icon-addon"><i class="ti ti-search"></i></span>
+                        <input type="text" id="veille-cat-q" name="q" class="form-control"
+                               value="{{ search.keyword }}"
+                               placeholder="{{ __('Nom ou description...', 'veilletool') }}">
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <label class="form-label" for="veille-cat-active">{{ __('Actif') }}</label>
+                    <select id="veille-cat-active" name="active" class="form-select">
+                        <option value="">{{ __('Actifs et inactifs', 'veilletool') }}</option>
+                        <option value="1" {{ search.active == '1' ? 'selected' : '' }}>{{ __('Actifs seulement', 'veilletool') }}</option>
+                        <option value="0" {{ search.active == '0' ? 'selected' : '' }}>{{ __('Inactifs seulement', 'veilletool') }}</option>
+                    </select>
+                </div>
+
+                <div class="col-12 col-md-2 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ti ti-filter me-1"></i>{{ __('Rechercher', 'veilletool') }}
+                    </button>
+                    <a class="btn btn-ghost-secondary" href="{{ list_url }}">
+                        {{ __('Réinitialiser', 'veilletool') }}
+                    </a>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+
+    {#
+     # Le réordonnancement est désactivé pendant une recherche : déplacer une
+     # ligne dans une liste partielle voudrait dire la déplacer par rapport à
+     # des thèmes qu'on ne voit pas.
+     #}
+    {% if has_search and categories is not empty %}
+        <div class="alert alert-secondary d-flex flex-wrap align-items-center gap-2 py-2">
+            <i class="ti ti-arrows-sort"></i>
+            <span>{{ __('Le classement ne se modifie pas pendant une recherche : la liste est partielle.', 'veilletool') }}</span>
+            <a class="btn btn-sm btn-ghost-secondary ms-auto" href="{{ list_url }}">
+                <i class="ti ti-x me-1"></i>{{ __('Retirer la recherche', 'veilletool') }}
+            </a>
+        </div>
+    {% endif %}
+
+    {# ---------------------------------------------------------------- #}
+    {# Liste                                                             #}
+    {# ---------------------------------------------------------------- #}
+    <form method="post" action="{{ list_url }}">
+        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+        <div class="card mb-3">
+            <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <h3 class="card-title mb-0">
+                    {{ _n('%d thème', '%d thèmes', categories|length, 'veilletool')|format(categories|length) }}
+                    {% if categories|length != total_count %}
+                        <span class="text-secondary">/ {{ total_count }}</span>
+                    {% endif %}
+                </h3>
+
+                {#
+                 # Le bouton n'apparaît qu'après un déplacement : sans
+                 # JavaScript, l'ordre ne peut pas changer par glissement, et
+                 # un bouton sans effet n'aurait rien à faire là.
+                 #}
+                {% if can_update and not has_search %}
+                    <button type="submit" name="reorder" value="1" class="btn btn-sm btn-primary"
+                            data-veille-sort-save hidden>
+                        <i class="ti ti-device-floppy me-1"></i>{{ __('Enregistrer l\'ordre', 'veilletool') }}
+                    </button>
+                {% endif %}
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-vcenter card-table veille-category-table">
+                    <thead>
+                        <tr>
+                            {% if can_update and not has_search %}
+                                <th style="width: 2.5rem;"></th>
+                            {% endif %}
+                            <th>{{ __('Étiquette', 'veilletool') }}</th>
+                            <th>{{ __('Description', 'veilletool') }}</th>
+                            <th class="text-end" style="width: 6rem;">{{ __('Intérêt', 'veilletool') }}</th>
+                            <th class="text-end" style="width: 6rem;">{{ __('Cartes', 'veilletool') }}</th>
+                            <th class="text-end" style="width: 5rem;">{{ __('Flux', 'veilletool') }}</th>
+                            <th style="width: 7rem;">{{ __('Actif') }}</th>
+                            <th class="text-end" style="width: 9rem;"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody {% if can_update and not has_search %}data-veille-sortable{% endif %}>
+                        {% for category in categories %}
+                            <tr data-veille-sort-id="{{ category.id }}">
+                                {% if can_update and not has_search %}
+                                    <td class="veille-sort-cell">
+                                        <input type="hidden" name="order[]" value="{{ category.id }}">
+                                        <span class="veille-sort-handle" data-veille-sort-handle
+                                              title="{{ __('Déplacer ce thème', 'veilletool') }}">
+                                            <i class="ti ti-grip-vertical"></i>
+                                        </span>
+
+                                        {# Repli sans souris ni JavaScript. #}
+                                        <span class="veille-sort-steps">
+                                            <button type="submit" name="move_up" value="{{ category.id }}"
+                                                    class="veille-sort-step" {{ loop.first ? 'disabled' : '' }}
+                                                    title="{{ __('Monter', 'veilletool') }}">
+                                                <i class="ti ti-chevron-up"></i>
+                                            </button>
+                                            <button type="submit" name="move_down" value="{{ category.id }}"
+                                                    class="veille-sort-step" {{ loop.last ? 'disabled' : '' }}
+                                                    title="{{ __('Descendre', 'veilletool') }}">
+                                                <i class="ti ti-chevron-down"></i>
+                                            </button>
+                                        </span>
+                                    </td>
+                                {% endif %}
+
+                                <td>
+                                    <a href="{{ form_url }}?id={{ category.id }}" class="text-reset">
+                                        <span class="badge veille-badge"
+                                              style="background-color: {{ category.color }}; color: {{ category.text_color }}">
+                                            <i class="{{ category.icon }}"></i>{{ category.name }}
+                                        </span>
+                                    </a>
+                                </td>
+
+                                <td class="text-secondary small">
+                                    {{ category.comment is not empty ? category.comment : '-' }}
+                                </td>
+
+                                <td class="text-end">
+                                    <span class="badge bg-secondary-lt"
+                                          title="{{ __('Composante « catégorie » du score d\'intérêt des cartes portant ce thème.', 'veilletool') }}">
+                                        {{ category.interest }}
+                                    </span>
+                                </td>
+
+                                <td class="text-end">
+                                    {% if category.article_count > 0 %}
+                                        <a href="{{ path('/plugins/veilletool/front/article.php') }}?cat={{ category.id }}">
+                                            {{ category.article_count }}
+                                        </a>
+                                    {% else %}
+                                        <span class="text-secondary">0</span>
+                                    {% endif %}
+                                </td>
+
+                                <td class="text-end text-secondary">{{ category.source_count }}</td>
+
+                                <td>
+                                    {% if can_update %}
+                                        <button type="submit" name="toggle_active" value="{{ category.id }}"
+                                                class="btn btn-sm {{ category.is_active ? 'btn-success' : 'btn-outline-secondary' }}"
+                                                title="{{ category.is_active
+                                                    ? __('Désactiver ce thème', 'veilletool')
+                                                    : __('Activer ce thème', 'veilletool') }}">
+                                            <i class="ti {{ category.is_active ? 'ti-eye' : 'ti-eye-off' }} me-1"></i>
+                                            {{ category.is_active ? __('Yes') : __('No') }}
+                                        </button>
+                                    {% elseif category.is_active %}
+                                        <span class="badge bg-green-lt">{{ __('Yes') }}</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary-lt">{{ __('No') }}</span>
+                                    {% endif %}
+                                </td>
+
+                                <td class="text-end">
+                                    <div class="d-flex justify-content-end gap-1">
+                                        <a class="btn btn-sm btn-ghost-secondary" href="{{ form_url }}?id={{ category.id }}"
+                                           title="{{ __('Modifier', 'veilletool') }}">
+                                            <i class="ti ti-edit"></i>
+                                        </a>
+
+                                        {% if can_purge %}
+                                            <button type="submit" name="purge" value="{{ category.id }}"
+                                                    class="btn btn-sm btn-ghost-danger"
+                                                    title="{{ __('Supprimer', 'veilletool') }}"
+                                                    onclick="return confirm('{{ __('Supprimer ce thème ? Les cartes qui le portent restent en place, sans lui.', 'veilletool')|e('js') }}');">
+                                                <i class="ti ti-trash"></i>
+                                            </button>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="8" class="text-secondary text-center py-4">
+                                    {% if total_count > 0 %}
+                                        {{ __('Aucun thème ne correspond à cette recherche.', 'veilletool') }}
+                                    {% else %}
+                                        {{ __('Aucun thème n\'est encore défini.', 'veilletool') }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+
+    {# ---------------------------------------------------------------- #}
+    {# Référentiel de thèmes : export et import                          #}
+    {# ---------------------------------------------------------------- #}
+    <div class="row row-cards">
+        <div class="col-12 col-lg-6 d-flex">
+            <div class="card flex-fill">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="ti ti-file-download me-1"></i>{{ __('Exporter le référentiel', 'veilletool') }}
+                    </h3>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <p class="text-secondary">
+                        {{ __('Reprend tous les thèmes, dans leur ordre d\'affichage, avec leurs couleurs, leur icône, leur note d\'intérêt et leur description.', 'veilletool') }}
+                    </p>
+                    <small class="form-hint mb-3">
+                        {{ __('Le fichier se réimporte tel quel : c\'est le moyen de transporter ses thèmes d\'une instance GLPI à une autre.', 'veilletool') }}
+                    </small>
+
+                    <form method="post" action="{{ list_url }}" class="mt-auto">
+                        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" name="export" value="1" class="btn btn-outline-secondary">
+                            <i class="ti ti-download me-1"></i>{{ __('Télécharger veille-themes.csv', 'veilletool') }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {% if can_create %}
+            <div class="col-12 col-lg-6 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ti ti-file-upload me-1"></i>{{ __('Importer un référentiel', 'veilletool') }}
+                        </h3>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <form method="post" action="{{ list_url }}" enctype="multipart/form-data"
+                              class="d-flex flex-column flex-fill">
+                            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+                            <p class="text-secondary mb-2">
+                                {{ __('Fichier CSV encodé en UTF-8, séparateur point-virgule :', 'veilletool') }}
+                            </p>
+                            <p class="mb-2"><code>{{ csv_header }}</code></p>
+                            <small class="form-hint mb-3">
+                                {{ __('Seul le nom est obligatoire. Le nom fait foi : un thème déjà présent est mis à jour plutôt que dupliqué, et son identifiant technique ne change pas. L\'ordre des lignes donne l\'ordre d\'affichage.', 'veilletool') }}
+                            </small>
+
+                            <div class="mb-2">
+                                <input type="file" name="csvfile" class="form-control"
+                                       accept=".csv,text/csv" required>
+                            </div>
+
+                            {% if can_purge %}
+                                <label class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" name="replace" value="1">
+                                    <span class="form-check-label">
+                                        {{ __('Retirer les thèmes absents du fichier', 'veilletool') }}
+                                        <small class="d-block text-secondary">
+                                            {{ __('Un thème encore porté par une carte ou par un flux est conservé, et signalé.', 'veilletool') }}
+                                        </small>
+                                    </span>
+                                </label>
+                            {% endif %}
+
+                            <button type="submit" name="import" value="1" class="btn btn-primary mt-auto align-self-start">
+                                <i class="ti ti-upload me-1"></i>{{ __('Importer', 'veilletool') }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

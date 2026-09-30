@@ -1,0 +1,44 @@
+Nom;URL;Type;Thèmes;Intérêt;Actif;Description
+CERT-FR - Alertes;https://www.cert.ssi.gouv.fr/alerte/feed/;rss;cybersecurite;95;0;Alertes de sécurité du CERT gouvernemental français : menaces en cours d'exploitation appelant une réaction immédiate. Le flux le plus urgent du catalogue.
+CERT-FR - Avis de sécurité;https://www.cert.ssi.gouv.fr/avis/feed/;rss;cybersecurite;95;0;Avis du CERT-FR : vulnérabilités publiées, versions touchées et correctifs, produit par produit. Volume quotidien soutenu.
+CERT-FR - Actualités;https://www.cert.ssi.gouv.fr/actualite/feed/;rss;cybersecurite;80;0;Notes d'information et bulletins d'actualité du CERT-FR, plus analytiques que les avis.
+ANSSI - Actualités;https://cyber.gouv.fr/actualites/feed;rss;cybersecurite;80;0;Publications de l'agence nationale : guides d'hygiène, référentiels, recommandations et positions officielles.
+CISA - Cybersecurity Advisories;https://www.cisa.gov/cybersecurity-advisories/all.xml;rss;cybersecurite;90;0;Avis de l'agence américaine de cybersécurité : vulnérabilités activement exploitées, campagnes d'attaque et systèmes industriels.
+NCSC UK - Rapports et avis;https://www.ncsc.gov.uk/api/1/services/v1/report-rss-feed.xml;rss;cybersecurite;75;0;Rapports d'analyse et avis techniques du centre britannique : menaces d'État, guides de durcissement.
+NCSC UK - Actualités;https://www.ncsc.gov.uk/api/1/services/v1/news-rss-feed.xml;rss;cybersecurite;65;0;Communications générales du NCSC britannique, destinées aussi bien aux DSI qu'au grand public.
+ENISA - Actualités;https://www.enisa.europa.eu/media/news-items/news-wires/RSS;rss;cybersecurite;70;0;Agence européenne de cybersécurité : panoramas de menaces, schémas de certification et travaux liés à NIS2.
+NIST - Cybersécurité;https://www.nist.gov/news-events/cybersecurity/rss;rss;cybersecurite;65;0;Travaux normatifs américains : Cybersecurity Framework, publications SP 800, cryptographie post-quantique.
+CNIL - Actualités;https://www.cnil.fr/fr/rss.xml;rss;cybersecurite;70;0;Autorité française de protection des données : délibérations, sanctions, recommandations RGPD et référentiels sectoriels.
+Microsoft MSRC - Security Update Guide;https://api.msrc.microsoft.com/update-guide/rss;rss;cybersecurite|infrastructure;90;0;Vulnérabilités corrigées par Microsoft, y compris le Patch Tuesday mensuel. Incontournable pour un parc Windows, Exchange ou Azure.
+Microsoft Security Blog;https://www.microsoft.com/en-us/security/blog/feed/;rss;cybersecurite;65;0;Analyses de la division sécurité de Microsoft : groupes d'attaquants suivis, campagnes observées, nouveautés Defender.
+Cisco - Security Advisories;https://sec.cloudapps.cisco.com/security/center/psirtrss20/CiscoSecurityAdvisory.xml;rss;cybersecurite|infrastructure;90;0;Avis du PSIRT Cisco sur les équipements réseau, pare-feu et solutions de collaboration.
+Fortinet - PSIRT;https://filestore.fortinet.com/fortiguard/rss/ir.xml;rss;cybersecurite|infrastructure;90;0;Avis du PSIRT Fortinet : FortiOS, FortiGate, FortiManager. Régulièrement visés par des exploitations en masse.
+Ubuntu - Security Notices;https://ubuntu.com/security/notices/rss.xml;rss;cybersecurite|infrastructure;90;0;Bulletins USN : paquets Ubuntu corrigés, avec les versions du correctif par LTS.
+Debian - Security Advisories;https://www.debian.org/security/dsa-long.en.rdf;rss;cybersecurite|infrastructure;90;0;Bulletins DSA avec le détail des paquets Debian stables corrigés et la version portant le correctif.
+Red Hat - Sécurité;https://www.redhat.com/en/rss/blog/channel/security;rss;cybersecurite|infrastructure;80;0;Analyses de sécurité Red Hat : failles majeures de l'écosystème RHEL, OpenShift et conteneurs.
+AWS - Security Bulletins;https://aws.amazon.com/security/security-bulletins/rss/feed/;rss;cybersecurite|infrastructure;85;0;Bulletins de sécurité Amazon Web Services : services touchés et actions éventuellement attendues du client.
+Google - Online Security Blog;https://security.googleblog.com/feeds/posts/default;atom;cybersecurite;75;0;Recherche et ingénierie de sécurité chez Google : Android, Chrome, chaîne d'approvisionnement logicielle, cryptographie.
+Google - Project Zero;https://googleprojectzero.blogspot.com/feeds/posts/default;atom;cybersecurite;75;0;Recherche de vulnérabilités de haut niveau, publiée après expiration du délai de divulgation. Technique et détaillé.
+Chrome Releases;https://chromereleases.googleblog.com/feeds/posts/default;atom;cybersecurite|infrastructure;70;0;Publications de versions Chrome et ChromeOS, avec les failles corrigées - dont les zero-days exploités.
+Mozilla - Security Blog;https://blog.mozilla.org/security/feed/;rss;cybersecurite;65;0;Sécurité de Firefox et des projets Mozilla : correctifs, politique de certificats, vie privée.
+GitHub - Sécurité;https://github.blog/category/security/feed/;rss;cybersecurite;65;0;Sécurité de la chaîne d'approvisionnement logicielle : vulnérabilités de dépendances, secrets exposés, campagnes visant les dépôts.
+SANS Internet Storm Center;https://isc.sans.edu/rssfeed.xml;rss;cybersecurite;80;0;Journal quotidien d'analystes : ce qui est réellement observé sur Internet, souvent avant la presse.
+Krebs on Security;https://krebsonsecurity.com/feed/;rss;cybersecurite;70;0;Enquêtes de Brian Krebs sur la cybercriminalité : fuites, rançongiciels, fraude bancaire. Peu d'articles, très documentés.
+BleepingComputer;https://www.bleepingcomputer.com/feed/;rss;cybersecurite;70;0;Actualité cyber opérationnelle et réactive : incidents, rançongiciels, vulnérabilités exploitées. Volume quotidien élevé.
+The Hacker News;https://feeds.feedburner.com/TheHackersNews;rss;cybersecurite;65;0;Actualité cyber généraliste à fort volume : utile pour le balayage, moins pour l'analyse.
+The Record;https://therecord.media/feed;rss;cybersecurite;60;0;Journalisme cyber adossé à Recorded Future : menaces étatiques, politiques publiques, grands incidents.
+SecurityWeek;https://feeds.feedburner.com/securityweek;rss;cybersecurite;60;0;Actualité cyber à destination des responsables sécurité : marché, incidents, réglementation.
+Dark Reading;https://www.darkreading.com/rss.xml;rss;cybersecurite;55;0;Analyses et tribunes sur la sécurité d'entreprise : gouvernance, gestion du risque, tendances.
+Schneier on Security;https://www.schneier.com/feed/atom/;atom;cybersecurite;60;0;Bruce Schneier : recul sur la cryptographie, la surveillance et la politique de sécurité. Peu opérationnel, souvent éclairant.
+ZATAZ;https://www.zataz.com/feed/;rss;cybersecurite;55;0;Veille cybercriminalité francophone : fuites de données touchant des organisations françaises, arnaques en cours.
+LeMagIT;https://www.lemagit.fr/rss/all.xml;rss;infrastructure|cybersecurite;65;0;Presse IT francophone pour DSI : infrastructure, cloud, sécurité et stratégie, avec un vrai travail de fond.
+Le Monde Informatique;https://www.lemondeinformatique.fr/flux-rss/thematique/toutes-les-actualites/rss.xml;rss;infrastructure;55;0;Actualité IT francophone généraliste : éditeurs, marché, transformation numérique.
+Microsoft Azure - Mises à jour;https://www.microsoft.com/releasecommunications/api/v2/azure/rss;rss;infrastructure;65;0;Journal des évolutions Azure : services en préversion, disponibilités générales et surtout fins de support à anticiper.
+AWS - Nouveautés;https://aws.amazon.com/new/feed/;rss;infrastructure|innovation;60;0;Annonces de services et de fonctionnalités AWS. Volume élevé : à filtrer selon les services réellement employés.
+Kubernetes - Blog;https://kubernetes.io/feed.xml;rss;infrastructure;65;0;Blog officiel du projet : versions, dépréciations d'API et évolutions à préparer avant une montée de version.
+Docker - Blog;https://www.docker.com/blog/feed/;rss;infrastructure;55;0;Actualité Docker : outillage de conteneurs, sécurité des images, évolutions de Docker Desktop.
+The Register;https://www.theregister.com/headlines.atom;atom;infrastructure;55;0;Presse IT britannique, informée et volontiers critique : incidents d'exploitation, stratégies d'éditeurs, matériel.
+Ars Technica;https://feeds.arstechnica.com/arstechnica/index;rss;infrastructure|innovation;50;0;Technologie généraliste de fond : systèmes, matériel, politique numérique. Peu de veille sécurité directement exploitable.
+Hacker News;https://news.ycombinator.com/rss;rss;innovation;45;0;Fil communautaire des sujets techniques du moment. Bruyant, mais utile pour repérer un signal faible avant tout le monde.
+GLPI - Actualités du projet;https://glpi-project.org/feed/;rss;technologie-d3d;70;0;Annonces officielles du projet GLPI : versions, correctifs de sécurité et évolutions de l'écosystème de plugins.
+GLPI - Versions publiées;https://github.com/glpi-project/glpi/releases.atom;atom;technologie-d3d;75;0;Publications GitHub de GLPI, avec les notes de version détaillées. Le moyen le plus rapide d'apprendre qu'une mise à jour est disponible.

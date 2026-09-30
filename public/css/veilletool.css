@@ -1,0 +1,646 @@
+/*
+ * Plugin GLPI « Outils de Veille » (veilletool)
+ * Habillage des cartes de veille, des onglets de filtrage et du détail.
+ */
+
+.veille-tabs .nav-link {
+    display: flex;
+    align-items: center;
+    gap: .35rem;
+}
+
+.veille-dot {
+    display: inline-block;
+    width: .6rem;
+    height: .6rem;
+    border-radius: 50%;
+    flex: 0 0 auto;
+}
+
+/*
+ * La couleur du texte vient du thème, comme son fond : elle est posée en
+ * style en ligne. L'ombre portée qui compensait le blanc imposé disparaît
+ * avec lui - elle salissait un texte sombre sur fond clair, et l'indicateur
+ * de contraste de l'écran de réglage rend la béquille inutile.
+ */
+.veille-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.veille-badge i {
+    font-size: 1.05em;
+    line-height: 1;
+}
+
+.veille-tabs .nav-link i {
+    font-size: 1.1em;
+}
+
+/* --- Cartes ----------------------------------------------------------- */
+
+.veille-card {
+    border-left: 4px solid transparent;
+    transition: box-shadow .15s ease-in-out, transform .15s ease-in-out;
+}
+
+.veille-card:hover {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .12);
+    transform: translateY(-2px);
+}
+
+/* Une carte non lue l'est pour l'utilisateur courant uniquement. */
+.veille-card-unread {
+    border-left-color: var(--tblr-primary, #206bc4);
+}
+
+.veille-card-unread .card-title {
+    font-weight: 700;
+}
+
+.veille-card-read {
+    border-left-color: transparent;
+    opacity: .82;
+}
+
+.veille-card-read .card-title {
+    font-weight: 500;
+}
+
+.veille-card-img {
+    height: 10rem;
+    object-fit: cover;
+}
+
+.veille-card-excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* --- Score d'intérêt et priorité d'une carte -------------------------- */
+
+/*
+ * Le bloc est en pied de carte, hors du .card-body : il reprend donc le
+ * retrait horizontal de celui-ci pour rester aligné sur le texte.
+ *
+ * Le titre de la carte porte .stretched-link, dont la surcouche occupe toute
+ * la carte avec un z-index de 1 : sans repasser au-dessus, l'infobulle qui
+ * détaille les quatre composantes serait inatteignable.
+ */
+.veille-card-score {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: 0 var(--tblr-card-padding-x, 1.25rem) .75rem;
+    cursor: help;
+}
+
+/*
+ * Le niveau de priorité doit se lire avant le reste de la carte.
+ *
+ * Le fond et la couleur du texte sont posés en style en ligne : le premier
+ * vient des réglages, le second en est déduit. Seule la graisse relève de la
+ * feuille de style. Tabler la pilote par une variable, qu'on redéfinit plutôt
+ * que de forcer la déclaration - la taille, les marges et la forme du badge
+ * restent les siennes.
+ */
+.badge.veille-priority {
+    --tblr-badge-font-weight: 700;
+}
+
+.veille-score-value {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: .85rem;
+    white-space: nowrap;
+}
+
+.veille-score-value small {
+    font-weight: 400;
+    opacity: .7;
+}
+
+/* La jauge n'existe plus que sur le détail d'une carte : dans l'observatoire
+   on parcourt, et la note chiffrée s'y compare plus vite qu'une barre. */
+.veille-score-bar {
+    flex: 1 1 auto;
+    height: .35rem;
+    min-width: 3rem;
+    border-radius: .35rem;
+    background: var(--tblr-border-color, #dee2e6);
+    overflow: hidden;
+}
+
+.veille-score-fill {
+    display: block;
+    height: 100%;
+    border-radius: .35rem;
+}
+
+/* --- Technologies reconnues sur une carte ---------------------------- */
+
+.veille-card-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem;
+}
+
+.veille-tech-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    max-width: 100%;
+    padding: .1rem .45rem;
+    border: 1px solid var(--tblr-border-color, #dee2e6);
+    border-radius: 1rem;
+    font-size: .75rem;
+    line-height: 1.5;
+    color: var(--tblr-secondary, #6c757d);
+}
+
+.veille-tech-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*
+ * La confiance dit sur quoi repose le rattachement : un libellé cité mot
+ * pour mot ne se lit pas comme une simple racine de produit.
+ */
+/* La confiance n'est affichée que sur le détail d'une carte. */
+.veille-tech-confidence {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    padding: 0 .3rem;
+    border-radius: .6rem;
+}
+
+.veille-tech-confidence[data-veille-confidence="high"] {
+    background: var(--tblr-green-lt, #d5f3e4);
+    color: var(--tblr-green, #2fb344);
+}
+
+.veille-tech-confidence[data-veille-confidence="medium"] {
+    background: var(--tblr-yellow-lt, #fdf2d7);
+    color: var(--tblr-yellow, #f59f00);
+}
+
+.veille-tech-confidence[data-veille-confidence="low"] {
+    background: var(--tblr-bg-surface-secondary, rgba(0, 0, 0, .05));
+    color: var(--tblr-secondary, #6c757d);
+}
+
+.veille-tech-more {
+    cursor: help;
+}
+
+/*
+ * Rattachement décidé à la main : il se distingue de ce que le rapprochement
+ * automatique a trouvé, parce qu'il ne se défait pas de la même façon - seul
+ * celui-là se retire, et seulement par qui administre le référentiel.
+ */
+.veille-tech-manual {
+    border-color: var(--tblr-primary, #4b7bec);
+    color: var(--tblr-primary, #4b7bec);
+}
+
+.veille-tech-remove {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    opacity: .55;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.veille-tech-remove:hover,
+.veille-tech-remove:focus-visible {
+    opacity: 1;
+    color: var(--tblr-danger, #d63939);
+}
+
+/* --- Score d'intérêt en vue liste ------------------------------------- */
+
+/*
+ * Pas de jauge ici : la vue liste se parcourt à la verticale, et des chiffres
+ * alignés se comparent mieux qu'une succession de barres.
+ */
+.veille-list-score {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: help;
+}
+
+.veille-list-score .veille-dot {
+    margin-right: .4rem;
+    vertical-align: middle;
+}
+
+/* --- Réglage des étiquettes : libellé, fond, texte -------------------- */
+
+.veille-scoring .form-control-color,
+.veille-dropdown-colors .form-control-color {
+    flex: 0 0 auto;
+    width: 3rem;
+}
+
+/* Le libellé partage la ligne avec le seuil et les deux sélecteurs : il lui
+   faut une largeur propre, sinon il absorbe toute la place disponible. */
+.veille-scoring .veille-level-label {
+    flex: 1 1 8rem;
+    min-width: 6rem;
+}
+
+.veille-scoring .veille-threshold {
+    flex: 0 1 5rem;
+    min-width: 4rem;
+}
+
+.veille-contrast {
+    font-variant-numeric: tabular-nums;
+    font-size: .8125rem;
+    white-space: nowrap;
+    cursor: help;
+}
+
+/*
+ * Le titre de la carte utilise .stretched-link pour rendre toute la carte
+ * cliquable : les actions du pied doivent donc repasser au-dessus.
+ */
+.veille-card-actions {
+    position: relative;
+    z-index: 2;
+}
+
+.veille-card-actions form {
+    margin: 0;
+}
+
+/* --- Détail d'une carte ----------------------------------------------- */
+
+.veille-detail-img {
+    max-height: 22rem;
+    object-fit: cover;
+}
+
+.veille-content {
+    overflow-wrap: anywhere;
+}
+
+.veille-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.veille-content table {
+    max-width: 100%;
+}
+
+.veille-comment:last-of-type {
+    border-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.veille-comment-content {
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+
+/* --- Sélecteur d'icônes des catégories -------------------------------- */
+
+.veille-icon-option {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.veille-icon-option i {
+    font-size: 1.15em;
+    width: 1.3em;
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+/* --- Écran « Résumer par IA » ----------------------------------------- */
+
+.veille-summary-list {
+    max-height: 28rem;
+    overflow-y: auto;
+    border: 1px solid var(--tblr-border-color, #dee2e6);
+    border-radius: .35rem;
+}
+
+.veille-summary-item {
+    display: flex;
+    align-items: flex-start;
+    gap: .6rem;
+    padding: .55rem .7rem;
+    margin: 0;
+    cursor: pointer;
+    border-bottom: 1px solid var(--tblr-border-color, #dee2e6);
+}
+
+.veille-summary-item:last-child {
+    border-bottom: 0;
+}
+
+.veille-summary-item:hover {
+    background: var(--tblr-bg-surface-secondary, rgba(0, 0, 0, .03));
+}
+
+.veille-summary-item input {
+    margin-top: .2rem;
+    flex: 0 0 auto;
+}
+
+.veille-summary-title {
+    font-weight: 600;
+}
+
+/* --- Rédaction de la question envoyée à l'IA -------------------------- */
+
+.veille-ai-prompt {
+    font-family: inherit;
+    font-size: .85rem;
+    line-height: 1.5;
+    min-height: 8rem;
+    resize: vertical;
+}
+
+/* --- Vue liste --------------------------------------------------------- */
+
+.veille-list-unread td {
+    font-weight: 600;
+}
+
+.veille-list .veille-badge {
+    margin-right: .2rem;
+}
+
+/* --- Vue statistiques -------------------------------------------------- */
+
+/*
+ * Le découpage commande tout l'écran : il est centré, au-dessus du graphique
+ * plutôt qu'en coin d'en-tête, et à une taille qui le désigne comme le
+ * réglage principal.
+ */
+.veille-stats-levels {
+    text-align: center;
+}
+
+.veille-stats-levels .btn-group {
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+
+.veille-stats-chart {
+    width: 100%;
+    /* Hauteur suffisante pour le camembert et la légende défilante placée
+       sous lui, sans recouvrement. */
+    height: 28rem;
+    min-height: 22rem;
+}
+
+/* --- Listes de sélection à cocher -------------------------------------- */
+
+/* --- Filtres enregistrés ---------------------------------------------- */
+
+/*
+ * Une seule ligne au pied de la barre de filtres : rappeler un filtre et en
+ * enregistrer un ne méritent pas un panneau à eux.
+ * Le trait vertical sépare les deux gestes, qui n'ont rien à voir l'un avec
+ * l'autre malgré leur voisinage.
+ */
+.veille-filter-bar .form-label {
+    white-space: nowrap;
+}
+
+.veille-filter-bar select,
+.veille-filter-bar input[type="text"] {
+    min-width: 13rem;
+}
+
+.veille-filter-sep {
+    width: 1px;
+    height: 1.6rem;
+    margin: 0 .35rem;
+    background: var(--tblr-border-color, #dee2e6);
+}
+
+/* --- Réordonnancement des thèmes -------------------------------------- */
+
+/*
+ * Un thème se range par rapport aux autres, pas en saisissant un nombre : la
+ * poignée l'annonce, et les deux chevrons font la même chose pour qui n'a ni
+ * souris ni JavaScript.
+ */
+.veille-sort-cell {
+    white-space: nowrap;
+}
+
+.veille-sort-handle {
+    display: inline-flex;
+    align-items: center;
+    padding: .2rem .1rem;
+    color: var(--tblr-secondary, #6c757d);
+    cursor: grab;
+    opacity: .6;
+}
+
+.veille-sort-handle:active {
+    cursor: grabbing;
+}
+
+tr:hover > .veille-sort-cell .veille-sort-handle {
+    opacity: 1;
+}
+
+.veille-sort-steps {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.veille-sort-step {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--tblr-secondary, #6c757d);
+    line-height: .8;
+    opacity: .45;
+    cursor: pointer;
+}
+
+.veille-sort-step:hover:not(:disabled) {
+    opacity: 1;
+    color: var(--tblr-primary, #4b7bec);
+}
+
+.veille-sort-step:disabled {
+    opacity: .15;
+    cursor: default;
+}
+
+/* La ligne saisie reste visible, en retrait, pendant son déplacement. */
+.veille-sort-dragging {
+    opacity: .4;
+    background: var(--tblr-bg-surface-secondary, rgba(0, 0, 0, .04));
+}
+
+.veille-category-table tbody tr {
+    /* Le glissement ne doit pas emporter une sélection de texte. */
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/*
+ * Description d'un flux, sous son nom dans la liste. Bornée à trois lignes :
+ * le tableau doit rester un tableau, la description est là pour décider
+ * d'activer, pas pour être lue en entier.
+ */
+.veille-source-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 44rem;
+    margin: .15rem 0;
+    color: var(--tblr-body-color, #1d273b);
+    opacity: .85;
+}
+
+.veille-check-list {
+    max-height: 14rem;
+    overflow-y: auto;
+    border: 1px solid var(--tblr-border-color, #dee2e6);
+    border-radius: .35rem;
+}
+
+.veille-check-item {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    padding: .4rem .7rem;
+    margin: 0;
+    cursor: pointer;
+    border-bottom: 1px solid var(--tblr-border-color, #dee2e6);
+}
+
+.veille-check-item:last-child {
+    border-bottom: 0;
+}
+
+.veille-check-item:hover {
+    background: var(--tblr-bg-surface-secondary, rgba(0, 0, 0, .03));
+}
+
+.veille-check-item input {
+    flex: 0 0 auto;
+    margin: 0;
+}
+
+.veille-check-item span {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+}
+
+/*
+ * Une entrée cochée se distingue sans qu'on ait à viser la case : la liste se
+ * parcourt du regard, et ce qui est retenu doit sauter aux yeux.
+ */
+.veille-check-item:has(input:checked) {
+    background: var(--tblr-primary-lt, #e9f0fb);
+    font-weight: 500;
+}
+
+.veille-ai-level {
+    min-width: 14rem;
+}
+
+/* --- Réglage du score d'intérêt --------------------------------------- */
+
+.veille-scoring .form-range {
+    margin-bottom: .25rem;
+}
+
+.veille-scoring .hr-text {
+    margin: 1.25rem 0 .75rem;
+}
+
+/* --- Panneau de suivi des familles ------------------------------------ */
+
+/*
+ * Le référentiel compte quatre-vingt-treize familles : la liste défile
+ * plutôt que d'allonger la page indéfiniment.
+ */
+.veille-follow-list {
+    max-height: 18rem;
+    overflow-y: auto;
+    border: 1px solid var(--tblr-border-color, #dee2e6);
+    border-radius: .35rem;
+}
+
+.veille-follow-item {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    padding: .4rem .7rem;
+    border-bottom: 1px solid var(--tblr-border-color, #dee2e6);
+}
+
+.veille-follow-item:last-child {
+    border-bottom: 0;
+}
+
+.veille-follow-item:hover {
+    background: var(--tblr-bg-surface-secondary, rgba(0, 0, 0, .03));
+}
+
+.veille-follow-item form {
+    margin: 0;
+}
+
+.veille-follow-label {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* --- Pagination des cartes -------------------------------------------- */
+
+/*
+ * « ‹ 3 › », centré. Le rang est posé sur une largeur minimale pour que les
+ * flèches ne se déplacent pas en passant de la page 9 à la page 10.
+ */
+.veille-pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+}
+
+.veille-pager-page {
+    min-width: 2.5rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}

@@ -1,0 +1,154 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Vue « cartes » de l'observatoire.
+ #}
+
+    {% if articles is empty %}
+        <div class="alert alert-info">
+            <i class="ti ti-info-circle me-1"></i>
+            {% if favorites_only %}
+                {{ __('Aucune carte n\'a encore été ajoutée aux favoris.', 'veilletool') }}
+            {% else %}
+                {{ __('Aucune carte ne correspond à ces critères. Ajoutez un flux depuis l\'onglet « Flux RSS / ATOM », ou créez une carte manuellement.', 'veilletool') }}
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="row row-cards">
+            {% for card in articles %}
+                {% set score_title = __('Score d\'intérêt', 'veilletool') ~ ' : ' ~ card.interest_score ~ '/100' %}
+                {% for part in card.score_detail %}
+                    {% set score_title = score_title ~ ' · ' ~ part.label ~ ' ' ~ part.value
+                        ~ ' (' ~ __('poids', 'veilletool') ~ ' ' ~ part.weight ~ ')' %}
+                {% endfor %}
+                <div class="col-12 col-md-6 col-xxl-4 d-flex">
+                    <div class="card veille-card flex-fill {{ card.is_read ? 'veille-card-read' : 'veille-card-unread' }}">
+                        {% if card.image_url is not empty %}
+                            <img class="card-img-top veille-card-img" src="{{ card.image_url }}" alt="" loading="lazy">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <div class="veille-card-tags mb-2">
+                                {% for category in card.categories %}
+                                    <span class="badge veille-badge" style="background-color: {{ category.color }}; color: {{ category.text_color }}">
+                                        <i class="{{ category.icon }}"></i>{{ category.name }}
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-secondary-lt">{{ __('Sans catégorie', 'veilletool') }}</span>
+                                {% endfor %}
+                                {% if not card.is_read %}
+                                    <span class="badge bg-azure">{{ __('Non lue', 'veilletool') }}</span>
+                                {% endif %}
+                            </div>
+
+                            <h3 class="card-title mb-1">
+                                <a class="stretched-link text-reset" target="_blank" rel="noopener"
+                                   href="{{ form_url }}?id={{ card.id }}">{{ card.name }}</a>
+                            </h3>
+
+                            <div class="text-secondary small mb-2">
+                                <i class="ti {{ card.is_manual ? 'ti-pencil' : 'ti-rss' }} me-1"></i>{{ card.source_name }}
+                                {% if card.author is not empty %} · {{ card.author }}{% endif %}
+                                · {{ card.date_published|formatted_datetime }}
+                            </div>
+
+                            {#
+                             # L'aperçu est calculé côté serveur, une fois par
+                             # carte : le contenu HTML n'est plus remis à plat
+                             # à chaque rendu de gabarit.
+                             #}
+                            {% if card.excerpt is not empty %}
+                                <p class="text-secondary veille-card-excerpt mb-2">{{ card.excerpt }}</p>
+                            {% endif %}
+
+                            {#
+                             # Technologies reconnues. La confiance du
+                             # rapprochement n'est pas montrée ici : dans
+                             # l'observatoire on parcourt, et un chiffre par
+                             # étiquette encombre plus qu'il n'informe. Elle
+                             # reste sur le détail de la carte, où l'on
+                             # s'arrête.
+                             #}
+                            {% if card.technologies is not empty %}
+                                <div class="veille-card-techs">
+                                    {% for technology in card.technologies|slice(0, 3) %}
+                                        <span class="veille-tech-chip"
+                                              title="{{ technology.categorie }} › {{ technology.famille }}{{ technology.name ? ' › ' ~ technology.name : '' }}">
+                                            <i class="ti ti-binary-tree"></i>
+                                            <span class="veille-tech-label">{{ technology.label }}</span>
+                                        </span>
+                                    {% endfor %}
+                                    {% if card.technologies|length > 3 %}
+                                        <span class="veille-tech-chip veille-tech-more"
+                                              title="{{ card.technologies|slice(3)|map(t => t.label)|join(', ') }}">
+                                            +{{ card.technologies|length - 3 }}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        {#
+                         # Score d'intérêt et priorité qui en découle, en pied
+                         # de carte : c'est la dernière chose lue avant les
+                         # actions, donc juste avant la décision d'ouvrir ou
+                         # de passer. Le détail des quatre composantes est en
+                         # infobulle - la carte annonce une note, elle n'expose
+                         # pas un tableur.
+                         #}
+                        <div class="veille-card-score" title="{{ score_title }}">
+                            <span class="badge veille-priority"
+                                  style="background-color: {{ card.priority.color }}; color: {{ card.priority.text_color }}">
+                                <i class="{{ card.priority.icon }} me-1"></i>{{ card.priority.label }}
+                            </span>
+                            <span class="veille-score-value text-secondary">{{ card.interest_score }}<small>/100</small></span>
+                        </div>
+
+                        <div class="card-footer veille-card-actions d-flex align-items-center gap-2">
+                            <form method="post" action="{{ form_url }}" class="d-inline">
+                                <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="articles_id" value="{{ card.id }}">
+                                <button type="submit" name="toggle_read" value="1"
+                                        class="btn btn-sm btn-ghost-secondary"
+                                        title="{{ card.is_read ? __('Marquer comme non lue', 'veilletool') : __('Marquer comme lue', 'veilletool') }}">
+                                    <i class="ti {{ card.is_read ? 'ti-mail-opened' : 'ti-mail' }}"></i>
+                                </button>
+                            </form>
+
+                            {% if can_update %}
+                                <form method="post" action="{{ form_url }}" class="d-inline">
+                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="articles_id" value="{{ card.id }}">
+                                    <button type="submit" name="toggle_favorite" value="1"
+                                            class="btn btn-sm btn-ghost-secondary {{ card.is_favorite ? 'text-yellow' : '' }}"
+                                            title="{{ card.is_favorite ? __('Retirer des favoris', 'veilletool') : __('Ajouter aux favoris', 'veilletool') }}">
+                                        <i class="ti {{ card.is_favorite ? 'ti-star-filled' : 'ti-star' }}"></i>
+                                    </button>
+                                </form>
+                            {% elseif card.is_favorite %}
+                                <span class="btn btn-sm btn-ghost-secondary text-yellow disabled">
+                                    <i class="ti ti-star-filled"></i>
+                                </span>
+                            {% endif %}
+
+                            <a class="btn btn-sm btn-ghost-secondary" href="{{ card.ai_url }}"
+                               target="_blank" rel="noopener noreferrer"
+                               title="{{ __('Demander à l\'IA', 'veilletool') }}">
+                                <i class="ti ti-sparkles"></i>
+                            </a>
+
+                            <span class="text-secondary small">
+                                <i class="ti ti-message-circle me-1"></i>{{ card.comment_count }}
+                            </span>
+
+                            <a class="btn btn-sm btn-ghost-secondary ms-auto" target="_blank" rel="noopener"
+                               href="{{ form_url }}?id={{ card.id }}">
+                                {{ __('Détails', 'veilletool') }}<i class="ti ti-chevron-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {{ include('@veilletool/parts/pager.html.twig') }}
+    {% endif %}

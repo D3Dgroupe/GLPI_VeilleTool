@@ -1,0 +1,421 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Réglages du score d'intérêt : poids des composantes et seuils de priorité.
+ #}
+
+{% set page_url = path('/plugins/veilletool/front/scoring.php') %}
+
+{% set components = {
+    'source':     {'label': __('Source', 'veilletool'),      'icon': 'ti ti-rss',
+                   'hint':  __('Note d\'intérêt du flux d\'origine, réglée sur chaque flux.', 'veilletool')},
+    'technology': {'label': __('Technologie', 'veilletool'), 'icon': 'ti ti-binary-tree',
+                   'hint':  __('Confiance du meilleur rapprochement technologique de la carte.', 'veilletool')},
+    'category':   {'label': __('Catégorie', 'veilletool'),   'icon': 'ti ti-tags',
+                   'hint':  __('Meilleure note d\'intérêt parmi les thèmes portés par la carte.', 'veilletool')},
+    'freshness':  {'label': __('Fraîcheur', 'veilletool'),   'icon': 'ti ti-clock',
+                   'hint':  __('100 le jour de la publication, 0 au-delà de l\'horizon réglé.', 'veilletool')},
+} %}
+
+<div class="veille-scoring">
+
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+        <h2 class="mb-0">
+            <i class="ti ti-adjustments-star me-1"></i>{{ __('Score d\'intérêt', 'veilletool') }}
+        </h2>
+        <a class="btn btn-ghost-secondary" href="{{ path('/plugins/veilletool/front/article.php') }}">
+            <i class="ti ti-radar me-1"></i>{{ __('Retour à l\'observatoire', 'veilletool') }}
+        </a>
+    </div>
+
+    <div class="alert alert-info">
+        <i class="ti ti-info-circle me-1"></i>
+        {{ __('Chaque carte reçoit une note de 0 à 100, moyenne des quatre composantes ci-dessous pondérée par leurs poids. Seule la proportion des poids compte : la note est toujours ramenée sur 100.', 'veilletool') }}
+        {% if pending > 0 %}
+            <div class="mt-2">
+                <i class="ti ti-clock-play me-1"></i>
+                {{ _n('%d carte est en attente de reclassement.', '%d cartes sont en attente de reclassement.', pending, 'veilletool')|format(pending) }}
+            </div>
+        {% endif %}
+    </div>
+
+    <form method="post" action="{{ page_url }}">
+        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+        <div class="row row-cards">
+
+            {# ------------------------------------------------------------ #}
+            {# Poids des composantes                                         #}
+            {# ------------------------------------------------------------ #}
+            <div class="col-12 col-xl-7 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ti ti-scale me-1"></i>{{ __('Poids des composantes', 'veilletool') }}
+                        </h3>
+                    </div>
+                    <div class="card-body" data-veille-weights>
+                        {% for key, meta in components %}
+                            <div class="mb-3">
+                                <label class="form-label d-flex align-items-center gap-2"
+                                       for="veille-weight-{{ key }}">
+                                    <i class="{{ meta.icon }}"></i>
+                                    <span>{{ meta.label }}</span>
+                                    <span class="badge bg-secondary-lt ms-auto"
+                                          data-veille-share="{{ key }}">{{ shares[key] }} %</span>
+                                </label>
+                                <input type="range" class="form-range" min="0" max="100" step="5"
+                                       id="veille-weight-{{ key }}"
+                                       name="weight_{{ key }}"
+                                       value="{{ weights[key] }}"
+                                       data-veille-weight="{{ key }}"
+                                       {{ can_update ? '' : 'disabled' }}>
+                                <small class="form-hint">{{ meta.hint }}</small>
+                            </div>
+                        {% endfor %}
+
+                        <div class="hr-text">{{ __('Fraîcheur', 'veilletool') }}</div>
+
+                        <div class="row g-2 mb-2">
+                            <div class="col-12 col-sm-6">
+                                <label class="form-label" for="veille-freshness-grace">
+                                    {{ __('Commence à vieillir après', 'veilletool') }}
+                                </label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" min="0" max="3650"
+                                           id="veille-freshness-grace" name="freshness_grace_days"
+                                           value="{{ settings.freshness_grace_days }}"
+                                           {{ can_update ? '' : 'disabled' }}>
+                                    <span class="input-group-text">{{ __('jour(s)', 'veilletool') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label class="form-label" for="veille-freshness-loss">
+                                    {{ __('Puis perd, par jour', 'veilletool') }}
+                                </label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" min="0" max="100"
+                                           id="veille-freshness-loss" name="freshness_loss_per_day"
+                                           value="{{ settings.freshness_loss_per_day }}"
+                                           {{ can_update ? '' : 'disabled' }}>
+                                    <span class="input-group-text">{{ __('point(s)', 'veilletool') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <small class="form-hint">
+                                    {{ __('Une carte vaut 100 en fraîcheur pendant le délai indiqué, puis perd ce nombre de points par jour supplémentaire.', 'veilletool') }}
+                                    {% if zero_day is null %}
+                                        <strong>{{ __('Avec 0 point par jour, la fraîcheur ne décroît jamais.', 'veilletool') }}</strong>
+                                    {% else %}
+                                        <strong>{{ __('Elle tombe à 0 au bout de %d jour(s).', 'veilletool')|format(zero_day) }}</strong>
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label" for="veille-default-interest">
+                                {{ __('Note par défaut d\'un flux ou d\'un thème', 'veilletool') }}
+                            </label>
+                            <input type="number" class="form-control" min="0" max="100"
+                                   id="veille-default-interest" name="default_interest"
+                                   value="{{ settings.default_interest }}"
+                                   {{ can_update ? '' : 'disabled' }}>
+                            <small class="form-hint">
+                                {{ __('Appliquée aux cartes saisies à la main et aux flux dont la note n\'a pas été réglée. La modifier replace toutes les cartes dans la file de reclassement.', 'veilletool') }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# ------------------------------------------------------------ #}
+            {# Seuils de priorité                                            #}
+            {# ------------------------------------------------------------ #}
+            <div class="col-12 col-xl-5 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ti ti-flag me-1"></i>{{ __('Niveaux de priorité', 'veilletool') }}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary">
+                            {{ __('Chaque niveau démarre au seuil indiqué et s\'arrête au seuil du niveau supérieur. Un seuil plus haut que celui du niveau au-dessus est ramené à celui-ci.', 'veilletool') }}
+                        </p>
+
+                        {% set fields = {
+                            'high':      'priority_high',
+                            'important': 'priority_important',
+                            'toread':    'priority_toread',
+                            'info':      'priority_info',
+                        } %}
+
+                        {# Les deux sélecteurs sont identiques d'un niveau à l'autre :
+                           une macro évite de les répéter cinq fois. #}
+                        {# Le libellé livré suit la langue de l'utilisateur : il reste
+                           en indication, et le champ vide le laisse s'appliquer. #}
+                        {% macro label(level, priority, can_update) %}
+                            <span class="input-group-text" title="{{ __('Libellé', 'veilletool') }}">
+                                <i class="ti ti-tag"></i>
+                            </span>
+                            <input type="text" class="form-control veille-level-label"
+                                   name="label_{{ level }}"
+                                   value="{{ priority.custom_label }}"
+                                   maxlength="40"
+                                   placeholder="{{ priority.default_label }}"
+                                   data-veille-label="{{ level }}"
+                                   aria-label="{{ __('Libellé du niveau', 'veilletool') }}"
+                                   {{ can_update ? '' : 'disabled' }}>
+                        {% endmacro %}
+
+                        {% macro colors(level, priority, can_update) %}
+                            <span class="input-group-text" title="{{ __('Fond', 'veilletool') }}">
+                                <i class="ti ti-paint"></i>
+                            </span>
+                            <input type="color" class="form-control form-control-color"
+                                   name="color_{{ level }}"
+                                   value="{{ priority.color }}"
+                                   data-veille-color="{{ level }}"
+                                   aria-label="{{ __('Couleur de fond', 'veilletool') }}"
+                                   {{ can_update ? '' : 'disabled' }}>
+                            <span class="input-group-text" title="{{ __('Texte', 'veilletool') }}">
+                                <i class="ti ti-typography"></i>
+                            </span>
+                            <input type="color" class="form-control form-control-color"
+                                   name="text_{{ level }}"
+                                   value="{{ priority.text_color }}"
+                                   data-veille-text="{{ level }}"
+                                   aria-label="{{ __('Couleur du texte', 'veilletool') }}"
+                                   {{ can_update ? '' : 'disabled' }}>
+                        {% endmacro %}
+
+                        {% import _self as pickers %}
+
+                        {% for level, field in fields %}
+                            <div class="mb-3">
+                                <label class="form-label d-flex align-items-center gap-2 flex-wrap"
+                                       for="veille-{{ field }}">
+                                    <span class="badge veille-priority"
+                                          data-veille-preview="{{ level }}"
+                                          style="background-color: {{ priorities[level].color }}; color: {{ priorities[level].text_color }}">
+                                        <i class="{{ priorities[level].icon }} me-1"></i><span data-veille-preview-label>{{ priorities[level].label }}</span>
+                                    </span>
+                                    <span class="veille-contrast ms-auto {{ priorities[level].readable ? 'text-secondary' : 'text-orange' }}"
+                                          data-veille-contrast="{{ level }}"
+                                          data-veille-suggested="{{ priorities[level].suggested_text }}"
+                                          title="{{ __('Rapport de contraste entre le texte et le fond. 4,5:1 est le seuil de lisibilité recommandé.', 'veilletool') }}">
+                                        <i class="ti {{ priorities[level].readable ? 'ti-contrast' : 'ti-alert-triangle' }} me-1"></i><span data-veille-ratio>{{ priorities[level].contrast }}</span>:1
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">{{ __('à partir de', 'veilletool') }}</span>
+                                    <input type="number" class="form-control veille-threshold" min="0" max="100"
+                                           id="veille-{{ field }}" name="{{ field }}"
+                                           value="{{ settings[field] }}"
+                                           {{ can_update ? '' : 'disabled' }}>
+                                    {{ pickers.label(level, priorities[level], can_update) }}
+                                    {{ pickers.colors(level, priorities[level], can_update) }}
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <div class="mb-0">
+                            <label class="form-label d-flex align-items-center gap-2 flex-wrap">
+                                <span class="badge veille-priority"
+                                      data-veille-preview="low"
+                                      style="background-color: {{ priorities.low.color }}; color: {{ priorities.low.text_color }}">
+                                    <i class="{{ priorities.low.icon }} me-1"></i><span data-veille-preview-label>{{ priorities.low.label }}</span>
+                                </span>
+                                <span class="text-secondary">{{ __('en dessous du dernier seuil.', 'veilletool') }}</span>
+                                <span class="veille-contrast ms-auto {{ priorities.low.readable ? 'text-secondary' : 'text-orange' }}"
+                                      data-veille-contrast="low"
+                                      data-veille-suggested="{{ priorities.low.suggested_text }}"
+                                      title="{{ __('Rapport de contraste entre le texte et le fond. 4,5:1 est le seuil de lisibilité recommandé.', 'veilletool') }}">
+                                    <i class="ti {{ priorities.low.readable ? 'ti-contrast' : 'ti-alert-triangle' }} me-1"></i><span data-veille-ratio>{{ priorities.low.contrast }}</span>:1
+                                </span>
+                            </label>
+                            <div class="input-group">
+                                {{ pickers.label('low', priorities.low, can_update) }}
+                                {{ pickers.colors('low', priorities.low, can_update) }}
+                            </div>
+                        </div>
+
+                        <small class="form-hint mt-2">
+                            {{ __('Le libellé, le fond et le texte se choisissent librement. Un libellé laissé vide rend celui livré - affiché en filigrane -, qui a l\'avantage de suivre la langue de l\'utilisateur.', 'veilletool') }}
+                            {{ __('Le rapport de contraste affiché à droite est indicatif : au-dessous de 4,5:1, le libellé devient difficile à lire.', 'veilletool') }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            {# ------------------------------------------------------------ #}
+            {# Tri par défaut                                                 #}
+            {# ------------------------------------------------------------ #}
+            <div class="col-12 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ti ti-arrows-sort me-1"></i>{{ __('Tri par défaut de l\'observatoire', 'veilletool') }}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2 align-items-end">
+                            <div class="col-12 col-md-5">
+                                <label class="form-label" for="veille-default-sort">
+                                    {{ __('À l\'ouverture, classer les cartes par', 'veilletool') }}
+                                </label>
+                                <select id="veille-default-sort" name="default_sort" class="form-select"
+                                        {{ can_update ? '' : 'disabled' }}>
+                                    {% for value, label in sort_modes %}
+                                        <option value="{{ value }}"
+                                                {{ settings.default_sort == value ? 'selected' : '' }}>{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                                <small class="form-hint">
+                                    {{ __('Chaque utilisateur peut changer ce tri depuis la barre de filtres. Son choix vaut pour sa session.', 'veilletool') }}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if can_update %}
+            <div class="d-flex flex-wrap gap-2 mt-3">
+                <button type="submit" name="update" value="1" class="btn btn-primary">
+                    <i class="ti ti-device-floppy me-1"></i>{{ __('Enregistrer', 'veilletool') }}
+                </button>
+                <button type="submit" name="reset" value="1" class="btn btn-outline-secondary"
+                        onclick="return confirm('{{ __('Rétablir tous les réglages livrés ?', 'veilletool')|e('js') }}');">
+                    <i class="ti ti-rotate me-1"></i>{{ __('Rétablir les valeurs livrées', 'veilletool') }}
+                </button>
+            </div>
+        {% endif %}
+    </form>
+
+    {# ---------------------------------------------------------------- #}
+    {# Préréglages                                                       #}
+    {#                                                                   #}
+    {# Le barème n'a pas une bonne réponse mais plusieurs, selon ce     #}
+    {# qu'on cherche.                                                    #}
+    {# Un préréglage en fige une sous un titre.                          #}
+    {# Il ne s'applique que lorsqu'on le demande.                        #}
+    {# ---------------------------------------------------------------- #}
+    <div class="card mt-3">
+        <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <h3 class="card-title mb-0">
+                <i class="ti ti-bookmarks me-1"></i>{{ __('Préréglages du barème', 'veilletool') }}
+            </h3>
+            <span class="text-secondary">
+                {{ __('%1$d sur %2$d', 'veilletool')|format(presets|length, preset_max) }}
+            </span>
+        </div>
+
+        <div class="card-body pb-0">
+            <p class="text-secondary mb-0">
+                {{ __('Une veille de crise privilégie la fraîcheur et la note du flux. Une veille produit privilégie la technologie. Enregistrez chaque barème sous un titre, puis rappelez-le d\'un clic.', 'veilletool') }}
+            </p>
+        </div>
+
+        {% if presets is not empty %}
+            <div class="table-responsive">
+                <table class="table table-vcenter card-table">
+                    <thead>
+                        <tr>
+                            <th>{{ __('Titre', 'veilletool') }}</th>
+                            <th>{{ __('Description', 'veilletool') }}</th>
+                            <th class="text-end" style="width: 22rem;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for preset in presets %}
+                            <tr>
+                                <td>
+                                    <strong>{{ preset.name }}</strong>
+                                    {% if preset.id == current_preset %}
+                                        <span class="badge bg-green-lt ms-1"
+                                              title="{{ __('Le barème en vigueur correspond exactement à ce préréglage.', 'veilletool') }}">
+                                            <i class="ti ti-check me-1"></i>{{ __('en vigueur', 'veilletool') }}
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-secondary small">
+                                    {{ preset.comment is not empty ? preset.comment : '-' }}
+                                </td>
+                                <td class="text-end">
+                                    {% if can_update %}
+                                        <form method="post" action="{{ page_url }}" class="d-inline-flex gap-1">
+                                            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+                                            <button type="submit" name="preset_apply" value="{{ preset.id }}"
+                                                    class="btn btn-sm btn-outline-primary"
+                                                    {{ preset.id == current_preset ? 'disabled' : '' }}>
+                                                <i class="ti ti-player-play me-1"></i>{{ __('Appliquer', 'veilletool') }}
+                                            </button>
+
+                                            <button type="submit" name="preset_capture" value="{{ preset.id }}"
+                                                    class="btn btn-sm btn-ghost-secondary"
+                                                    title="{{ __('Remplacer ce préréglage par le barème actuellement réglé', 'veilletool') }}"
+                                                    onclick="return confirm('{{ __('Remplacer ce préréglage par le barème en vigueur ?', 'veilletool')|e('js') }}');">
+                                                <i class="ti ti-refresh me-1"></i>{{ __('Remplacer', 'veilletool') }}
+                                            </button>
+
+                                            {% if can_purge %}
+                                                <button type="submit" name="preset_purge" value="{{ preset.id }}"
+                                                        class="btn btn-sm btn-ghost-danger"
+                                                        title="{{ __('Supprimer ce préréglage', 'veilletool') }}"
+                                                        onclick="return confirm('{{ __('Supprimer ce préréglage ? Le barème en vigueur ne change pas.', 'veilletool')|e('js') }}');">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            {% endif %}
+                                        </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        {% if can_update %}
+            <div class="card-body border-top">
+                <form method="post" action="{{ page_url }}" class="row g-2 align-items-end">
+                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+                    <div class="col-12 col-md-4">
+                        <label class="form-label" for="veille-preset-name">
+                            {{ __('Enregistrer le barème en vigueur sous', 'veilletool') }}
+                        </label>
+                        <input type="text" id="veille-preset-name" name="preset_name" class="form-control"
+                               maxlength="255" required
+                               placeholder="{{ __('Veille de crise, Veille produit...', 'veilletool') }}">
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="veille-preset-comment">
+                            {{ __('Description', 'veilletool') }}
+                        </label>
+                        <input type="text" id="veille-preset-comment" name="preset_comment" class="form-control"
+                               maxlength="1000"
+                               placeholder="{{ __('À quoi sert ce barème, et quand s\'en servir.', 'veilletool') }}">
+                    </div>
+
+                    <div class="col-12 col-md-2">
+                        <button type="submit" name="preset_save" value="1" class="btn btn-primary w-100"
+                                {{ presets|length >= preset_max ? 'disabled' : '' }}>
+                            <i class="ti ti-bookmark-plus me-1"></i>{{ __('Enregistrer', 'veilletool') }}
+                        </button>
+                    </div>
+
+                    <div class="col-12">
+                        <small class="form-hint">
+                            {{ __('Le préréglage fige les poids, la fraîcheur, les seuils, les couleurs et les libellés. Les réglages non enregistrés ci-dessus n\'y figureront pas : enregistrez-les d\'abord.', 'veilletool') }}
+                        </small>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</div>

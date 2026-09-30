@@ -1,0 +1,327 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Liste des cartes de veille : onglets de catégorie, filtres et cartes.
+ #}
+
+{% set list_url = path('/plugins/veilletool/front/article.php') %}
+{% set form_url = path('/plugins/veilletool/front/article.form.php') %}
+
+{# Paramètres conservés d'un lien à l'autre (l'onglet « Favoris » reste actif) #}
+{% set base_query = favorites_only ? {'favorites': 1} : {} %}
+{% set current_query = base_query|merge({
+    'cat':       filters.categories_id,
+    'q':         filters.keyword,
+    'src':       filters.sources_id,
+    'unread':    filters.unread_only ? 1 : 0,
+    'commented': filters.with_comments ? 1 : 0,
+    'from':      filters.date_from,
+    'to':        filters.date_to,
+    'followed':  filters.followed_only ? 1 : 0,
+    'view':      view,
+    'sort':      sort,
+    'tech':      tech,
+}) %}
+
+<div class="veille-page">
+
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+        <h2 class="mb-0">
+            <i class="{{ favorites_only ? 'ti ti-star' : 'ti ti-radar' }} me-1"></i>
+            {{ page_title }}
+            <span class="badge bg-secondary-lt ms-2">{{ total }}</span>
+        </h2>
+
+        <div class="d-flex gap-2">
+            {% if can_create %}
+                <a class="btn btn-primary" href="{{ form_url }}">
+                    <i class="ti ti-plus me-1"></i>{{ __('Ajouter une carte', 'veilletool') }}
+                </a>
+            {% endif %}
+            {% if has_profile_right('plugin_veilletool_source', constant('READ')) %}
+                <a class="btn btn-outline-secondary" href="{{ path('/plugins/veilletool/front/source.php') }}">
+                    <i class="ti ti-rss me-1"></i>{{ __('Flux RSS / ATOM', 'veilletool') }}
+                </a>
+            {% endif %}
+            <a class="btn btn-outline-primary"
+               href="{{ path('/plugins/veilletool/front/summary.php') }}?{{ {
+                   'categories': filters.categories_id ? [filters.categories_id] : [],
+                   'from':       filters.date_from,
+                   'to':         filters.date_to,
+                   'favorites':  favorites_only ? 1 : 0,
+                   'unread':     filters.unread_only ? 1 : 0,
+               }|filter(v => v is not empty)|url_encode }}">
+                <i class="ti ti-sparkles me-1"></i>{{ __('Résumer par IA', 'veilletool') }}
+            </a>
+            {% if can_purge %}
+                <a class="btn btn-outline-danger" href="{{ path('/plugins/veilletool/front/purge.php') }}">
+                    <i class="ti ti-eraser me-1"></i>{{ __('Vider les cartes', 'veilletool') }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    {# Rappel du filtre technologique actif, avec son retrait en un clic. #}
+    {% if tech is not empty %}
+        <div class="alert alert-secondary d-flex flex-wrap align-items-center gap-2 py-2">
+            <i class="ti ti-filter"></i>
+            <span>{{ __('Filtré sur la technologie :', 'veilletool') }} <strong>{{ tech_label }}</strong></span>
+            <a class="btn btn-sm btn-ghost-secondary ms-auto"
+               href="{{ list_url }}?{{ current_query|merge({'tech': null, 'start': 0})|filter(v => v is not empty)|url_encode }}">
+                <i class="ti ti-x me-1"></i>{{ __('Retirer ce filtre', 'veilletool') }}
+            </a>
+        </div>
+    {% endif %}
+
+    {# ---------------------------------------------------------------- #}
+    {# Bascule de vue                                                    #}
+    {# ---------------------------------------------------------------- #}
+    {% set view_modes = {
+        'cards': {'label': __('Cartes', 'veilletool'),        'icon': 'ti ti-layout-cards'},
+        'list':  {'label': __('Liste', 'veilletool'),         'icon': 'ti ti-list'},
+        'stats': {'label': __('Statistiques', 'veilletool'),  'icon': 'ti ti-chart-pie'},
+    } %}
+
+    <div class="btn-group mb-3" role="group" aria-label="{{ __('Mode d\'affichage', 'veilletool') }}">
+        {% for mode, meta in view_modes %}
+            <a class="btn {{ view == mode ? 'btn-primary' : 'btn-outline-secondary' }}"
+               href="{{ list_url }}?{{ current_query|merge({'view': mode})|filter(v => v is not empty)|url_encode }}">
+                <i class="{{ meta.icon }} me-1"></i>{{ meta.label }}
+            </a>
+        {% endfor %}
+    </div>
+
+    {# ---------------------------------------------------------------- #}
+    {# Onglets de filtrage : « Tous » puis une entrée par catégorie      #}
+    {# ---------------------------------------------------------------- #}
+    <ul class="nav nav-tabs veille-tabs mb-3" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link {{ filters.categories_id == 0 ? 'active' : '' }}"
+               href="{{ list_url }}?{{ current_query|merge({'cat': 0})|filter(v => v is not empty)|url_encode }}">
+                <i class="ti ti-layout-grid me-1"></i>{{ __('Tous', 'veilletool') }}
+            </a>
+        </li>
+        {% for category in categories %}
+            <li class="nav-item">
+                <a class="nav-link {{ filters.categories_id == category.id ? 'active' : '' }}"
+                   href="{{ list_url }}?{{ current_query|merge({'cat': category.id})|filter(v => v is not empty)|url_encode }}">
+                    <i class="{{ category.icon }}" style="color: {{ category.color }}"></i>
+                    {{ category.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {# ---------------------------------------------------------------- #}
+    {# Barre de filtres                                                  #}
+    {# ---------------------------------------------------------------- #}
+    <div class="card card-sm mb-3">
+        <form method="get" action="{{ list_url }}" data-veille-filters>
+            {% if favorites_only %}<input type="hidden" name="favorites" value="1">{% endif %}
+            <input type="hidden" name="cat" value="{{ filters.categories_id }}">
+            <div class="card-body row g-2 align-items-end">
+                <div class="col-12 col-md-5">
+                    <label class="form-label" for="veille-q">{{ __('Mot clé', 'veilletool') }}</label>
+                    <div class="input-icon">
+                        <span class="input-icon-addon"><i class="ti ti-search"></i></span>
+                        <input type="text" id="veille-q" name="q" class="form-control"
+                               value="{{ filters.keyword }}"
+                               placeholder="{{ __('Titre, résumé, contenu, auteur...', 'veilletool') }}">
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label class="form-label" for="veille-src">{{ __('Source', 'veilletool') }}</label>
+                    <select id="veille-src" name="src" class="form-select">
+                        <option value="0">{{ __('Toutes les sources', 'veilletool') }}</option>
+                        {% for id, name in sources %}
+                            <option value="{{ id }}" {{ filters.sources_id == id ? 'selected' : '' }}>{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <label class="form-label" for="veille-tech">{{ __('Technologie', 'veilletool') }}</label>
+                    <select id="veille-tech" name="tech" class="form-select">
+                        <option value="">{{ __('Toutes les technologies', 'veilletool') }}</option>
+                        {% for group, entries in tech_options %}
+                            <optgroup label="{{ group }}">
+                                {% for value, label in entries %}
+                                    <option value="{{ value }}" {{ tech == value ? 'selected' : '' }}>{{ label }}</option>
+                                {% endfor %}
+                            </optgroup>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <label class="form-label" for="veille-from">{{ __('Publiées après le', 'veilletool') }}</label>
+                    <input type="date" id="veille-from" name="from" class="form-control" value="{{ filters.date_from }}">
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <label class="form-label" for="veille-to">{{ __('Publiées avant le', 'veilletool') }}</label>
+                    <input type="date" id="veille-to" name="to" class="form-control" value="{{ filters.date_to }}">
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <label class="form-label" for="veille-sort">{{ __('Trier par', 'veilletool') }}</label>
+                    <select id="veille-sort" name="sort" class="form-select">
+                        {% for value, label in sort_modes %}
+                            <option value="{{ value }}" {{ sort == value ? 'selected' : '' }}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-12 col-md-9 d-flex flex-wrap gap-3 align-items-center">
+                    <label class="form-check form-switch mb-0">
+                        <input class="form-check-input" type="checkbox" name="unread" value="1"
+                               {{ filters.unread_only ? 'checked' : '' }}>
+                        <span class="form-check-label">{{ __('Non lues', 'veilletool') }}</span>
+                    </label>
+                    <label class="form-check form-switch mb-0">
+                        <input class="form-check-input" type="checkbox" name="commented" value="1"
+                               {{ filters.with_comments ? 'checked' : '' }}>
+                        <span class="form-check-label">{{ __('Commentées', 'veilletool') }}</span>
+                    </label>
+                    <label class="form-check form-switch mb-0"
+                           title="{{ followed_count > 0
+                               ? __('Ne garder que les cartes rattachées à une famille ou à une technologie suivie.', 'veilletool')
+                               : __('Rien n\'est suivi : choisissez des familles ou des technologies dans Veille → Technologies.', 'veilletool') }}">
+                        <input class="form-check-input" type="checkbox" name="followed" value="1"
+                               {{ filters.followed_only ? 'checked' : '' }}>
+                        <span class="form-check-label">
+                            <i class="ti ti-target-arrow me-1"></i>{{ __('Technologies suivies', 'veilletool') }}
+                            {% if followed_count > 0 %}
+                                <span class="badge bg-secondary-lt ms-1">{{ followed_count }}</span>
+                            {% endif %}
+                        </span>
+                    </label>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ti ti-filter me-1"></i>{{ __('Filtrer', 'veilletool') }}
+                    </button>
+                    <a class="btn btn-ghost-secondary"
+                       href="{{ list_url }}?{{ base_query|url_encode }}">{{ __('Réinitialiser', 'veilletool') }}</a>
+                </div>
+            </div>
+
+            <div class="card-body pt-0">
+                <small class="form-hint">
+                    {{ __('Une seule date remplie filtre « après » ou « avant ». Les deux ensemble donnent une fourchette.', 'veilletool') }}
+                </small>
+                {% if filters.followed_only and followed_count == 0 %}
+                    <div class="alert alert-warning mt-2 mb-0 py-2">
+                        <i class="ti ti-alert-triangle me-1"></i>
+                        {{ __('Aucune famille ni technologie n\'est suivie : ce filtre ne peut rien ramener. Choisissez ce que vous suivez dans Veille → Technologies.', 'veilletool') }}
+                    </div>
+                {% endif %}
+            </div>
+        </form>
+
+        {# ---------------------------------------------------------------- #}
+        {# Filtres enregistrés, sur une ligne, au pied de la barre          #}
+        {#                                                                  #}
+        {# Un filtre de veille se reconstitue plusieurs fois par jour.      #}
+        {# Le recomposer chaque fois use, et on finit par ne plus filtrer.  #}
+        {# Les préréglages sont propres à chaque utilisateur.               #}
+        {# ---------------------------------------------------------------- #}
+        <div class="card-body pt-0">
+            <form method="post" action="{{ list_url }}"
+                  class="veille-filter-bar d-flex flex-wrap align-items-center gap-2">
+                <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+                {# Les critères affichés repartent tels quels, `favorites`
+                   compris : le filtre enregistré est exactement celui qu'on
+                   regarde. #}
+                {% for key, value in current_query %}
+                    {% if value is not empty %}
+                        <input type="hidden" name="{{ key }}" value="{{ value }}">
+                    {% endif %}
+                {% endfor %}
+
+                <label class="form-label mb-0 text-secondary" for="veille-filter-pick">
+                    <i class="ti ti-filter-star me-1"></i>{{ __('Filtre', 'veilletool') }}
+                </label>
+
+                <select id="veille-filter-pick" name="preset_id" class="form-select form-select-sm w-auto"
+                        {{ filter_presets is empty ? 'disabled' : '' }}
+                        aria-label="{{ __('Filtres enregistrés', 'veilletool') }}">
+                    <option value="0">
+                        {{ filter_presets is empty
+                            ? __('aucun filtre enregistré', 'veilletool')
+                            : __('choisir un filtre...', 'veilletool') }}
+                    </option>
+                    {% for preset in filter_presets %}
+                        <option value="{{ preset.id }}"
+                                title="{{ preset.summary }}">{{ preset.name }}</option>
+                    {% endfor %}
+                </select>
+
+                {% if filter_presets is not empty %}
+                    <button type="submit" name="filter_apply" value="1" formnovalidate
+                            class="btn btn-sm btn-outline-primary"
+                            title="{{ __('Appliquer le filtre choisi', 'veilletool') }}">
+                        <i class="ti ti-player-play"></i>
+                    </button>
+
+                    {# La croix agit sur le filtre choisi juste à gauche.
+                       Le nom est relu dans la liste pour que la demande de
+                       confirmation dise ce qu'elle va supprimer. #}
+                    <button type="submit" name="filter_delete" value="1" formnovalidate
+                            class="btn btn-sm btn-ghost-danger"
+                            title="{{ __('Supprimer le filtre choisi', 'veilletool') }}"
+                            data-veille-confirm-select="veille-filter-pick"
+                            data-veille-confirm-message="{{ __('Supprimer le filtre « %s » ?', 'veilletool') }}">
+                        <i class="ti ti-x"></i>
+                    </button>
+                {% endif %}
+
+                <span class="veille-filter-sep" aria-hidden="true"></span>
+
+                {# `required` vaut pour l'enregistrement seul : les deux boutons
+                   ci-dessus portent `formnovalidate`, sans quoi ce champ vide
+                   les bloquerait alors qu'il ne les concerne pas. #}
+                <input type="text" name="filter_name" class="form-control form-control-sm w-auto"
+                       maxlength="255" required
+                       placeholder="{{ __('Nom du filtre à enregistrer', 'veilletool') }}"
+                       aria-label="{{ __('Nom du filtre à enregistrer', 'veilletool') }}">
+
+                <button type="submit" name="filter_save" value="1" class="btn btn-sm btn-outline-secondary"
+                        {{ filter_presets|length >= filter_max ? 'disabled' : '' }}
+                        title="{{ __('Enregistrer les critères ci-dessus sous ce nom', 'veilletool') }}">
+                    <i class="ti ti-device-floppy me-1"></i>{{ __('Enregistrer', 'veilletool') }}
+                </button>
+            </form>
+        </div>
+    </div>
+
+    {# Le marquage « lu » est propre à chaque utilisateur : il ne demande
+       que le droit de lecture. #}
+    {% if total > 0 and view != 'stats' %}
+        <form method="post" action="{{ list_url }}" class="mb-3">
+            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+            {% if favorites_only %}<input type="hidden" name="favorites" value="1">{% endif %}
+            <input type="hidden" name="cat" value="{{ filters.categories_id }}">
+            <input type="hidden" name="q" value="{{ filters.keyword }}">
+            <input type="hidden" name="src" value="{{ filters.sources_id }}">
+            <input type="hidden" name="commented" value="{{ filters.with_comments ? 1 : 0 }}">
+            <input type="hidden" name="from" value="{{ filters.date_from }}">
+            <input type="hidden" name="to" value="{{ filters.date_to }}">
+            <input type="hidden" name="followed" value="{{ filters.followed_only ? 1 : 0 }}">
+            <input type="hidden" name="tech" value="{{ tech }}">
+            <button type="submit" name="mark_all_read" value="1" class="btn btn-sm btn-outline-secondary">
+                <i class="ti ti-checks me-1"></i>{{ __('Tout marquer comme lu', 'veilletool') }}
+            </button>
+        </form>
+    {% endif %}
+
+    {# ---------------------------------------------------------------- #}
+    {# Contenu, selon la vue retenue                                     #}
+    {# ---------------------------------------------------------------- #}
+    {% if view == 'stats' %}
+        {{ include('@veilletool/parts/stats_view.html.twig') }}
+    {% elseif view == 'list' %}
+        {{ include('@veilletool/parts/list_view.html.twig') }}
+    {% else %}
+        {{ include('@veilletool/parts/cards_view.html.twig') }}
+    {% endif %}
+</div>

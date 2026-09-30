@@ -1,0 +1,135 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Vue « liste » de l'observatoire : un tableau compact.
+ #}
+
+{% if articles is empty %}
+    <div class="alert alert-info">
+        <i class="ti ti-info-circle me-1"></i>
+        {{ __('Aucune carte ne correspond à ces critères.', 'veilletool') }}
+    </div>
+{% else %}
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-hover table-vcenter card-table veille-list">
+                <thead>
+                    <tr>
+                        <th style="width: 2.5rem;"></th>
+                        <th>{{ __('Titre', 'veilletool') }}</th>
+                        <th>{{ __('Thèmes', 'veilletool') }}</th>
+                        <th>{{ __('Source', 'veilletool') }}</th>
+                        <th>{{ __('Date de publication', 'veilletool') }}</th>
+                        <th class="text-end" style="width: 5rem;">{{ __('Score', 'veilletool') }}</th>
+                        <th class="text-center" style="width: 4rem;">
+                            <i class="ti ti-message-circle" title="{{ _n('Commentaire', 'Commentaires', 2, 'veilletool') }}"></i>
+                        </th>
+                        <th class="text-end" style="width: 11rem;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for card in articles %}
+                        <tr class="{{ card.is_read ? '' : 'veille-list-unread' }}">
+                            <td class="text-center">
+                                {% if card.is_favorite %}
+                                    <i class="ti ti-star-filled text-yellow"
+                                       title="{{ __('En favori', 'veilletool') }}"></i>
+                                {% elseif not card.is_read %}
+                                    <i class="ti ti-point-filled text-azure"
+                                       title="{{ __('Non lue', 'veilletool') }}"></i>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <a href="{{ form_url }}?id={{ card.id }}"
+                                   target="_blank" rel="noopener">{{ card.name }}</a>
+                                {% if card.author is not empty %}
+                                    <div class="text-secondary small">{{ card.author }}</div>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% for category in card.categories %}
+                                    <span class="badge veille-badge" style="background-color: {{ category.color }}; color: {{ category.text_color }}"><i
+                                          class="{{ category.icon }}"></i>{{ category.name }}</span>
+                                {% else %}
+                                    <span class="text-secondary">-</span>
+                                {% endfor %}
+                            </td>
+
+                            <td>
+                                <i class="ti {{ card.is_manual ? 'ti-pencil' : 'ti-rss' }} me-1"></i>{{ card.source_name }}
+                            </td>
+
+                            <td class="text-nowrap">{{ card.date_published|formatted_datetime }}</td>
+
+                            {#
+                             # Score d'intérêt seul : la vue liste est un
+                             # tableau de travail, pas un tableau de bord. Le
+                             # niveau de priorité et le détail des composantes
+                             # restent en infobulle.
+                             #}
+                            {% set score_title = card.priority.label ~ ' · ' ~ __('Score d\'intérêt', 'veilletool') %}
+                            {% for part in card.score_detail %}
+                                {% set score_title = score_title ~ ' · ' ~ part.label ~ ' ' ~ part.value
+                                    ~ ' (' ~ __('poids', 'veilletool') ~ ' ' ~ part.weight ~ ')' %}
+                            {% endfor %}
+
+                            <td class="text-end veille-list-score" title="{{ score_title }}">
+                                {# La couleur du niveau est libre : la porter sur le chiffre
+                                   le rendrait illisible dès qu'un fond clair est retenu. Elle
+                                   passe donc sur une pastille, et le chiffre garde la couleur
+                                   du texte courant. #}
+                                <span class="veille-dot"
+                                      style="background-color: {{ card.priority.color }}"></span>{{ card.interest_score }}%
+                            </td>
+
+                            <td class="text-center">
+                                {{ card.comment_count > 0 ? card.comment_count : '' }}
+                            </td>
+
+                            <td class="text-end">
+                                <div class="d-flex justify-content-end gap-1">
+                                    <form method="post" action="{{ form_url }}" class="d-inline">
+                                        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" name="articles_id" value="{{ card.id }}">
+                                        <button type="submit" name="toggle_read" value="1"
+                                                class="btn btn-sm btn-ghost-secondary"
+                                                title="{{ card.is_read ? __('Marquer comme non lue', 'veilletool') : __('Marquer comme lue', 'veilletool') }}">
+                                            <i class="ti {{ card.is_read ? 'ti-mail-opened' : 'ti-mail' }}"></i>
+                                        </button>
+                                    </form>
+
+                                    {% if can_update %}
+                                        <form method="post" action="{{ form_url }}" class="d-inline">
+                                            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                                            <input type="hidden" name="articles_id" value="{{ card.id }}">
+                                            <button type="submit" name="toggle_favorite" value="1"
+                                                    class="btn btn-sm btn-ghost-secondary {{ card.is_favorite ? 'text-yellow' : '' }}"
+                                                    title="{{ card.is_favorite ? __('Retirer des favoris', 'veilletool') : __('Ajouter aux favoris', 'veilletool') }}">
+                                                <i class="ti {{ card.is_favorite ? 'ti-star-filled' : 'ti-star' }}"></i>
+                                            </button>
+                                        </form>
+                                    {% endif %}
+
+                                    <a class="btn btn-sm btn-ghost-secondary" href="{{ card.ai_url }}"
+                                       target="_blank" rel="noopener noreferrer"
+                                       title="{{ __('Demander à l\'IA', 'veilletool') }}">
+                                        <i class="ti ti-sparkles"></i>
+                                    </a>
+
+                                    <a class="btn btn-sm btn-ghost-secondary" href="{{ form_url }}?id={{ card.id }}"
+                                       target="_blank" rel="noopener"
+                                       title="{{ __('Détails', 'veilletool') }}">
+                                        <i class="ti ti-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{ include('@veilletool/parts/pager.html.twig') }}
+{% endif %}

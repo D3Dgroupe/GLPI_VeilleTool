@@ -1,0 +1,70 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ #
+ # Bloc de rédaction de la question envoyée à l'IA.
+ #
+ # Le niveau de détail bascule la question sans recharger la page : les
+ # quatre variantes sont fournies d'avance. La question reste modifiable, et
+ # le lien de redirection suit la saisie. Sans JavaScript, le sélecteur de
+ # niveau disparaît et le lien conserve la question par défaut.
+ #
+ # Paramètres :
+ #   prompts        map niveau => question
+ #   level          niveau retenu
+ #   url            lien par défaut
+ #   id             suffixe unique
+ #   with_download  afficher le bouton de téléchargement Markdown (facultatif)
+ #}
+
+{% set composer_id = 'veille-ai-' ~ (id|default(random())) %}
+
+<div class="veille-ai-composer"
+     data-veille-ai
+     data-veille-ai-base="{{ constant('GlpiPlugin\\Veilletool\\AiPrompt::ENDPOINT') }}"
+     data-veille-ai-budget="{{ constant('GlpiPlugin\\Veilletool\\AiPrompt::URL_BUDGET') }}"
+     data-veille-ai-prompts="{{ prompts|json_encode }}">
+
+    <div class="d-flex flex-wrap align-items-end gap-2 mb-2">
+        <div class="veille-ai-level">
+            <label class="form-label mb-1" for="{{ composer_id }}-level">
+                {{ __('Niveau d\'analyse', 'veilletool') }}
+            </label>
+            <select id="{{ composer_id }}-level" name="level" class="form-select"
+                    data-veille-ai-level>
+                {% for key, label in ai_levels %}
+                    <option value="{{ key }}" {{ level == key ? 'selected' : '' }}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <a class="btn btn-primary" href="{{ url }}" target="_blank" rel="noopener noreferrer"
+           data-veille-ai-link>
+            <i class="ti ti-sparkles me-1"></i>{{ __('Demander à l\'IA', 'veilletool') }}
+        </a>
+
+        {% if with_download|default(false) %}
+            <button type="submit" name="download" value="1" class="btn btn-outline-secondary">
+                <i class="ti ti-file-download me-1"></i>{{ __('Télécharger resume.md', 'veilletool') }}
+            </button>
+        {% endif %}
+
+        <button type="button" class="btn btn-ghost-secondary" data-veille-ai-reset hidden>
+            <i class="ti ti-rotate me-1"></i>{{ __('Rétablir la question', 'veilletool') }}
+        </button>
+
+        <span class="form-hint ms-auto" data-veille-ai-length></span>
+    </div>
+
+    <label class="form-label" for="{{ composer_id }}">
+        {{ __('Question envoyée', 'veilletool') }}
+        <span class="form-hint d-inline">{{ __('- modifiable avant l\'envoi', 'veilletool') }}</span>
+    </label>
+
+    <textarea id="{{ composer_id }}" class="form-control veille-ai-prompt" rows="7"
+              data-veille-ai-prompt>{{ prompts[level] }}</textarea>
+
+    <div class="alert alert-warning mt-2 d-none" data-veille-ai-overflow>
+        <i class="ti ti-alert-triangle me-1"></i>
+        {{ __('La question dépasse la longueur admise par une adresse web : raccourcissez-la, ou utilisez le fichier Markdown qui n\'a pas cette limite.', 'veilletool') }}
+    </div>
+</div>

@@ -1,0 +1,467 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Onglet « Technologies » : gestion du référentiel.
+ #}
+
+{% set page_url = path('/plugins/veilletool/front/technology.php') %}
+{% set query = {
+    'categorie': filters.categorie,
+    'famille':   filters.famille,
+    'q':         filters.keyword,
+    'followed':  filters.followed,
+} %}
+
+<div class="veille-technologies">
+
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+        <h2 class="mb-0">
+            <i class="ti ti-binary-tree me-1"></i>{{ __('Technologies', 'veilletool') }}
+            <span class="badge bg-secondary-lt ms-2">{{ total_all }}</span>
+        </h2>
+        <div class="d-flex flex-wrap gap-2">
+            {% if can_update %}
+                <form method="post" action="{{ page_url }}" class="d-inline">
+                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" name="reindex" value="1" class="btn btn-outline-secondary">
+                        <i class="ti ti-refresh me-1"></i>{{ __('Reclasser maintenant', 'veilletool') }}
+                    </button>
+                </form>
+            {% endif %}
+            <a class="btn btn-ghost-secondary" href="{{ path('/plugins/veilletool/front/article.php') }}?view=stats">
+                <i class="ti ti-chart-pie me-1"></i>{{ __('Voir les statistiques', 'veilletool') }}
+            </a>
+        </div>
+    </div>
+
+    <div class="alert alert-info">
+        <i class="ti ti-info-circle me-1"></i>
+        {{ __('Ce référentiel sert à rattacher automatiquement les cartes aux technologies et aux réglementations qu\'elles évoquent. Il est indépendant des thèmes portés par les cartes.', 'veilletool') }}
+        {{ __('Le rattachement est enregistré en base : %d au total. Il est recalculé à chaque enregistrement d\'une carte, et en différé à chaque modification du référentiel.', 'veilletool')|format(classified) }}
+        {% if pending > 0 %}
+            <div class="mt-2">
+                <i class="ti ti-clock-play me-1"></i>
+                {{ _n(
+                    '%d carte attend son reclassement. L\'action automatique « Reclassement technologique » la traitera.',
+                    '%d cartes attendent leur reclassement. L\'action automatique « Reclassement technologique » les traitera par lots.',
+                    pending, 'veilletool')|format(pending) }}
+            </div>
+        {% endif %}
+    </div>
+
+    {# ---------------------------------------------------------------- #}
+    {# État de la tâche de reclassement                                  #}
+    {#                                                                   #}
+    {# Le reclassement n'est plus fait pendant l'installation ni à chaud #}
+    {# lors d'un changement du référentiel : il faut donc pouvoir voir,  #}
+    {# ici, qu'il a bien lieu.                                           #}
+    {# ---------------------------------------------------------------- #}
+    <div class="alert {{ cron.exists and cron.enabled ? 'alert-info' : 'alert-warning' }} d-flex flex-wrap align-items-center gap-2">
+        <i class="ti {{ cron.exists and cron.enabled ? 'ti-clock-play' : 'ti-alert-triangle' }}"></i>
+        <div class="flex-fill">
+            {% if not cron.exists %}
+                {{ __('L\'action automatique de reclassement est introuvable : réinstallez le plugin pour la rétablir.', 'veilletool') }}
+            {% elseif not cron.enabled %}
+                {{ __('L\'action automatique de reclassement est désactivée : les cartes en attente ne seront pas traitées.', 'veilletool') }}
+            {% else %}
+                {{ __('Reclassement automatique %1$s, en mode %2$s.', 'veilletool')|format(cron.frequency, cron.mode) }}
+                {% if cron.lastrun %}
+                    <span class="text-secondary ms-1">
+                        {{ __('Dernière exécution :', 'veilletool') }} {{ cron.lastrun|formatted_datetime }}
+                    </span>
+                {% endif %}
+                {% if cron.is_cli %}
+                    <div class="text-secondary small mt-1">
+                        {{ __('Le mode CLI suppose qu\'un cron système appelle GLPI. À défaut, la tâche ne se déclenchera jamais : basculez-la en mode GLPI.', 'veilletool') }}
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        {% if can_config %}
+            <a class="btn btn-sm btn-outline-secondary" href="{{ path(cron.url) }}">
+                <i class="ti ti-settings me-1"></i>{{ __('Paramètres de la tâche', 'veilletool') }}
+            </a>
+        {% endif %}
+    </div>
+
+    {# ---------------------------------------------------------------- #}
+    {# Référentiel des technologies suivies                              #}
+    {#                                                                   #}
+    {# Le référentiel général qualifie.                                  #}
+    {# Celui-ci sélectionne.                                             #}
+    {# Les deux se règlent au même endroit, puisque le second se pose    #}
+    {# sur le premier.                                                   #}
+    {# Le suivi porte sur une famille, dans le panneau ci-dessous, ou    #}
+    {# sur une technologie précise, depuis le tableau.                   #}
+    {# ---------------------------------------------------------------- #}
+    <div class="card mb-3">
+        <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <h3 class="card-title mb-0">
+                <i class="ti ti-target-arrow me-1"></i>{{ __('Familles', 'veilletool') }}
+            </h3>
+            <span class="text-secondary small">
+                {{ __('Suivi : %1$d famille(s), %2$d technologie(s).', 'veilletool')
+                    |format(followed.families, followed.entries) }}
+            </span>
+        </div>
+        <div class="card-body">
+            <p class="text-secondary">
+                {{ __('Suivre une famille retient toutes les cartes qui l\'évoquent, quelle que soit la finesse du rattachement obtenu. Pour ne suivre qu\'une technologie précise, utilisez le bouton de sa ligne dans le tableau ci-dessous.', 'veilletool') }}
+                {{ __('La catégorie n\'est pas suivable : elle regroupe des centaines d\'entrées sans rapport entre elles.', 'veilletool') }}
+            </p>
+
+            <div class="veille-follow-list">
+                {% for family in families %}
+                    <div class="veille-follow-item">
+                        <span class="veille-follow-label">
+                            <span class="badge bg-secondary-lt">{{ family.categorie }}</span>
+                            <strong>{{ family.famille }}</strong>
+                            <small class="text-secondary">
+                                {{ _n('%d entrée', '%d entrées', family.entries, 'veilletool')|format(family.entries) }}
+                            </small>
+                        </span>
+
+                        {% if can_update %}
+                            <form method="post" action="{{ page_url }}" class="ms-auto">
+                                <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="categorie" value="{{ family.categorie }}">
+                                <input type="hidden" name="famille" value="{{ family.famille }}">
+                                <button type="submit" name="follow_family" value="1"
+                                        class="btn btn-sm {{ family.is_followed ? 'btn-success' : 'btn-outline-secondary' }}">
+                                    <i class="ti {{ family.is_followed ? 'ti-check' : 'ti-plus' }} me-1"></i>
+                                    {{ family.is_followed ? __('Suivie', 'veilletool') : __('Suivre', 'veilletool') }}
+                                </button>
+                            </form>
+                        {% elseif family.is_followed %}
+                            <span class="badge bg-success ms-auto">
+                                <i class="ti ti-check me-1"></i>{{ __('Suivie', 'veilletool') }}
+                            </span>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="veille-follow-item">
+                        <span class="text-secondary">
+                            {{ filters.followed == 'yes'
+                                ? __('Aucune famille suivie ne correspond à ces critères.', 'veilletool')
+                                : __('Aucune famille ne correspond à ces critères.', 'veilletool') }}
+                        </span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {# ---------------------------------------------------------------- #}
+    {# Filtres                                                           #}
+    {# ---------------------------------------------------------------- #}
+    <form method="get" action="{{ page_url }}" class="card card-sm mb-3">
+        <div class="card-body row g-2 align-items-end">
+            <div class="col-12 col-md-3">
+                <label class="form-label" for="veille-tech-cat">{{ __('Catégorie', 'veilletool') }}</label>
+                <select id="veille-tech-cat" name="categorie" class="form-select">
+                    <option value="">{{ __('Toutes', 'veilletool') }}</option>
+                    {% for categorie in categories %}
+                        <option value="{{ categorie }}" {{ filters.categorie == categorie ? 'selected' : '' }}>
+                            {{ categorie }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label" for="veille-tech-fam">{{ __('Famille', 'veilletool') }}</label>
+                <select id="veille-tech-fam" name="famille" class="form-select">
+                    <option value="">{{ __('Toutes', 'veilletool') }}</option>
+                    {% for famille in familles %}
+                        <option value="{{ famille }}" {{ filters.famille == famille ? 'selected' : '' }}>
+                            {{ famille }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-12 col-md-3">
+                <label class="form-label" for="veille-tech-q">{{ __('Mot clé', 'veilletool') }}</label>
+                <input type="text" id="veille-tech-q" name="q" class="form-control" value="{{ filters.keyword }}">
+            </div>
+
+            <div class="col-12 col-md-2">
+                <label class="form-label" for="veille-tech-followed">{{ __('Suivi', 'veilletool') }}</label>
+                <select id="veille-tech-followed" name="followed" class="form-select">
+                    {% for value, label in follow_modes %}
+                        <option value="{{ value }}"
+                                {{ filters.followed == value ? 'selected' : '' }}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-12 col-md-12 col-xl-2 d-flex gap-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="ti ti-filter me-1"></i>{{ __('Filtrer', 'veilletool') }}
+                </button>
+                <a class="btn btn-ghost-secondary" href="{{ page_url }}">{{ __('Réinitialiser', 'veilletool') }}</a>
+            </div>
+        </div>
+    </form>
+
+    {# ---------------------------------------------------------------- #}
+    {# Liste                                                             #}
+    {# ---------------------------------------------------------------- #}
+    <form method="post" action="{{ page_url }}">
+        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+        <div class="card mb-3">
+            <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <h3 class="card-title mb-0">
+                    {{ _n('%d entrée', '%d entrées', total, 'veilletool')|format(total) }}
+                </h3>
+                {% if can_purge and rows is not empty %}
+                    <button type="submit" name="purge" value="1" class="btn btn-sm btn-outline-danger"
+                            onclick="return confirm('{{ __('Supprimer les entrées cochées ?', 'veilletool')|e('js') }}');">
+                        <i class="ti ti-trash me-1"></i>{{ __('Supprimer la sélection', 'veilletool') }}
+                    </button>
+                {% endif %}
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-vcenter card-table">
+                    <thead>
+                        <tr>
+                            {% if can_purge %}<th style="width: 2.5rem;"></th>{% endif %}
+                            <th>{{ __('Catégorie', 'veilletool') }}</th>
+                            <th>{{ __('Famille', 'veilletool') }}</th>
+                            <th>{{ __('Sous-catégorie', 'veilletool') }}</th>
+                            <th class="text-end" style="width: 9rem;">{{ __('Suivi', 'veilletool') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in rows %}
+                            <tr>
+                                {% if can_purge %}
+                                    <td>
+                                        <input class="form-check-input" type="checkbox"
+                                               name="ids[]" value="{{ row.id }}">
+                                    </td>
+                                {% endif %}
+                                <td><span class="badge bg-secondary-lt">{{ row.categorie }}</span></td>
+                                <td class="text-secondary">{{ row.famille }}</td>
+                                <td><strong>{{ row.name }}</strong></td>
+                                <td class="text-end">
+                                    {% if row.family_followed %}
+                                        {# Déjà couverte par le suivi de sa famille : un bouton
+                                           n'ajouterait rien, autant le dire. #}
+                                        <span class="badge bg-success-lt"
+                                              title="{{ __('Couverte par le suivi de la famille « %s ».', 'veilletool')|format(row.famille) }}">
+                                            <i class="ti ti-target-arrow me-1"></i>{{ __('via la famille', 'veilletool') }}
+                                        </span>
+                                    {% elseif can_update %}
+                                        {# Le bouton vit dans le formulaire du tableau - imbriquer
+                                           un formulaire serait invalide - et porte l'identifiant
+                                           dans sa valeur plutôt que dans un champ caché, qui
+                                           entrerait en collision d'une ligne à l'autre. #}
+                                        <button type="submit" name="follow_entry" value="{{ row.id }}"
+                                                class="btn btn-sm {{ row.is_followed ? 'btn-success' : 'btn-outline-secondary' }}">
+                                            <i class="ti {{ row.is_followed ? 'ti-check' : 'ti-plus' }} me-1"></i>
+                                            {{ row.is_followed ? __('Suivie', 'veilletool') : __('Suivre', 'veilletool') }}
+                                        </button>
+                                    {% elseif row.is_followed %}
+                                        <span class="badge bg-success">
+                                            <i class="ti ti-check me-1"></i>{{ __('Suivie', 'veilletool') }}
+                                        </span>
+                                    {% else %}
+                                        <span class="text-secondary">-</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="{{ can_purge ? 5 : 4 }}" class="text-secondary text-center py-4">
+                                    {{ __('Aucune entrée ne correspond à ces critères.', 'veilletool') }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+
+    {% if total > limit %}
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            {% if start > 0 %}
+                <a class="btn btn-outline-secondary"
+                   href="{{ page_url }}?{{ query|merge({'start': start - limit})|filter(v => v is not empty)|url_encode }}">
+                    <i class="ti ti-chevron-left me-1"></i>{{ __('Précédent', 'veilletool') }}
+                </a>
+            {% else %}<span></span>{% endif %}
+
+            <span class="text-secondary">
+                {{ __('Page %1$d / %2$d', 'veilletool')|format(
+                    (start / limit)|round(0, 'floor') + 1,
+                    (total / limit)|round(0, 'ceil')
+                ) }}
+            </span>
+
+            {% if start + limit < total %}
+                <a class="btn btn-outline-secondary"
+                   href="{{ page_url }}?{{ query|merge({'start': start + limit})|filter(v => v is not empty)|url_encode }}">
+                    {{ __('Suivant', 'veilletool') }}<i class="ti ti-chevron-right ms-1"></i>
+                </a>
+            {% else %}<span></span>{% endif %}
+        </div>
+    {% endif %}
+
+    <div class="row row-cards">
+        {# ------------------------------------------------------------ #}
+        {# Ajout manuel                                                  #}
+        {# ------------------------------------------------------------ #}
+        {% if can_create %}
+            <div class="col-12 col-lg-6 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ti ti-plus me-1"></i>{{ __('Ajouter une entrée', 'veilletool') }}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{{ page_url }}">
+                            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+                            <div class="mb-2">
+                                <label class="form-label" for="veille-new-cat">{{ __('Catégorie', 'veilletool') }}</label>
+                                <input type="text" id="veille-new-cat" name="categorie" class="form-control"
+                                       list="veille-cat-list" required placeholder="OS, Application, Réglementation...">
+                                <datalist id="veille-cat-list">
+                                    {% for categorie in categories %}<option value="{{ categorie }}"></option>{% endfor %}
+                                </datalist>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label" for="veille-new-fam">{{ __('Famille', 'veilletool') }}</label>
+                                <input type="text" id="veille-new-fam" name="famille" class="form-control"
+                                       required placeholder="Linux - Debian, Normes ISO / IEC...">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="veille-new-name">{{ __('Sous-catégorie', 'veilletool') }}</label>
+                                <input type="text" id="veille-new-name" name="name" class="form-control"
+                                       required placeholder="Debian 13 (Trixie)">
+                                <small class="form-hint">
+                                    {{ __('Le libellé sert de mot clé : « Debian 13 » rattachera aussi une carte parlant de Debian 13.0.1.', 'veilletool') }}
+                                </small>
+                            </div>
+
+                            <button type="submit" name="add" value="1" class="btn btn-primary">
+                                <i class="ti ti-plus me-1"></i>{{ __('Ajouter', 'veilletool') }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {# ------------------------------------------------------------ #}
+        {# Import CSV                                                    #}
+        {# ------------------------------------------------------------ #}
+        {% if can_create %}
+            <div class="col-12 col-lg-6 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ti ti-file-upload me-1"></i>{{ __('Importer un référentiel', 'veilletool') }}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{{ page_url }}" enctype="multipart/form-data">
+                            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+                            <p class="text-secondary">
+                                {{ __('Fichier CSV encodé en UTF-8, séparateur point-virgule. Trois colonnes : Catégorie, Famille, Sous-catégorie. La première ligne peut être un en-tête.', 'veilletool') }}
+                            </p>
+
+                            <div class="mb-2">
+                                <input type="file" name="csvfile" class="form-control"
+                                       accept=".csv,text/csv" required>
+                            </div>
+
+                            {% if can_purge %}
+                                <label class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" name="replace" value="1">
+                                    <span class="form-check-label">
+                                        {{ __('Remplacer le référentiel existant', 'veilletool') }}
+                                        <small class="d-block text-secondary">
+                                            {{ __('Sinon, seules les entrées inconnues sont ajoutées.', 'veilletool') }}
+                                        </small>
+                                    </span>
+                                </label>
+                            {% endif %}
+
+                            <button type="submit" name="import" value="1" class="btn btn-primary">
+                                <i class="ti ti-upload me-1"></i>{{ __('Importer', 'veilletool') }}
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    {# ---------------------------------------------------------------- #}
+    {# Suppression de masse du référentiel                               #}
+    {#                                                                   #}
+    {# Les filtres en cours sont renvoyés en champs cachés : l'action    #}
+    {# porte exactement sur ce que le tableau ci-dessus affiche.         #}
+    {# ---------------------------------------------------------------- #}
+    {% if can_purge and total_all > 0 %}
+        <div class="card border-danger mt-3">
+            <div class="card-header">
+                <h3 class="card-title text-danger">
+                    <i class="ti ti-trash me-1"></i>{{ __('Vider le référentiel', 'veilletool') }}
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <i class="ti ti-alert-triangle me-1"></i>
+                    {{ __('La suppression est définitive. Les suivis et les rattachements ajoutés à la main qui visaient les entrées retirées disparaissent avec elles, et toutes les cartes repassent dans la file de reclassement.', 'veilletool') }}
+                </div>
+
+                <form method="post" action="{{ page_url }}" class="d-flex flex-wrap gap-2 align-items-center">
+                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="categorie" value="{{ filters.categorie }}">
+                    <input type="hidden" name="famille" value="{{ filters.famille }}">
+                    <input type="hidden" name="q" value="{{ filters.keyword }}">
+                    <input type="hidden" name="followed" value="{{ filters.followed }}">
+
+                    <span class="text-secondary flex-fill">
+                        {% if has_filter %}
+                            {{ _n(
+                                'Les filtres en cours retiennent %d entrée.',
+                                'Les filtres en cours retiennent %d entrées.',
+                                total, 'veilletool')|format(total) }}
+                        {% else %}
+                            {{ __('Aucun filtre : la suppression filtrée porterait sur l\'ensemble du référentiel.', 'veilletool') }}
+                        {% endif %}
+                    </span>
+
+                    <button type="submit" name="count_entries" value="1" class="btn btn-outline-secondary">
+                        <i class="ti ti-calculator me-1"></i>{{ __('Compter', 'veilletool') }}
+                    </button>
+
+                    <button type="submit" name="purge_filtered" value="1" class="btn btn-outline-danger"
+                            {{ has_filter ? '' : 'disabled' }}
+                            onclick="return confirm('{{ __('Supprimer toutes les entrées retenues par les filtres ? Cette suppression est définitive.', 'veilletool')|e('js') }}');">
+                        <i class="ti ti-filter-off me-1"></i>{{ __('Supprimer les entrées filtrées', 'veilletool') }}
+                    </button>
+
+                    <button type="submit" name="purge_all" value="1" class="btn btn-danger"
+                            onclick="return confirm('{{ __('Supprimer LA TOTALITÉ du référentiel technologique ? Plus aucune carte ne sera rattachée. Cette suppression est définitive.', 'veilletool')|e('js') }}');">
+                        <i class="ti ti-trash me-1"></i>{{ __('Tout supprimer', 'veilletool') }}
+                    </button>
+                </form>
+
+                <small class="form-hint mt-2">
+                    {{ __('« Compter » n\'écrit rien. Il annonce le nombre d\'entrées que la suppression emporterait. « Tout supprimer » ignore les filtres en cours. Le référentiel livré peut ensuite être réimporté depuis le fichier CSV du plugin.', 'veilletool') }}
+                </small>
+            </div>
+        </div>
+    {% endif %}
+</div>

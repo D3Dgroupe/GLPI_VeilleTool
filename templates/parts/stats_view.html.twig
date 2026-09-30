@@ -1,0 +1,131 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Vue « statistiques » : répartition des cartes par technologie.
+ #}
+
+{% if stats.total == 0 %}
+    <div class="alert alert-info">
+        <i class="ti ti-info-circle me-1"></i>
+        {{ __('Aucune carte ne correspond à ces critères : il n\'y a rien à analyser.', 'veilletool') }}
+    </div>
+{% else %}
+    {# ---------------------------------------------------------------- #}
+    {# Découpage de l'analyse                                            #}
+    {#                                                                   #}
+    {# C'est le réglage qui commande tout l'écran : il est au centre, et #}
+    {# à une taille qui le dit.                                          #}
+    {# ---------------------------------------------------------------- #}
+    <div class="veille-stats-levels mb-3">
+        <div class="btn-group btn-group-lg" role="group"
+             aria-label="{{ __('Découpage de l\'analyse', 'veilletool') }}">
+            {% for key, label in stats_levels %}
+                <a class="btn {{ stats.level == key ? 'btn-primary' : 'btn-outline-secondary' }}"
+                   href="{{ list_url }}?{{ current_query|merge({'level': key})|filter(v => v is not empty)|url_encode }}">
+                    <i class="{{ stats_level_icons[key] }} me-2"></i>{{ label }}
+                </a>
+            {% endfor %}
+        </div>
+        <div class="text-secondary small mt-2">
+            {{ __('Répartition des cartes retenues par les filtres, selon le niveau choisi.', 'veilletool') }}
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3 class="card-title mb-0">
+                <i class="ti ti-chart-pie me-1"></i>{{ __('Répartition par %s', 'veilletool')|format(stats_levels[stats.level]|lower) }}
+            </h3>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-lg-7">
+                    {# Le gabarit d'URL porte un jeton remplacé au clic sur une part. #}
+                    <div id="veille-stats-chart" class="veille-stats-chart"
+                         data-veille-chart="{{ stats.slices|json_encode }}"
+                         data-veille-chart-level="{{ stats.level }}"
+                         data-veille-chart-other="{{ constant('GlpiPlugin\\Veilletool\\Technology::OTHER') }}"
+                         data-veille-chart-other-value="{{ constant('GlpiPlugin\\Veilletool\\Statistics::FILTER_OTHER') }}"
+                         data-veille-chart-url="{{ list_url }}?{{ base_query|merge({'view': 'cards', 'tech': '__TECH__'})|filter(v => v is not empty)|url_encode }}"></div>
+                    <p class="text-secondary small text-center mb-0">
+                        <i class="ti ti-pointer me-1"></i>{{ __('Cliquez sur une part pour ouvrir les cartes correspondantes : les autres filtres sont remis à zéro.', 'veilletool') }}
+                    </p>
+                </div>
+
+                <div class="col-12 col-lg-5">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-vcenter">
+                            <thead>
+                                <tr>
+                                    <th>{{ stats_levels[stats.level] }}</th>
+                                    <th class="text-end">{{ __('Cartes', 'veilletool') }}</th>
+                                    <th class="text-end">{{ __('% des cartes', 'veilletool') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for slice in stats.slices %}
+                                    {% set slice_value = slice.label == constant('GlpiPlugin\\Veilletool\\Technology::OTHER')
+                                        ? constant('GlpiPlugin\\Veilletool\\Statistics::FILTER_OTHER')
+                                        : stats.level ~ ':' ~ slice.label %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ list_url }}?{{ base_query|merge({'view': 'cards', 'tech': slice_value})|filter(v => v is not empty)|url_encode }}">
+                                                {{ slice.label }}
+                                            </a>
+                                        </td>
+                                        <td class="text-end">{{ slice.count }}</td>
+                                        <td class="text-end text-secondary">{{ slice.share }} %</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-secondary small mb-0 mt-2">
+                {{ __('%1$d carte(s) analysée(s) : %2$d retenue(s) par ce découpage, %3$d classée(s) dans « Autre ». Une carte qui relève de plusieurs entrées est comptée dans chacune.', 'veilletool')|format(stats.total, stats.matched, stats.unmatched) }}
+                {% if stats.level == 'name' %}
+                    <br>
+                    {{ __('Au niveau technologie, une carte rattachée seulement à une famille - sans que sa version ait pu être déterminée - relève d\'« Autre ».', 'veilletool') }}
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    {% if stats.subcategories is not empty %}
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="ti ti-list-numbers me-1"></i>{{ __('Technologies les plus citées', 'veilletool') }}
+                </h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-vcenter card-table">
+                    <thead>
+                        <tr>
+                            <th>{{ __('Sous-catégorie', 'veilletool') }}</th>
+                            <th>{{ __('Famille', 'veilletool') }}</th>
+                            <th>{{ __('Catégorie', 'veilletool') }}</th>
+                            <th class="text-end" style="width: 6rem;">{{ __('Cartes', 'veilletool') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in stats.subcategories %}
+                            <tr>
+                                <td><strong>{{ row.name }}</strong></td>
+                                <td class="text-secondary">
+                                    <a href="{{ list_url }}?{{ base_query|merge({'view': 'cards', 'tech': 'famille:' ~ row.famille})|filter(v => v is not empty)|url_encode }}">
+                                        {{ row.famille }}
+                                    </a>
+                                </td>
+                                <td><span class="badge bg-secondary-lt">{{ row.categorie }}</span></td>
+                                <td class="text-end">{{ row.count }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,195 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Écran « Vider les cartes » : suppression définitive par lot.
+ #}
+
+{% set purge_url = path('/plugins/veilletool/front/purge.php') %}
+{% set list_url  = path('/plugins/veilletool/front/article.php') %}
+
+<div class="veille-purge">
+
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+        <h2 class="mb-0">
+            <i class="ti ti-eraser me-1"></i>{{ __('Vider les cartes', 'veilletool') }}
+        </h2>
+        <a class="btn btn-ghost-secondary" href="{{ list_url }}">
+            <i class="ti ti-arrow-left me-1"></i>{{ __('Retour à l\'observatoire', 'veilletool') }}
+        </a>
+    </div>
+
+    <div class="alert alert-warning">
+        <i class="ti ti-alert-triangle me-1"></i>
+        {{ __('La suppression est définitive : les cartes retirées, ainsi que leurs commentaires et marquages de lecture, ne peuvent pas être récupérés. Utilisez d\'abord « Compter les cartes concernées ».', 'veilletool') }}
+    </div>
+
+    <form method="post" action="{{ purge_url }}" class="card">
+        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+        <div class="card-header">
+            <h3 class="card-title">{{ __('Quelles cartes supprimer ?', 'veilletool') }}</h3>
+            <div class="card-subtitle">
+                {{ __('Laissez un critère vide pour ne pas l\'appliquer. Tout laisser vide vise l\'ensemble des cartes.', 'veilletool') }}
+            </div>
+        </div>
+
+        <div class="card-body">
+            {#
+             # Chaque entrée se coche d'un simple clic, et se décoche du
+             # suivant : la combinaison de touches d'une liste déroulante
+             # multiple se perdait au moindre faux mouvement, et ne se
+             # devinait pas.
+             #}
+            <div class="row g-3">
+
+                {# --- Thèmes --- #}
+                <div class="col-12 col-lg-6">
+                    <label class="form-label">
+                        {{ __('Thèmes', 'veilletool') }}
+                        {% if criteria.categories|length > 0 %}
+                            <span class="badge bg-blue-lt ms-1">{{ criteria.categories|length }}</span>
+                        {% endif %}
+                    </label>
+                    <div class="veille-check-list">
+                        {% for category in categories %}
+                            <label class="veille-check-item">
+                                <input class="form-check-input" type="checkbox" name="categories[]"
+                                       value="{{ category.id }}"
+                                       {{ category.id in criteria.categories ? 'checked' : '' }}>
+                                <span>
+                                    <i class="{{ category.icon }}" style="color: {{ category.color }}"></i>
+                                    {{ category.name }}
+                                </span>
+                            </label>
+                        {% else %}
+                            <p class="text-secondary p-2 mb-0">{{ __('Aucun thème défini.', 'veilletool') }}</p>
+                        {% endfor %}
+                    </div>
+                    <small class="form-hint">
+                        {{ __('Rien de coché = tous les thèmes, y compris les cartes sans thème.', 'veilletool') }}
+                    </small>
+                </div>
+
+                {# --- Flux --- #}
+                <div class="col-12 col-lg-6">
+                    <label class="form-label">
+                        {{ __('Flux d\'origine', 'veilletool') }}
+                        {% if criteria.sources|length > 0 %}
+                            <span class="badge bg-blue-lt ms-1">{{ criteria.sources|length }}</span>
+                        {% endif %}
+                    </label>
+                    <div class="veille-check-list">
+                        {% for id, name in sources %}
+                            <label class="veille-check-item">
+                                <input class="form-check-input" type="checkbox" name="sources[]"
+                                       value="{{ id }}" {{ id in criteria.sources ? 'checked' : '' }}>
+                                <span><i class="ti ti-rss"></i>{{ name }}</span>
+                            </label>
+                        {% else %}
+                            <p class="text-secondary p-2 mb-0">{{ __('Aucun flux défini.', 'veilletool') }}</p>
+                        {% endfor %}
+                    </div>
+                    <small class="form-hint">
+                        {{ __('Rien de coché = tous les flux, y compris les cartes saisies manuellement.', 'veilletool') }}
+                    </small>
+                </div>
+
+                {# --- Référentiel technologique : trois niveaux --- #}
+                {% for level, meta in tech_levels %}
+                    <div class="col-12 col-lg-4">
+                        <label class="form-label">
+                            <i class="{{ meta.icon }} me-1"></i>{{ meta.label }}
+                            {% if criteria.technologies[level]|length > 0 %}
+                                <span class="badge bg-blue-lt ms-1">{{ criteria.technologies[level]|length }}</span>
+                            {% endif %}
+                        </label>
+
+                        {% if meta.values|length > 8 %}
+                            <div class="input-icon mb-1">
+                                <span class="input-icon-addon"><i class="ti ti-search"></i></span>
+                                <input type="search" class="form-control form-control-sm"
+                                       data-veille-list-filter="veille-purge-{{ level }}"
+                                       placeholder="{{ __('Filtrer cette liste...', 'veilletool') }}">
+                            </div>
+                        {% endif %}
+
+                        <div class="veille-check-list" id="veille-purge-{{ level }}">
+                            {% for value in meta.values %}
+                                <label class="veille-check-item">
+                                    <input class="form-check-input" type="checkbox" name="tech_{{ level }}[]"
+                                           value="{{ value }}"
+                                           {{ value in criteria.technologies[level] ? 'checked' : '' }}>
+                                    <span>{{ value }}</span>
+                                </label>
+                            {% else %}
+                                <p class="text-secondary p-2 mb-0">
+                                    {{ __('Aucune carte n\'est encore classée à ce niveau.', 'veilletool') }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="col-12">
+                    <small class="form-hint">
+                        {{ __('Les trois niveaux se combinent par « ou » : cocher la catégorie « OS » et la technologie « GLPI 11 » vise les cartes qui relèvent de l\'une ou de l\'autre. Rien de coché = aucune restriction technologique.', 'veilletool') }}
+                    </small>
+                </div>
+
+                {# --- Date --- #}
+                <div class="col-12 col-lg-6">
+                    <label class="form-label" for="veille-purge-before">
+                        {{ __('Publiées avant le', 'veilletool') }}
+                    </label>
+                    <input type="date" id="veille-purge-before" name="before" class="form-control"
+                           value="{{ criteria.before }}">
+                    <small class="form-hint">
+                        {{ __('Vide = aucune limite de date.', 'veilletool') }}
+                    </small>
+                </div>
+
+                {# --- Favoris --- #}
+                <div class="col-12 col-lg-6">
+                    <label class="form-label" for="veille-purge-fav">
+                        {{ __('Cartes en favori', 'veilletool') }}
+                    </label>
+                    <select id="veille-purge-fav" name="favorites" class="form-select">
+                        <option value="exclude" {{ criteria.favorites == 'exclude' ? 'selected' : '' }}>
+                            {{ __('Préserver les favoris (recommandé)', 'veilletool') }}
+                        </option>
+                        <option value="include" {{ criteria.favorites == 'include' ? 'selected' : '' }}>
+                            {{ __('Supprimer aussi les favoris', 'veilletool') }}
+                        </option>
+                        <option value="only" {{ criteria.favorites == 'only' ? 'selected' : '' }}>
+                            {{ __('Supprimer uniquement les favoris', 'veilletool') }}
+                        </option>
+                    </select>
+                    <small class="form-hint">
+                        {{ __('Avec « Préserver les favoris », une carte mise en favori n\'est jamais supprimée, même si elle correspond aux autres critères.', 'veilletool') }}
+                    </small>
+                </div>
+
+            </div>
+
+            {% if matched is not null %}
+                <div class="alert {{ matched > 0 ? 'alert-info' : 'alert-success' }} mt-3 mb-0">
+                    <i class="ti ti-target me-1"></i>
+                    {{ _n('%d carte sera supprimée.', '%d cartes seront supprimées.', matched, 'veilletool')|format(matched) }}
+                    <span class="text-secondary">
+                        ({{ _n('%d carte au total', '%d cartes au total', total, 'veilletool')|format(total) }})
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="card-footer d-flex flex-wrap gap-2">
+            <button type="submit" name="preview" value="1" class="btn btn-outline-secondary">
+                <i class="ti ti-calculator me-1"></i>{{ __('Compter les cartes concernées', 'veilletool') }}
+            </button>
+
+            <button type="submit" name="purge" value="1" class="btn btn-danger ms-auto"
+                    onclick="return confirm('{{ __('Cette suppression est définitive. Confirmez-vous ?', 'veilletool')|e('js') }}');">
+                <i class="ti ti-trash me-1"></i>{{ __('Supprimer définitivement', 'veilletool') }}
+            </button>
+        </div>
+    </form>
+</div>

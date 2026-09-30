@@ -1,0 +1,50 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Pagination partagée par la vue cartes et la vue liste.
+ #
+ # Deux flèches et le rang de la page : « ‹ 3 › ».
+ # Le nombre total de pages n'y figure pas. Il ne se lit qu'une fois, pour
+ # savoir si l'on est près de la fin, et se paie à chaque affichage : c'est
+ # la seule information de l'écran qui oblige la base à parcourir
+ # l'intégralité des cartes retenues.
+ #
+ # Les flèches inactives restent affichées, désactivées : sans elles, le
+ # rang sauterait d'un bord à l'autre entre la première page et les
+ # suivantes.
+ #}
+
+{% if total > limit %}
+    <nav class="veille-pager mt-3" aria-label="{{ __('Pagination', 'veilletool') }}">
+        {% if start > 0 %}
+            <a class="btn btn-outline-secondary btn-icon"
+               rel="prev"
+               aria-label="{{ __('Page précédente', 'veilletool') }}"
+               title="{{ __('Page précédente', 'veilletool') }}"
+               href="{{ list_url }}?{{ current_query|merge({'start': start - limit})|filter(v => v is not empty)|url_encode }}">
+                <i class="ti ti-chevron-left"></i>
+            </a>
+        {% else %}
+            <span class="btn btn-outline-secondary btn-icon disabled" aria-hidden="true">
+                <i class="ti ti-chevron-left"></i>
+            </span>
+        {% endif %}
+
+        <span class="veille-pager-page" aria-current="page">
+            {{ (start / limit)|round(0, 'floor') + 1 }}
+        </span>
+
+        {% if start + limit < total %}
+            <a class="btn btn-outline-secondary btn-icon"
+               rel="next"
+               aria-label="{{ __('Page suivante', 'veilletool') }}"
+               title="{{ __('Page suivante', 'veilletool') }}"
+               href="{{ list_url }}?{{ current_query|merge({'start': start + limit})|filter(v => v is not empty)|url_encode }}">
+                <i class="ti ti-chevron-right"></i>
+            </a>
+        {% else %}
+            <span class="btn btn-outline-secondary btn-icon disabled" aria-hidden="true">
+                <i class="ti ti-chevron-right"></i>
+            </span>
+        {% endif %}
+    </nav>
+{% endif %}

@@ -1,0 +1,207 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Écran « Résumer par IA » : sélection d'un lot puis redirection.
+ #}
+
+{% set summary_url = path('/plugins/veilletool/front/summary.php') %}
+{% set list_url    = path('/plugins/veilletool/front/article.php') %}
+
+<div class="veille-summary">
+
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+        <h2 class="mb-0">
+            <i class="ti ti-sparkles me-1"></i>{{ __('Résumer par IA', 'veilletool') }}
+        </h2>
+        <a class="btn btn-ghost-secondary" href="{{ list_url }}">
+            <i class="ti ti-arrow-left me-1"></i>{{ __('Retour à l\'observatoire', 'veilletool') }}
+        </a>
+    </div>
+
+    <form method="post" action="{{ summary_url }}">
+        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+
+        {# ------------------------------------------------------------ #}
+        {# La demande, en tête de page                                   #}
+        {# ------------------------------------------------------------ #}
+        <div class="card mb-3">
+            <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <h3 class="card-title mb-0">{{ __('La demande', 'veilletool') }}</h3>
+                <span class="text-secondary">
+                    {% if request.included == 0 %}
+                        {{ __('Aucune carte retenue', 'veilletool') }}
+                    {% else %}
+                        {{ _n('%d carte retenue', '%d cartes retenues', request.included, 'veilletool')|format(request.included) }}
+                    {% endif %}
+                </span>
+            </div>
+
+            <div class="card-body">
+                {% if request.included == 0 %}
+                    <p class="text-secondary mb-0">
+                        {{ __('Choisissez au moins une carte dans la sélection ci-dessous.', 'veilletool') }}
+                    </p>
+                {% else %}
+                    {{ include('@veilletool/parts/ai_composer.html.twig', {
+                        'prompts':       ai_prompts,
+                        'level':         level,
+                        'url':           request.url,
+                        'id':            'summary',
+                        'with_download': true,
+                    }) }}
+
+                    {% if request.compact %}
+                        <div class="alert alert-info py-2 mt-2 mb-0">
+                            <i class="ti ti-arrows-minimize me-1"></i>
+                            {{ __('Le lot est volumineux : la question ne transmet que les thèmes, le titre et la date de chaque carte. Le fichier resume.md, lui, contient le détail complet.', 'veilletool') }}
+                        </div>
+                    {% endif %}
+
+                    {% if request.skipped > 0 %}
+                        <div class="alert alert-warning py-2 mt-2 mb-0">
+                            <i class="ti ti-alert-triangle me-1"></i>
+                            {{ _n('%d carte a été écartée de la question pour tenir dans la longueur maximale d\'une adresse web. Le fichier resume.md les contient toutes.', '%d cartes ont été écartées de la question pour tenir dans la longueur maximale d\'une adresse web. Le fichier resume.md les contient toutes.', request.skipped, 'veilletool')|format(request.skipped) }}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        {# ------------------------------------------------------------ #}
+        {# Sélection                                                     #}
+        {# ------------------------------------------------------------ #}
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3 class="card-title">{{ __('Sélectionner les cartes', 'veilletool') }}</h3>
+            </div>
+
+            <div class="card-body">
+                <div class="row g-3">
+
+                    <div class="col-12 col-lg-6">
+                        <label class="form-label">{{ __('Thèmes', 'veilletool') }}</label>
+                        <div class="veille-check-list">
+                            {% for category in categories %}
+                                <label class="veille-check-item">
+                                    <input class="form-check-input" type="checkbox" name="categories[]"
+                                           value="{{ category.id }}"
+                                           {{ category.id in selection.categories_ids ? 'checked' : '' }}>
+                                    <span>
+                                        <i class="{{ category.icon }}" style="color: {{ category.color }}"></i>
+                                        {{ category.name }}
+                                    </span>
+                                </label>
+                            {% else %}
+                                <p class="text-secondary p-2 mb-0">{{ __('Aucun thème défini.', 'veilletool') }}</p>
+                            {% endfor %}
+                        </div>
+                        <small class="form-hint">{{ __('Rien de coché = tous les thèmes.', 'veilletool') }}</small>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <label class="form-label">{{ __('Flux d\'origine', 'veilletool') }}</label>
+                        <div class="veille-check-list">
+                            {% for id, name in sources %}
+                                <label class="veille-check-item">
+                                    <input class="form-check-input" type="checkbox" name="sources[]"
+                                           value="{{ id }}" {{ id in selection.sources_ids ? 'checked' : '' }}>
+                                    <span><i class="ti ti-rss"></i>{{ name }}</span>
+                                </label>
+                            {% else %}
+                                <p class="text-secondary p-2 mb-0">{{ __('Aucun flux défini.', 'veilletool') }}</p>
+                            {% endfor %}
+                        </div>
+                        <small class="form-hint">{{ __('Rien de coché = tous les flux.', 'veilletool') }}</small>
+                    </div>
+
+                    <div class="col-6 col-lg-3">
+                        <label class="form-label" for="veille-sum-from">
+                            {{ __('Publiées après le', 'veilletool') }}
+                        </label>
+                        <input type="date" id="veille-sum-from" name="from" class="form-control"
+                               value="{{ selection.date_from }}">
+                    </div>
+
+                    <div class="col-6 col-lg-3">
+                        <label class="form-label" for="veille-sum-to">
+                            {{ __('Publiées avant le', 'veilletool') }}
+                        </label>
+                        <input type="date" id="veille-sum-to" name="to" class="form-control"
+                               value="{{ selection.date_to }}">
+                    </div>
+
+                    <div class="col-12 col-lg-6 d-flex flex-wrap gap-3 align-items-end pb-2">
+                        <label class="form-check form-switch mb-0">
+                            <input class="form-check-input" type="checkbox" name="favorites" value="1"
+                                   {{ selection.favorites_only ? 'checked' : '' }}>
+                            <span class="form-check-label">{{ __('Favoris seulement', 'veilletool') }}</span>
+                        </label>
+                        <label class="form-check form-switch mb-0">
+                            <input class="form-check-input" type="checkbox" name="unread" value="1"
+                                   {{ selection.unread_only ? 'checked' : '' }}>
+                            <span class="form-check-label">{{ __('Non lues seulement', 'veilletool') }}</span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" name="refresh" value="1" class="btn btn-primary">
+                    <i class="ti ti-refresh me-1"></i>{{ __('Appliquer la sélection', 'veilletool') }}
+                </button>
+            </div>
+        </div>
+
+        {# ------------------------------------------------------------ #}
+        {# Affinage carte par carte                                      #}
+        {# ------------------------------------------------------------ #}
+        <div class="card">
+            <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <h3 class="card-title mb-0">
+                    {{ __('Affiner le lot', 'veilletool') }}
+                    <span class="badge bg-secondary-lt ms-2">{{ candidates|length }}</span>
+                </h3>
+                {% if candidates|length > 0 %}
+                    <button type="submit" name="rebuild" value="1" class="btn btn-sm btn-outline-secondary">
+                        <i class="ti ti-check me-1"></i>{{ __('Valider les cartes cochées', 'veilletool') }}
+                    </button>
+                {% endif %}
+            </div>
+
+            <div class="card-body">
+                {% if candidates is empty %}
+                    <p class="text-secondary mb-0">
+                        {{ __('Aucune carte ne correspond à cette sélection.', 'veilletool') }}
+                    </p>
+                {% else %}
+                    {% if total_matching > max_candidates %}
+                        <div class="alert alert-warning">
+                            <i class="ti ti-alert-triangle me-1"></i>
+                            {{ __('%1$d cartes correspondent. Seules les %2$d plus récentes sont proposées ici.', 'veilletool')|format(total_matching, max_candidates) }}
+                        </div>
+                    {% endif %}
+
+                    <div class="veille-summary-list">
+                        {% for card in candidates %}
+                            <label class="veille-summary-item">
+                                <input class="form-check-input" type="checkbox" name="ids[]"
+                                       value="{{ card.id }}" {{ card.id in kept ? 'checked' : '' }}>
+                                <span>
+                                    <span class="veille-summary-title">{{ card.name }}</span>
+                                    <span class="text-secondary small d-block">
+                                        {% for category in card.categories %}
+                                            <span class="badge veille-badge"
+                                                  style="background-color: {{ category.color }}; color: {{ category.text_color }}"><i
+                                                  class="{{ category.icon }}"></i>{{ category.name }}</span>
+                                        {% endfor %}
+                                        {{ card.source_name }} · {{ card.date_published|formatted_datetime }}
+                                    </span>
+                                </span>
+                            </label>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </form>
+</div>

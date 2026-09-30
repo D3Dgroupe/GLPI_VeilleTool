@@ -1,0 +1,45 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Formulaire d'une carte saisie ou corrigée manuellement.
+ #}
+
+{% extends 'generic_show_form.html.twig' %}
+{% import 'components/form/fields_macros.html.twig' as fields %}
+
+{% block form_fields %}
+    {{ fields.textField('name', item.fields['name'], __('Titre', 'veilletool'), {'required': true}) }}
+
+    {{ fields.dropdownField(
+        'GlpiPlugin\\Veilletool\\Category',
+        'categories',
+        categories,
+        __('Catégories', 'veilletool'),
+        {
+            'multiple': true,
+            'entity_restrict': -1,
+            'helper': __('Les catégories déterminent les onglets dans lesquels la carte apparaît.', 'veilletool')
+        }
+    ) }}
+
+    {{ fields.textField('url', item.fields['url'], __('Lien vers la source', 'veilletool'), {
+        'helper': __('Laissez vide si l\'information n\'a pas de source en ligne : la carte sera signalée comme import manuel.', 'veilletool')
+    }) }}
+
+    {{ fields.textField('author', item.fields['author'], __('Auteur', 'veilletool')) }}
+
+    {{ fields.textField('image_url', item.fields['image_url'], __('Image d\'illustration (URL)', 'veilletool')) }}
+
+    {{ fields.datetimeField('date_published', item.fields['date_published'], __('Date de publication', 'veilletool')) }}
+
+    {{ fields.textareaField('summary', item.fields['summary'], __('Résumé', 'veilletool'), {
+        'full_width': true,
+        'is_horizontal': false,
+        'rows': 3
+    }) }}
+
+    {{ fields.textareaField('content', item.fields['content'], __('Contenu', 'veilletool'), {
+        'full_width': true,
+        'is_horizontal': false,
+        'enable_richtext': true
+    }) }}
+{% endblock %}

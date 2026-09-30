@@ -1,0 +1,1231 @@
+# Plugin GLPI « Veille technologique » (veilletool)
+# Modèle de traduction. Les chaînes sources sont en français : sans
+# fichier .mo, l'interface s'affiche déjà en français.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: veilletool 1.5.2\n"
+"Report-Msgid-Bugs-To: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: stats_view.html.twig:50
+msgid "% des cartes"
+msgstr ""
+
+#: stats_view.html.twig:75
+msgid "%1$d carte(s) analysée(s) : %2$d rattachée(s) au référentiel, %3$d classée(s) dans « Autre ». Une carte qui relève de plusieurs catégories est comptée dans chacune."
+msgstr ""
+
+#: summary.html.twig:180
+msgid "%1$d cartes correspondent ; seules les %2$d plus récentes sont proposées ici."
+msgstr ""
+
+#: Source.php:368
+msgid "%1$d nouvelle(s) carte(s), %2$d mise(s) à jour"
+msgstr ""
+
+#: source.php:56
+msgid "%1$s : %2$d nouvelle(s) carte(s), %3$d mise(s) à jour."
+msgstr ""
+
+#: source.php:44
+msgid "%1$s : %2$s"
+msgstr ""
+
+#: summary.html.twig:62
+msgid "%d carte a été écartée de la question pour tenir dans la longueur maximale d'une adresse web. Le fichier resume.md les contient toutes."
+msgid_plural "%d cartes ont été écartées de la question pour tenir dans la longueur maximale d'une adresse web. Le fichier resume.md les contient toutes."
+msgstr[0] ""
+msgstr[1] ""
+
+#: purge.html.twig:113
+msgid "%d carte au total"
+msgid_plural "%d cartes au total"
+msgstr[0] ""
+msgstr[1] ""
+
+#: purge.php:61
+msgid "%d carte correspond à ces critères."
+msgid_plural "%d cartes correspondent à ces critères."
+msgstr[0] ""
+msgstr[1] ""
+
+#: article.php:67
+msgid "%d carte marquée comme lue."
+msgid_plural "%d cartes marquées comme lues."
+msgstr[0] ""
+msgstr[1] ""
+
+#: summary.html.twig:33
+msgid "%d carte retenue"
+msgid_plural "%d cartes retenues"
+msgstr[0] ""
+msgstr[1] ""
+
+#: purge.html.twig:111
+msgid "%d carte sera supprimée."
+msgid_plural "%d cartes seront supprimées."
+msgstr[0] ""
+msgstr[1] ""
+
+#: purge.php:82
+msgid "%d carte supprimée définitivement."
+msgid_plural "%d cartes supprimées définitivement."
+msgstr[0] ""
+msgstr[1] ""
+
+#: article_detail.html.twig:146
+msgid "%d commentaire"
+msgid_plural "%d commentaires"
+msgstr[0] ""
+msgstr[1] ""
+
+#: technologies.html.twig:93
+msgid "%d entrée"
+msgid_plural "%d entrées"
+msgstr[0] ""
+msgstr[1] ""
+
+#: technology.php:93
+msgid "%d entrée supprimée."
+msgid_plural "%d entrées supprimées."
+msgstr[0] ""
+msgstr[1] ""
+
+#: source_form.html.twig:21
+msgid "Adresse du flux RSS / Atom, ou du fichier XML à télécharger. Laissez vide pour un import de fichier XML depuis l'interface."
+msgstr ""
+
+#: summary.html.twig:161
+msgid "Affiner le lot"
+msgstr ""
+
+#: technologies.html.twig:205
+msgid "Ajouter"
+msgstr ""
+
+#: article_detail.html.twig:91
+#: cards_view.html.twig:76
+#: list_view.html.twig:85
+msgid "Ajouter aux favoris"
+msgstr ""
+
+#: article_detail.html.twig:212
+msgid "Ajouter un commentaire"
+msgstr ""
+
+#: sources.html.twig:17
+msgid "Ajouter un flux"
+msgstr ""
+
+#: articles.html.twig:35
+msgid "Ajouter une carte"
+msgstr ""
+
+#: technologies.html.twig:173
+msgid "Ajouter une entrée"
+msgstr ""
+
+#: AiPrompt.php:59
+msgid "Analyse des risques"
+msgstr ""
+
+#: summary.html.twig:150
+msgid "Appliquer la sélection"
+msgstr ""
+
+#: article_detail.html.twig:152
+msgid "Aucun commentaire pour le moment."
+msgstr ""
+
+#: article_detail.html.twig:69
+msgid "Aucun contenu détaillé n'a été fourni."
+msgstr ""
+
+#: technology.php:121
+msgid "Aucun fichier CSV n'a été reçu (vérifiez la taille maximale autorisée par PHP)."
+msgstr ""
+
+#: summary.html.twig:110
+msgid "Aucun flux défini."
+msgstr ""
+
+#: sources.html.twig:168
+msgid "Aucun flux n'est encore défini."
+msgstr ""
+
+#: summary.html.twig:94
+msgid "Aucun thème défini."
+msgstr ""
+
+#: Collector.php:69
+msgid "Aucune URL n'est définie pour cette source."
+msgstr ""
+
+#: cards_view.html.twig:10
+msgid "Aucune carte n'a encore été ajoutée aux favoris."
+msgstr ""
+
+#: stats_view.html.twig:9
+msgid "Aucune carte ne correspond à ces critères : il n'y a rien à analyser."
+msgstr ""
+
+#: list_view.html.twig:9
+msgid "Aucune carte ne correspond à ces critères."
+msgstr ""
+
+#: cards_view.html.twig:12
+msgid "Aucune carte ne correspond à ces critères. Ajoutez un flux depuis l'onglet « Flux RSS / ATOM », ou créez une carte manuellement."
+msgstr ""
+
+#: summary.html.twig:174
+msgid "Aucune carte ne correspond à cette sélection."
+msgstr ""
+
+#: summary.html.twig:31
+msgid "Aucune carte retenue"
+msgstr ""
+
+#: summary.php:113
+msgid "Aucune carte retenue : il n'y a rien à exporter."
+msgstr ""
+
+#: technologies.html.twig:129
+msgid "Aucune entrée ne correspond à ces critères."
+msgstr ""
+
+#: purge.html.twig:69
+msgid "Aucune sélection = tous les flux, y compris les cartes saisies manuellement."
+msgstr ""
+
+#: purge.html.twig:52
+msgid "Aucune sélection = toutes les catégories, y compris les cartes sans catégorie."
+msgstr ""
+
+#: AiPrompt.php:397
+#: Article.php:680
+#: article_form.html.twig:28
+msgid "Auteur"
+msgstr ""
+
+#: purge.html.twig:102
+msgid "Avec « Préserver les favoris », une carte mise en favori n'est jamais supprimée, même si elle correspond aux autres critères."
+msgstr ""
+
+#: article.form.php:82
+msgid "Carte ajoutée aux favoris."
+msgstr ""
+
+#: Article.php:34
+msgid "Carte de veille"
+msgid_plural "Cartes de veille"
+msgstr[0] ""
+msgstr[1] ""
+
+#: article.form.php:83
+msgid "Carte retirée des favoris."
+msgstr ""
+
+#: articles.html.twig:83
+#: stats_view.html.twig:49
+#: stats_view.html.twig:94
+#: sources.html.twig:88
+msgid "Cartes"
+msgstr ""
+
+#: Source.php:292
+msgid "Cartes collectées"
+msgstr ""
+
+#: Profile.php:47
+msgid "Cartes de veille (lecture, favoris, commentaires)"
+msgstr ""
+
+#: purge.html.twig:88
+msgid "Cartes en favori"
+msgstr ""
+
+#: technology.php:41
+msgid "Cartes reclassées : %1$d analysée(s), %2$d rattachement(s)."
+msgstr ""
+
+#: Statistics.php:43
+#: Technology.php:339
+#: stats_view.html.twig:93
+#: technologies.html.twig:47
+#: technologies.html.twig:108
+#: technologies.html.twig:181
+msgid "Catégorie"
+msgstr ""
+
+#: Article_Category.php:23
+msgid "Catégorie de carte"
+msgid_plural "Catégories de carte"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Source_Category.php:23
+msgid "Catégorie de source"
+msgid_plural "Catégories de source"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Category.php:58
+msgid "Catégorie de veille"
+msgid_plural "Catégories de veille"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Technology.php:94
+msgid "Catégorie, famille et sous-catégorie sont toutes les trois obligatoires."
+msgstr ""
+
+#: Menu.php:103
+#: Statistics.php:122
+#: article_form.html.twig:16
+#: purge.html.twig:41
+#: sources.html.twig:29
+#: sources.html.twig:85
+msgid "Catégories"
+msgstr ""
+
+#: source_form.html.twig:28
+msgid "Catégories appliquées aux cartes collectées"
+msgstr ""
+
+#: technologies.html.twig:37
+msgid "Ce référentiel sert à rattacher automatiquement les cartes aux technologies et aux réglementations qu'elles évoquent. Il est indépendant des thèmes portés par les cartes."
+msgstr ""
+
+#: source_form.html.twig:32
+msgid "Ce sont ces catégories qui déterminent les onglets dans lesquels les cartes apparaîtront."
+msgstr ""
+
+#: purge.html.twig:125
+msgid "Cette suppression est définitive. Confirmez-vous ?"
+msgstr ""
+
+#: summary.html.twig:41
+msgid "Choisissez au moins une carte dans la sélection ci-dessous."
+msgstr ""
+
+#: hook.php:323
+msgid "Classification technologique : %1$d carte(s) analysée(s), %2$d rattachement(s)."
+msgstr ""
+
+#: stats_view.html.twig:39
+msgid "Cliquez sur une part pour ouvrir les cartes correspondantes : les autres filtres sont remis à zéro."
+msgstr ""
+
+#: Category.php:355
+msgid "Cloud & virtualisation"
+msgstr ""
+
+#: Category.php:84
+#: Category.php:131
+msgid "Code"
+msgstr ""
+
+#: sources.html.twig:51
+msgid "Collecte automatique %1$s, en mode %2$s."
+msgstr ""
+
+#: Source.php:390
+msgid "Collecte des flux RSS / Atom de la veille technologique"
+msgstr ""
+
+#: sources.html.twig:139
+msgid "Collecter ce flux"
+msgstr ""
+
+#: sources.html.twig:24
+msgid "Collecter maintenant"
+msgstr ""
+
+#: source_form.html.twig:44
+msgid "Comment"
+msgid_plural "Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Comment.php:27
+#: list_view.html.twig:23
+msgid "Commentaire"
+msgid_plural "Commentaires"
+msgstr[0] ""
+msgstr[1] ""
+
+#: articles.html.twig:178
+msgid "Commentées"
+msgstr ""
+
+#: purge.html.twig:121
+msgid "Compter les cartes concernées"
+msgstr ""
+
+#: article_form.html.twig:40
+msgid "Contenu"
+msgstr ""
+
+#: Collector.php:90
+msgid "Contenu vide ou inaccessible."
+msgstr ""
+
+#: Category.php:94
+#: Category.php:139
+msgid "Couleur"
+msgstr ""
+
+#: Collector.php:472
+msgid "Création impossible pour « %s »."
+msgstr ""
+
+#: Category.php:252
+msgid "Cybersécurité"
+msgstr ""
+
+#: source_form.html.twig:52
+msgid "Date"
+msgstr ""
+
+#: Article.php:672
+#: article_form.html.twig:32
+#: list_view.html.twig:21
+msgid "Date de publication"
+msgstr ""
+
+#: AiPrompt.php:364
+msgid "Demande"
+msgstr ""
+
+#: article_detail.html.twig:125
+#: ai_composer.html.twig:42
+#: cards_view.html.twig:88
+#: list_view.html.twig:93
+msgid "Demander à l'IA"
+msgstr ""
+
+#: Source.php:284
+#: source_form.html.twig:47
+#: sources.html.twig:87
+msgid "Dernière collecte"
+msgstr ""
+
+#: sources.html.twig:54
+msgid "Dernière exécution :"
+msgstr ""
+
+#: Collector.php:111
+msgid "Document trop volumineux (5 Mio maximum)."
+msgstr ""
+
+#: Category.php:403
+msgid "Données, IA & analyse"
+msgstr ""
+
+#: cards_view.html.twig:97
+#: list_view.html.twig:98
+msgid "Détails"
+msgstr ""
+
+#: Category.php:372
+msgid "Développement & logiciel"
+msgstr ""
+
+#: list_view.html.twig:34
+msgid "En favori"
+msgstr ""
+
+#: Category.php:479
+msgid "Entreprise & organisation"
+msgstr ""
+
+#: technology.php:69
+msgid "Entrée ajoutée au référentiel."
+msgstr ""
+
+#: AiPrompt.php:58
+msgid "Explication détaillée"
+msgstr ""
+
+#: Statistics.php:44
+#: Technology.php:347
+#: stats_view.html.twig:92
+#: technologies.html.twig:59
+#: technologies.html.twig:109
+#: technologies.html.twig:190
+msgid "Famille"
+msgstr ""
+
+#: Statistics.php:130
+msgid "Familles"
+msgstr ""
+
+#: Favorite.php:24
+msgid "Favori"
+msgid_plural "Favoris"
+msgstr[0] ""
+msgstr[1] ""
+
+#: article.php:153
+#: Menu.php:82
+msgid "Favoris"
+msgstr ""
+
+#: summary.html.twig:136
+msgid "Favoris seulement"
+msgstr ""
+
+#: technologies.html.twig:229
+msgid "Fichier CSV encodé en UTF-8, séparateur point-virgule, trois colonnes : Catégorie ; Famille ; Sous-catégorie. La première ligne peut être un en-tête."
+msgstr ""
+
+#: technology.php:127
+msgid "Fichier trop volumineux (5 Mio maximum)."
+msgstr ""
+
+#: Technology.php:216
+msgid "Fichier vide."
+msgstr ""
+
+#: articles.html.twig:181
+#: technologies.html.twig:77
+msgid "Filtrer"
+msgstr ""
+
+#: articles.html.twig:71
+msgid "Filtré sur la technologie :"
+msgstr ""
+
+#: AiPrompt.php:387
+msgid "Flux"
+msgstr ""
+
+#: Article.php:56
+#: Source.php:52
+msgid "Flux Atom"
+msgstr ""
+
+#: Article.php:55
+#: Source.php:51
+msgid "Flux RSS"
+msgstr ""
+
+#: source.php:152
+#: Menu.php:89
+#: articles.html.twig:40
+#: sources.html.twig:12
+msgid "Flux RSS / ATOM"
+msgstr ""
+
+#: Profile.php:57
+msgid "Flux RSS / ATOM et catégories"
+msgstr ""
+
+#: Source.php:30
+msgid "Flux RSS / Atom"
+msgid_plural "Flux RSS / Atom"
+msgstr[0] ""
+msgstr[1] ""
+
+#: purge.html.twig:59
+#: summary.html.twig:101
+msgid "Flux d'origine"
+msgstr ""
+
+#: Collector.php:139
+msgid "Flux non reconnu (élément racine « %s »). Formats acceptés : RSS 2.0, RSS 1.0 (RDF) et Atom."
+msgstr ""
+
+#: Category.php:510
+msgid "Général"
+msgstr ""
+
+#: Statistics.php:112
+msgid "Hors référentiel"
+msgstr ""
+
+#: Category.php:102
+#: Category.php:147
+msgid "Icône"
+msgstr ""
+
+#: Category.php:232
+msgid "Icône actuelle"
+msgstr ""
+
+#: Category.php:87
+msgid "Identifiant technique utilisé dans les fichiers XML importés (ex : cybersecurite)."
+msgstr ""
+
+#: article_form.html.twig:30
+msgid "Image d'illustration (URL)"
+msgstr ""
+
+#: article_detail.html.twig:58
+msgid "Import manuel : aucune adresse source n'est associée à cette carte."
+msgstr ""
+
+#: technologies.html.twig:250
+msgid "Importer"
+msgstr ""
+
+#: technologies.html.twig:221
+msgid "Importer un référentiel"
+msgstr ""
+
+#: AiPrompt.php:180
+msgid "Information : « %s »."
+msgstr ""
+
+#: AiPrompt.php:373
+msgid "Informations"
+msgstr ""
+
+#: Category.php:322
+msgid "Infrastructure & matériel"
+msgstr ""
+
+#: Category.php:456
+msgid "Innovation & recherche"
+msgstr ""
+
+#: source_form.html.twig:51
+#: sources.html.twig:127
+msgid "Jamais"
+msgstr ""
+
+#: sources.html.twig:57
+msgid "Jamais exécutée pour le moment."
+msgstr ""
+
+#: Source.php:134
+msgid "L'URL doit être une adresse http(s) valide."
+msgstr ""
+
+#: Source.php:143
+msgid "L'URL du flux est obligatoire."
+msgstr ""
+
+#: hook.php:450
+msgid "La collecte automatique des flux est repassée en mode « GLPI » : en mode « CLI », elle ne pouvait pas se déclencher sans cron système."
+msgstr ""
+
+#: sources.html.twig:49
+msgid "La collecte automatique est désactivée : les flux ne seront relevés que manuellement."
+msgstr ""
+
+#: summary.html.twig:28
+msgid "La demande"
+msgstr ""
+
+#: ai_composer.html.twig:68
+msgid "La question dépasse la longueur admise par une adresse web : raccourcissez-la, ou utilisez le fichier Markdown qui n'a pas cette limite."
+msgstr ""
+
+#: purge.html.twig:22
+msgid "La suppression est définitive : les cartes retirées, ainsi que leurs commentaires et marquages de lecture, ne peuvent pas être récupérés. Utilisez d'abord « Compter les cartes concernées »."
+msgstr ""
+
+#: sources.html.twig:47
+msgid "La tâche automatique de collecte est introuvable. Réinstallez le plugin pour la recréer."
+msgstr ""
+
+#: purge.html.twig:31
+msgid "Laissez un critère vide pour ne pas l'appliquer. Tout laisser vide vise l'ensemble des cartes."
+msgstr ""
+
+#: article_form.html.twig:25
+msgid "Laissez vide si l'information n'a pas de source en ligne : la carte sera signalée comme import manuel."
+msgstr ""
+
+#: Comment.php:41
+#: Comment.php:61
+msgid "Le commentaire ne peut pas être vide."
+msgstr ""
+
+#: Collector.php:120
+msgid "Le document n'est pas un XML valide."
+msgstr ""
+
+#: technologies.html.twig:200
+msgid "Le libellé sert de mot clé : « Debian 13 » rattachera aussi une carte parlant de Debian 13.0.1."
+msgstr ""
+
+#: summary.html.twig:55
+msgid "Le lot est volumineux : la question ne transmet que les thèmes, le titre et la date de chaque carte. Le fichier resume.md, lui, contient le détail complet."
+msgstr ""
+
+#: sources.html.twig:62
+msgid "Le mode CLI suppose qu'un cron système appelle GLPI. À défaut, la tâche ne se déclenchera jamais : basculez-la en mode GLPI."
+msgstr ""
+
+#: technologies.html.twig:38
+msgid "Le rattachement est enregistré en base : %d au total. Il est recalculé à chaque enregistrement d'une carte et à chaque modification du référentiel."
+msgstr ""
+
+#: Article.php:119
+msgid "Le titre de la carte est obligatoire."
+msgstr ""
+
+#: article_form.html.twig:20
+msgid "Les catégories déterminent les onglets dans lesquels la carte apparaît."
+msgstr ""
+
+#: AiPrompt.php:368
+msgid "Les informations à analyser sont listées ci-dessous, une section par carte."
+msgstr ""
+
+#: article_form.html.twig:24
+msgid "Lien vers la source"
+msgstr ""
+
+#: Technology.php:287
+msgid "Ligne %d : enregistrement refusé."
+msgstr ""
+
+#: Technology.php:255
+msgid "Ligne %d ignorée : trois colonnes attendues."
+msgstr ""
+
+#: Technology.php:264
+msgid "Ligne %d ignorée : une colonne est vide."
+msgstr ""
+
+#: articles.html.twig:84
+msgid "Liste"
+msgstr ""
+
+#: article_detail.html.twig:80
+#: cards_view.html.twig:65
+#: list_view.html.twig:74
+msgid "Marquer comme lue"
+msgstr ""
+
+#: article_detail.html.twig:80
+#: cards_view.html.twig:65
+#: list_view.html.twig:74
+msgid "Marquer comme non lue"
+msgstr ""
+
+#: articles.html.twig:88
+msgid "Mode d'affichage"
+msgstr ""
+
+#: article_detail.html.twig:96
+#: article_detail.html.twig:178
+#: sources.html.twig:146
+msgid "Modifier"
+msgstr ""
+
+#: articles.html.twig:126
+#: technologies.html.twig:71
+msgid "Mot clé"
+msgstr ""
+
+#: ai_composer.html.twig:30
+msgid "Niveau d'analyse"
+msgstr ""
+
+#: source_form.html.twig:36
+msgid "Nombre maximum d'entrées par collecte"
+msgstr ""
+
+#: cards_view.html.twig:37
+#: list_view.html.twig:37
+msgid "Non lue"
+msgstr ""
+
+#: articles.html.twig:173
+msgid "Non lues"
+msgstr ""
+
+#: summary.html.twig:141
+msgid "Non lues seulement"
+msgstr ""
+
+#: article.form.php:161
+msgid "Nouvelle carte de veille"
+msgstr ""
+
+#: article.php:154
+#: Menu.php:68
+msgid "Observatoire"
+msgstr ""
+
+#: Category.php:108
+#: Category.php:155
+msgid "Ordre d'affichage"
+msgstr ""
+
+#: Article.php:664
+msgid "Origine"
+msgstr ""
+
+#: setup.php:79
+#: profile_rights.html.twig:20
+msgid "Outils de Veille"
+msgstr ""
+
+#: technologies.html.twig:149
+msgid "Page %1$d / %2$d"
+msgstr ""
+
+#: pager.html.twig:21
+#: pager.html.twig:22
+msgid "Page précédente"
+msgstr ""
+
+#: pager.html.twig:39
+#: pager.html.twig:40
+msgid "Page suivante"
+msgstr ""
+
+#: pager.html.twig:17
+msgid "Pagination"
+msgstr ""
+
+#: sources.html.twig:70
+msgid "Paramètres de la tâche"
+msgstr ""
+
+#: technologies.html.twig:144
+msgid "Précédent"
+msgstr ""
+
+#: article_detail.html.twig:102
+msgid "Préparer une question à l'IA"
+msgstr ""
+
+#: purge.html.twig:92
+msgid "Préserver les favoris (recommandé)"
+msgstr ""
+
+#: article_detail.html.twig:217
+msgid "Publier"
+msgstr ""
+
+#: AiPrompt.php:392
+msgid "Publié le"
+msgstr ""
+
+#: articles.html.twig:160
+#: summary.html.twig:118
+msgid "Publiées après le"
+msgstr ""
+
+#: articles.html.twig:165
+#: purge.html.twig:76
+#: summary.html.twig:126
+msgid "Publiées avant le"
+msgstr ""
+
+#: purge.html.twig:29
+msgid "Quelles cartes supprimer ?"
+msgstr ""
+
+#: ai_composer.html.twig:59
+msgid "Question envoyée"
+msgstr ""
+
+#: AiPrompt.php:416
+msgid "Rappel du format de réponse attendu :"
+msgstr ""
+
+#: technologies.html.twig:25
+msgid "Reclasser les cartes"
+msgstr ""
+
+#: AiPrompt.php:122
+msgid "Regroupe ce qui se recoupe, reste factuel et ne conserve que ce qui est utile à une DSI."
+msgstr ""
+
+#: technologies.html.twig:241
+msgid "Remplacer le référentiel existant"
+msgstr ""
+
+#: hook.php:408
+msgid "Reprise de l'installation précédente : %d table(s) récupérée(s), droits et actions automatiques reportés."
+msgstr ""
+
+#: articles.html.twig:74
+msgid "Retirer ce filtre"
+msgstr ""
+
+#: article_detail.html.twig:91
+#: cards_view.html.twig:76
+#: list_view.html.twig:85
+msgid "Retirer des favoris"
+msgstr ""
+
+#: purge.html.twig:16
+#: summary.html.twig:16
+msgid "Retour à l'observatoire"
+msgstr ""
+
+#: article_detail.html.twig:13
+msgid "Retour à la liste"
+msgstr ""
+
+#: summary.html.twig:113
+msgid "Rien de coché = tous les flux."
+msgstr ""
+
+#: summary.html.twig:97
+msgid "Rien de coché = tous les thèmes."
+msgstr ""
+
+#: technology.php:142
+msgid "Référentiel : %1$d entrée(s) ajoutée(s), %2$d déjà connue(s)."
+msgstr ""
+
+#: hook.php:482
+msgid "Référentiel technologique : %d entrée(s) chargée(s)."
+msgstr ""
+
+#: hook.php:470
+msgid "Référentiel technologique introuvable : il pourra être importé depuis l'onglet Technologies."
+msgstr ""
+
+#: Category.php:433
+msgid "Réglementation & juridique"
+msgstr ""
+
+#: articles.html.twig:184
+#: technologies.html.twig:79
+msgid "Réinitialiser"
+msgstr ""
+
+#: stats_view.html.twig:15
+msgid "Répartition des cartes"
+msgstr ""
+
+#: Category.php:291
+msgid "Réseau & communication"
+msgstr ""
+
+#: source_form.html.twig:58
+msgid "Résultat"
+msgstr ""
+
+#: summary.php:142
+#: articles.html.twig:51
+#: summary.html.twig:13
+msgid "Résumer par IA"
+msgstr ""
+
+#: AiPrompt.php:57
+#: article_form.html.twig:34
+msgid "Résumé"
+msgstr ""
+
+#: AiPrompt.php:187
+msgid "Résumé : %s."
+msgstr ""
+
+#: AiPrompt.php:56
+msgid "Résumé synthétique"
+msgstr ""
+
+#: ai_composer.html.twig:52
+msgid "Rétablir la question"
+msgstr ""
+
+#: Article.php:57
+#: Source.php:554
+msgid "Saisie manuelle"
+msgstr ""
+
+#: article_detail.html.twig:29
+#: cards_view.html.twig:34
+msgid "Sans catégorie"
+msgstr ""
+
+#: technologies.html.twig:243
+msgid "Sinon, seules les entrées inconnues sont ajoutées."
+msgstr ""
+
+#: AiPrompt.php:401
+#: articles.html.twig:136
+#: list_view.html.twig:20
+msgid "Source"
+msgstr ""
+
+#: AiPrompt.php:192
+#: AiPrompt.php:330
+msgid "Source : %s"
+msgstr ""
+
+#: article_detail.html.twig:52
+msgid "Source de l'information :"
+msgstr ""
+
+#: Source.php:559
+msgid "Source supprimée"
+msgstr ""
+
+#: Technology.php:330
+#: stats_view.html.twig:91
+#: technologies.html.twig:110
+#: technologies.html.twig:196
+msgid "Sous-catégorie"
+msgstr ""
+
+#: articles.html.twig:85
+msgid "Statistiques"
+msgstr ""
+
+#: ReadStatus.php:23
+msgid "Statut de lecture"
+msgid_plural "Statuts de lecture"
+msgstr[0] ""
+msgstr[1] ""
+
+#: technologies.html.twig:158
+msgid "Suivant"
+msgstr ""
+
+#: article_detail.html.twig:111
+#: article_detail.html.twig:187
+#: sources.html.twig:157
+msgid "Supprimer"
+msgstr ""
+
+#: purge.html.twig:95
+msgid "Supprimer aussi les favoris"
+msgstr ""
+
+#: article_detail.html.twig:182
+msgid "Supprimer ce commentaire ?"
+msgstr ""
+
+#: sources.html.twig:152
+msgid "Supprimer ce flux ainsi que toutes ses cartes ?"
+msgstr ""
+
+#: purge.html.twig:126
+msgid "Supprimer définitivement"
+msgstr ""
+
+#: article_detail.html.twig:107
+msgid "Supprimer définitivement cette carte ?"
+msgstr ""
+
+#: technologies.html.twig:98
+msgid "Supprimer la sélection"
+msgstr ""
+
+#: technologies.html.twig:97
+msgid "Supprimer les entrées cochées ?"
+msgstr ""
+
+#: purge.html.twig:98
+msgid "Supprimer uniquement les favoris"
+msgstr ""
+
+#: summary.html.twig:74
+msgid "Sélectionner les cartes"
+msgstr ""
+
+#: Technology.php:33
+#: articles.html.twig:146
+msgid "Technologie"
+msgid_plural "Technologies"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Article_Technology.php:35
+msgid "Technologie de la carte"
+msgid_plural "Technologies de la carte"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Menu.php:117
+#: technologies.html.twig:17
+msgid "Technologies"
+msgstr ""
+
+#: stats_view.html.twig:84
+msgid "Technologies les plus citées"
+msgstr ""
+
+#: AiPrompt.php:382
+#: list_view.html.twig:19
+#: summary.html.twig:81
+msgid "Thèmes"
+msgstr ""
+
+#: Article.php:638
+#: article_form.html.twig:10
+#: list_view.html.twig:18
+msgid "Titre"
+msgstr ""
+
+#: articles.html.twig:131
+msgid "Titre, résumé, contenu, auteur..."
+msgstr ""
+
+#: source_form.html.twig:64
+msgid "Total des cartes collectées"
+msgstr ""
+
+#: articles.html.twig:104
+msgid "Tous"
+msgstr ""
+
+#: articles.html.twig:207
+msgid "Tout marquer comme lu"
+msgstr ""
+
+#: technologies.html.twig:49
+#: technologies.html.twig:61
+msgid "Toutes"
+msgstr ""
+
+#: articles.html.twig:138
+msgid "Toutes les sources"
+msgstr ""
+
+#: articles.html.twig:148
+msgid "Toutes les technologies"
+msgstr ""
+
+#: sources.html.twig:84
+msgid "Type"
+msgid_plural "Types"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Source.php:122
+msgid "Type de source invalide."
+msgstr ""
+
+#: ai_composer.html.twig:47
+msgid "Télécharger resume.md"
+msgstr ""
+
+#: Collector.php:77
+msgid "URL refusée par la liste blanche de sécurité de GLPI."
+msgstr ""
+
+#: Collector.php:403
+msgid "Une entrée sans titre a été ignorée."
+msgstr ""
+
+#: articles.html.twig:190
+msgid "Une seule borne de date renseignée filtre « après » ou « avant » ; les deux ensemble définissent une fourchette."
+msgstr ""
+
+#: summary.html.twig:166
+msgid "Valider les cartes cochées"
+msgstr ""
+
+#: Menu.php:38
+#: Profile.php:28
+#: Profile.php:71
+msgid "Veille"
+msgstr ""
+
+#: AiPrompt.php:355
+msgid "Veille technologique - sélection de cartes"
+msgstr ""
+
+#: purge.html.twig:81
+msgid "Vide = aucune limite de date."
+msgstr ""
+
+#: purge.php:111
+#: articles.html.twig:55
+#: purge.html.twig:13
+msgid "Vider les cartes"
+msgstr ""
+
+#: technologies.html.twig:30
+msgid "Voir les statistiques"
+msgstr ""
+
+#: article_detail.html.twig:215
+msgid "Votre analyse, un point de vigilance, une action à mener..."
+msgstr ""
+
+#: article_detail.html.twig:222
+msgid "Vous n'avez pas le droit d'ajouter un commentaire."
+msgstr ""
+
+#: AiPrompt.php:358
+msgid "_Export du %1$s - niveau d'analyse : %2$s - %3$d carte(s)._"
+msgstr ""
+
+#: article_detail.html.twig:42
+msgid "collectée le"
+msgstr ""
+
+#: article_detail.html.twig:166
+msgid "le"
+msgstr ""
+
+#: article_detail.html.twig:162
+msgid "modifié"
+msgstr ""
+
+#: article_detail.html.twig:164
+msgid "par"
+msgstr ""
+
+#: AiPrompt.php:402
+msgid "saisie manuelle, aucune source en ligne"
+msgstr ""
+
+#: Source.php:521
+msgid "tous les %d jour"
+msgid_plural "tous les %d jours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Source.php:529
+msgid "toutes les %d heure"
+msgid_plural "toutes les %d heures"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Source.php:537
+msgid "toutes les %d minute"
+msgid_plural "toutes les %d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Source.php:540
+msgid "toutes les %s"
+msgstr ""
+
+#: Source.php:528
+msgid "toutes les heures"
+msgstr ""
+
+#: Source.php:536
+msgid "toutes les minutes"
+msgstr ""
+
+#: Source.php:520
+msgid "une fois par jour"
+msgstr ""
+
+#: Source.php:513
+msgid "à chaque passage"
+msgstr ""
+
+#: ai_composer.html.twig:60
+msgid "- modifiable avant l'envoi"
+msgstr ""
+
+#: Collector.php:480
+msgid "... et %d autre(s) erreur(s)."
+msgstr ""
+
+#: Technology.php:300
+msgid "... et %d autre(s) ligne(s) ignorée(s)."
+msgstr ""
+

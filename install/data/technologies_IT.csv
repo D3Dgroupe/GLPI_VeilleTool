@@ -1,0 +1,2057 @@
+﻿Catégorie;Famille;Sous-catégorie
+OS;Linux - Debian;Debian 13 (Trixie)
+OS;Linux - Debian;Debian 12 (Bookworm)
+OS;Linux - Debian;Debian 11 (Bullseye)
+OS;Linux - Debian;Debian 10 (Buster)
+OS;Linux - Debian;Debian 9 (Stretch)
+OS;Linux - Debian;Debian 8 (Jessie)
+OS;Linux - Debian;Debian Testing
+OS;Linux - Debian;Debian Sid (Unstable)
+OS;Linux - Ubuntu;Ubuntu 26.04 LTS
+OS;Linux - Ubuntu;Ubuntu 25.10
+OS;Linux - Ubuntu;Ubuntu 25.04
+OS;Linux - Ubuntu;Ubuntu 24.04 LTS (Noble Numbat)
+OS;Linux - Ubuntu;Ubuntu 22.04 LTS (Jammy Jellyfish)
+OS;Linux - Ubuntu;Ubuntu 20.04 LTS (Focal Fossa)
+OS;Linux - Ubuntu;Ubuntu 18.04 LTS (Bionic Beaver)
+OS;Linux - Ubuntu;Ubuntu 16.04 LTS (Xenial Xerus)
+OS;Linux - Ubuntu;Ubuntu Server 24.04 LTS
+OS;Linux - Ubuntu;Ubuntu Server 22.04 LTS
+OS;Linux - Ubuntu;Ubuntu Core 24
+OS;Linux - Ubuntu;Kubuntu 24.04
+OS;Linux - Ubuntu;Xubuntu 24.04
+OS;Linux - Ubuntu;Lubuntu 24.04
+OS;Linux - Red Hat;RHEL 10
+OS;Linux - Red Hat;RHEL 9
+OS;Linux - Red Hat;RHEL 8
+OS;Linux - Red Hat;RHEL 7
+OS;Linux - Red Hat;RHEL 6
+OS;Linux - Red Hat;Fedora 43
+OS;Linux - Red Hat;Fedora 42
+OS;Linux - Red Hat;Fedora 41
+OS;Linux - Red Hat;Fedora 40
+OS;Linux - Red Hat;Fedora Server
+OS;Linux - Red Hat;Fedora CoreOS
+OS;Linux - Red Hat;CentOS Stream 10
+OS;Linux - Red Hat;CentOS Stream 9
+OS;Linux - Red Hat;CentOS 8
+OS;Linux - Red Hat;CentOS 7
+OS;Linux - Red Hat;CentOS 6
+OS;Linux - Clones RHEL;Rocky Linux 10
+OS;Linux - Clones RHEL;Rocky Linux 9
+OS;Linux - Clones RHEL;Rocky Linux 8
+OS;Linux - Clones RHEL;AlmaLinux 10
+OS;Linux - Clones RHEL;AlmaLinux 9
+OS;Linux - Clones RHEL;AlmaLinux 8
+OS;Linux - Clones RHEL;Oracle Linux 10
+OS;Linux - Clones RHEL;Oracle Linux 9
+OS;Linux - Clones RHEL;Oracle Linux 8
+OS;Linux - Clones RHEL;Oracle Linux 7
+OS;Linux - Clones RHEL;EuroLinux 9
+OS;Linux - Clones RHEL;Navy Linux
+OS;Linux - SUSE;SUSE Linux Enterprise Server 16
+OS;Linux - SUSE;SUSE Linux Enterprise Server 15 SP6
+OS;Linux - SUSE;SUSE Linux Enterprise Server 15 SP5
+OS;Linux - SUSE;SUSE Linux Enterprise Server 12 SP5
+OS;Linux - SUSE;SUSE Linux Enterprise Desktop 15
+OS;Linux - SUSE;openSUSE Leap 16.0
+OS;Linux - SUSE;openSUSE Leap 15.6
+OS;Linux - SUSE;openSUSE Leap 15.5
+OS;Linux - SUSE;openSUSE Tumbleweed
+OS;Linux - SUSE;openSUSE MicroOS
+OS;Linux - Arch & dérivés;Arch Linux
+OS;Linux - Arch & dérivés;Manjaro
+OS;Linux - Arch & dérivés;EndeavourOS
+OS;Linux - Arch & dérivés;Garuda Linux
+OS;Linux - Arch & dérivés;CachyOS
+OS;Linux - Arch & dérivés;SteamOS 3
+OS;Linux - Dérivés Debian/Ubuntu;Linux Mint 22
+OS;Linux - Dérivés Debian/Ubuntu;Linux Mint 21
+OS;Linux - Dérivés Debian/Ubuntu;Linux Mint Debian Edition 6
+OS;Linux - Dérivés Debian/Ubuntu;Pop!_OS 24.04
+OS;Linux - Dérivés Debian/Ubuntu;Pop!_OS 22.04
+OS;Linux - Dérivés Debian/Ubuntu;Elementary OS 8
+OS;Linux - Dérivés Debian/Ubuntu;Zorin OS 17
+OS;Linux - Dérivés Debian/Ubuntu;MX Linux 23
+OS;Linux - Dérivés Debian/Ubuntu;Deepin 23
+OS;Linux - Dérivés Debian/Ubuntu;Raspberry Pi OS (Bookworm)
+OS;Linux - Dérivés Debian/Ubuntu;Raspberry Pi OS (Trixie)
+OS;Linux - Dérivés Debian/Ubuntu;Devuan 5
+OS;Linux - Dérivés Debian/Ubuntu;Devuan 6
+OS;Linux - Dérivés Debian/Ubuntu;Proxmox Backup Server (base Debian)
+OS;Linux - Dérivés Debian/Ubuntu;TrueNAS SCALE (base Debian)
+OS;Linux - Sécurité / Pentest;Kali Linux 2025.x
+OS;Linux - Sécurité / Pentest;Kali Linux 2024.x
+OS;Linux - Sécurité / Pentest;Parrot OS 6
+OS;Linux - Sécurité / Pentest;BlackArch
+OS;Linux - Sécurité / Pentest;Tails 6
+OS;Linux - Sécurité / Pentest;Qubes OS 4.2
+OS;Linux - Sécurité / Pentest;Whonix 17
+OS;Linux - Sécurité / Pentest;CAINE
+OS;Linux - Sécurité / Pentest;Security Onion 2.4
+OS;Linux - Sécurité / Pentest;REMnux
+OS;Linux - Autres distributions;Alpine Linux 3.22
+OS;Linux - Autres distributions;Alpine Linux 3.21
+OS;Linux - Autres distributions;Alpine Linux 3.20
+OS;Linux - Autres distributions;Gentoo
+OS;Linux - Autres distributions;Slackware 15
+OS;Linux - Autres distributions;Void Linux
+OS;Linux - Autres distributions;NixOS 25.05
+OS;Linux - Autres distributions;NixOS 24.11
+OS;Linux - Autres distributions;Clear Linux
+OS;Linux - Autres distributions;Amazon Linux 2023
+OS;Linux - Autres distributions;Amazon Linux 2
+OS;Linux - Autres distributions;Azure Linux 3 (CBL-Mariner)
+OS;Linux - Autres distributions;Google Container-Optimized OS
+OS;Linux - Autres distributions;Flatcar Container Linux
+OS;Linux - Autres distributions;Talos Linux
+OS;Linux - Autres distributions;Bottlerocket
+OS;Linux - Autres distributions;Photon OS 5
+OS;Linux - Autres distributions;Mageia 9
+OS;Linux - Autres distributions;Solus
+OS;Linux - Autres distributions;Chrome OS Flex
+OS;Linux - Autres distributions;Kylin
+OS;Linux - Autres distributions;UOS
+OS;Windows - Client;Windows 11 25H2
+OS;Windows - Client;Windows 11 24H2
+OS;Windows - Client;Windows 11 23H2
+OS;Windows - Client;Windows 11 22H2
+OS;Windows - Client;Windows 11 IoT Enterprise LTSC 2024
+OS;Windows - Client;Windows 11 Enterprise LTSC 2024
+OS;Windows - Client;Windows 10 22H2
+OS;Windows - Client;Windows 10 Enterprise LTSC 2021
+OS;Windows - Client;Windows 10 Enterprise LTSC 2019
+OS;Windows - Client;Windows 10 IoT Enterprise LTSC 2021
+OS;Windows - Client;Windows 8.1
+OS;Windows - Client;Windows 8
+OS;Windows - Client;Windows 7
+OS;Windows - Client;Windows Vista
+OS;Windows - Client;Windows XP
+OS;Windows - Client;Windows 2000
+OS;Windows - Serveur;Windows Server 2025
+OS;Windows - Serveur;Windows Server 2022
+OS;Windows - Serveur;Windows Server 2019
+OS;Windows - Serveur;Windows Server 2016
+OS;Windows - Serveur;Windows Server 2012 R2
+OS;Windows - Serveur;Windows Server 2012
+OS;Windows - Serveur;Windows Server 2008 R2
+OS;Windows - Serveur;Windows Server 2008
+OS;Windows - Serveur;Windows Server 2003
+OS;Windows - Serveur;Windows Server Core 2025
+OS;Windows - Serveur;Windows Server Core 2022
+OS;Windows - Serveur;Windows Server Nano
+OS;Windows - Serveur;Azure Stack HCI 23H2
+OS;Windows - Serveur;Azure Local
+OS;Windows - Serveur;Windows Server Essentials
+OS;BSD;FreeBSD 15.0
+OS;BSD;FreeBSD 14.3
+OS;BSD;FreeBSD 14.2
+OS;BSD;FreeBSD 14.1
+OS;BSD;FreeBSD 13.5
+OS;BSD;FreeBSD 13.4
+OS;BSD;FreeBSD 12.4
+OS;BSD;OpenBSD 7.7
+OS;BSD;OpenBSD 7.6
+OS;BSD;OpenBSD 7.5
+OS;BSD;NetBSD 10.1
+OS;BSD;NetBSD 10.0
+OS;BSD;NetBSD 9.4
+OS;BSD;DragonFly BSD 6.4
+OS;BSD;GhostBSD
+OS;BSD;MidnightBSD
+OS;BSD;HardenedBSD
+OS;macOS;macOS 26 Tahoe
+OS;macOS;macOS 15 Sequoia
+OS;macOS;macOS 14 Sonoma
+OS;macOS;macOS 13 Ventura
+OS;macOS;macOS 12 Monterey
+OS;macOS;macOS 11 Big Sur
+OS;macOS;macOS 10.15 Catalina
+OS;macOS;macOS 10.14 Mojave
+OS;macOS;macOS Server
+OS;Mobile;iOS 26
+OS;Mobile;iOS 18
+OS;Mobile;iOS 17
+OS;Mobile;iOS 16
+OS;Mobile;iPadOS 26
+OS;Mobile;iPadOS 18
+OS;Mobile;iPadOS 17
+OS;Mobile;Android 16
+OS;Mobile;Android 15
+OS;Mobile;Android 14
+OS;Mobile;Android 13
+OS;Mobile;Android 12
+OS;Mobile;Android Enterprise
+OS;Mobile;GrapheneOS
+OS;Mobile;LineageOS 22
+OS;Mobile;/e/OS
+OS;Mobile;HarmonyOS
+OS;Mobile;watchOS 26
+OS;Mobile;tvOS 26
+OS;Mobile;visionOS 26
+OS;Pare-feu / Réseau (appliance);OPNsense 25.7
+OS;Pare-feu / Réseau (appliance);OPNsense 25.1
+OS;Pare-feu / Réseau (appliance);OPNsense 24.7
+OS;Pare-feu / Réseau (appliance);OPNsense 24.1
+OS;Pare-feu / Réseau (appliance);pfSense CE 2.8
+OS;Pare-feu / Réseau (appliance);pfSense CE 2.7
+OS;Pare-feu / Réseau (appliance);pfSense Plus 25.x
+OS;Pare-feu / Réseau (appliance);pfSense Plus 24.x
+OS;Pare-feu / Réseau (appliance);Stormshield SNS 5
+OS;Pare-feu / Réseau (appliance);Stormshield SNS 4.8
+OS;Pare-feu / Réseau (appliance);Fortinet FortiOS 7.6
+OS;Pare-feu / Réseau (appliance);Fortinet FortiOS 7.4
+OS;Pare-feu / Réseau (appliance);Fortinet FortiOS 7.2
+OS;Pare-feu / Réseau (appliance);Fortinet FortiOS 7.0
+OS;Pare-feu / Réseau (appliance);Palo Alto PAN-OS 11.2
+OS;Pare-feu / Réseau (appliance);Palo Alto PAN-OS 11.1
+OS;Pare-feu / Réseau (appliance);Palo Alto PAN-OS 10.2
+OS;Pare-feu / Réseau (appliance);Check Point Gaia R82
+OS;Pare-feu / Réseau (appliance);Check Point Gaia R81.20
+OS;Pare-feu / Réseau (appliance);Sophos Firewall OS (SFOS) 21
+OS;Pare-feu / Réseau (appliance);Sophos Firewall OS (SFOS) 20
+OS;Pare-feu / Réseau (appliance);WatchGuard Fireware 12
+OS;Pare-feu / Réseau (appliance);SonicWall SonicOS 7
+OS;Pare-feu / Réseau (appliance);IPFire 2.x
+OS;Pare-feu / Réseau (appliance);VyOS 1.4
+OS;Pare-feu / Réseau (appliance);VyOS 1.5
+OS;Pare-feu / Réseau (appliance);OpenWrt 24.10
+OS;Pare-feu / Réseau (appliance);OpenWrt 23.05
+OS;Pare-feu / Réseau (appliance);DD-WRT
+OS;Pare-feu / Réseau (appliance);MikroTik RouterOS 7
+OS;Pare-feu / Réseau (appliance);MikroTik RouterOS 6
+OS;Pare-feu / Réseau (appliance);Cisco IOS 15
+OS;Pare-feu / Réseau (appliance);Cisco IOS XE 17
+OS;Pare-feu / Réseau (appliance);Cisco IOS XR 7
+OS;Pare-feu / Réseau (appliance);Cisco NX-OS 10
+OS;Pare-feu / Réseau (appliance);Cisco ASA 9.x
+OS;Pare-feu / Réseau (appliance);Cisco FTD 7.x
+OS;Pare-feu / Réseau (appliance);Juniper Junos OS 23
+OS;Pare-feu / Réseau (appliance);Juniper Junos OS Evolved
+OS;Pare-feu / Réseau (appliance);Arista EOS
+OS;Pare-feu / Réseau (appliance);Aruba AOS-CX 10
+OS;Pare-feu / Réseau (appliance);Aruba AOS-S 16
+OS;Pare-feu / Réseau (appliance);HPE Comware 7
+OS;Pare-feu / Réseau (appliance);Huawei VRP 8
+OS;Pare-feu / Réseau (appliance);Dell OS10
+OS;Pare-feu / Réseau (appliance);Ubiquiti UniFi OS 4
+OS;Pare-feu / Réseau (appliance);Ubiquiti EdgeOS
+OS;Pare-feu / Réseau (appliance);SONiC
+OS;Pare-feu / Réseau (appliance);Cumulus Linux 5
+OS;Pare-feu / Réseau (appliance);Zyxel ZLD 5
+OS;NAS / Stockage;TrueNAS SCALE 25.04
+OS;NAS / Stockage;TrueNAS SCALE 24.10
+OS;NAS / Stockage;TrueNAS CORE 13
+OS;NAS / Stockage;Synology DSM 7.2
+OS;NAS / Stockage;Synology DSM 7.1
+OS;NAS / Stockage;Synology DSM 6.2
+OS;NAS / Stockage;QNAP QTS 5.2
+OS;NAS / Stockage;QNAP QuTS hero 5
+OS;NAS / Stockage;Unraid 7
+OS;NAS / Stockage;Unraid 6
+OS;NAS / Stockage;OpenMediaVault 7
+OS;NAS / Stockage;OpenMediaVault 6
+OS;NAS / Stockage;NetApp ONTAP 9
+OS;NAS / Stockage;Dell PowerScale OneFS 9
+OS;NAS / Stockage;Dell PowerStore OS 4
+OS;NAS / Stockage;HPE Alletra / Nimble OS 6
+OS;NAS / Stockage;Pure Storage Purity//FA 6
+OS;Unix propriétaires;IBM AIX 7.3
+OS;Unix propriétaires;IBM AIX 7.2
+OS;Unix propriétaires;IBM i 7.5
+OS;Unix propriétaires;IBM i 7.4
+OS;Unix propriétaires;IBM z/OS 3.1
+OS;Unix propriétaires;IBM z/OS 2.5
+OS;Unix propriétaires;Oracle Solaris 11.4
+OS;Unix propriétaires;Oracle Solaris 10
+OS;Unix propriétaires;HP-UX 11i v3
+OS;Unix propriétaires;illumos / OpenIndiana
+OS;Unix propriétaires;SmartOS
+OS;Unix propriétaires;OmniOS
+OS;Embarqué / Temps réel / IoT;FreeRTOS
+OS;Embarqué / Temps réel / IoT;Zephyr
+OS;Embarqué / Temps réel / IoT;VxWorks 7
+OS;Embarqué / Temps réel / IoT;QNX 8
+OS;Embarqué / Temps réel / IoT;QNX 7
+OS;Embarqué / Temps réel / IoT;RTEMS
+OS;Embarqué / Temps réel / IoT;Yocto Project (Poky)
+OS;Embarqué / Temps réel / IoT;Buildroot
+OS;Embarqué / Temps réel / IoT;Embedded Linux
+OS;Embarqué / Temps réel / IoT;Windows IoT Core
+OS;Embarqué / Temps réel / IoT;Ubuntu Core
+OS;Embarqué / Temps réel / IoT;Tizen
+OS;Embarqué / Temps réel / IoT;Contiki-NG
+OS;Embarqué / Temps réel / IoT;RIOT OS
+OS;Embarqué / Temps réel / IoT;Mbed OS
+OS;Autres OS;ChromeOS
+OS;Autres OS;Haiku
+OS;Autres OS;ReactOS
+OS;Autres OS;MS-DOS
+OS;Autres OS;FreeDOS
+OS;Autres OS;OS/2 / ArcaOS
+OS;Autres OS;Plan 9
+OS;Autres OS;Fuchsia
+OS;Autres OS;Redox OS
+Noyaux;Linux kernel;Linux 6.17
+Noyaux;Linux kernel;Linux 6.16
+Noyaux;Linux kernel;Linux 6.15
+Noyaux;Linux kernel;Linux 6.14
+Noyaux;Linux kernel;Linux 6.13
+Noyaux;Linux kernel;Linux 6.12 LTS
+Noyaux;Linux kernel;Linux 6.6 LTS
+Noyaux;Linux kernel;Linux 6.1 LTS
+Noyaux;Linux kernel;Linux 5.15 LTS
+Noyaux;Linux kernel;Linux 5.10 LTS
+Noyaux;Linux kernel;Linux 5.4 LTS
+Noyaux;Linux kernel;Linux 4.19
+Noyaux;Linux kernel;Linux 4.14
+Noyaux;Linux kernel;Linux 4.9
+Noyaux;Linux kernel;Linux 4.4
+Noyaux;Linux kernel;Linux 3.10 (RHEL 7)
+Noyaux;Linux kernel;Linux 2.6
+Noyaux;Linux kernel - variantes;Linux-rt (PREEMPT_RT)
+Noyaux;Linux kernel - variantes;Linux-hardened
+Noyaux;Linux kernel - variantes;Linux-zen
+Noyaux;Linux kernel - variantes;Linux-lts
+Noyaux;Linux kernel - variantes;Linux-libre
+Noyaux;Linux kernel - variantes;Grsecurity
+Noyaux;Linux kernel - variantes;Ubuntu HWE kernel
+Noyaux;Linux kernel - variantes;Ubuntu Generic kernel
+Noyaux;Linux kernel - variantes;Ubuntu Low-latency kernel
+Noyaux;Linux kernel - variantes;Red Hat kernel (kernel-4.18 RHEL 8)
+Noyaux;Linux kernel - variantes;Red Hat kernel (kernel-5.14 RHEL 9)
+Noyaux;Linux kernel - variantes;Red Hat kernel (kernel-6.12 RHEL 10)
+Noyaux;Linux kernel - variantes;Oracle UEK 7
+Noyaux;Linux kernel - variantes;Oracle UEK 8
+Noyaux;Linux kernel - variantes;SUSE kernel-default
+Noyaux;Linux kernel - variantes;Debian kernel (linux-image-amd64)
+Noyaux;Linux kernel - variantes;Proxmox kernel (pve-kernel / proxmox-kernel)
+Noyaux;Linux kernel - variantes;Android Common Kernel (ACK)
+Noyaux;Linux kernel - variantes;Chromium OS kernel
+Noyaux;Linux kernel - variantes;Microsoft WSL2 kernel
+Noyaux;Linux kernel - variantes;Microsoft Azure kernel
+Noyaux;Linux kernel - variantes;AWS kernel
+Noyaux;Linux kernel - variantes;XanMod
+Noyaux;Linux kernel - variantes;Liquorix
+Noyaux;Linux kernel - variantes;CachyOS kernel
+Noyaux;Windows NT kernel;NT 10.0 (Windows 10 / 11 / Server 2016-2025)
+Noyaux;Windows NT kernel;NT 6.3 (Windows 8.1 / Server 2012 R2)
+Noyaux;Windows NT kernel;NT 6.2 (Windows 8 / Server 2012)
+Noyaux;Windows NT kernel;NT 6.1 (Windows 7 / Server 2008 R2)
+Noyaux;Windows NT kernel;NT 6.0 (Windows Vista / Server 2008)
+Noyaux;Windows NT kernel;NT 5.2 (Windows Server 2003 / XP x64)
+Noyaux;Windows NT kernel;NT 5.1 (Windows XP)
+Noyaux;Windows NT kernel;NT 5.0 (Windows 2000)
+Noyaux;Windows NT kernel;ntoskrnl.exe
+Noyaux;Windows NT kernel;Hyper-V Hypervisor (hvix64/hvax64)
+Noyaux;Windows NT kernel;Secure Kernel (VBS)
+Noyaux;XNU (Apple);XNU / Darwin 25 (macOS 26)
+Noyaux;XNU (Apple);XNU / Darwin 24 (macOS 15)
+Noyaux;XNU (Apple);XNU / Darwin 23 (macOS 14)
+Noyaux;XNU (Apple);XNU / Darwin 22 (macOS 13)
+Noyaux;XNU (Apple);XNU / Darwin 21 (macOS 12)
+Noyaux;XNU (Apple);XNU / Darwin 20 (macOS 11)
+Noyaux;XNU (Apple);Mach microkernel
+Noyaux;FreeBSD kernel;FreeBSD kernel 15.0
+Noyaux;FreeBSD kernel;FreeBSD kernel 14.x
+Noyaux;FreeBSD kernel;FreeBSD kernel 13.x
+Noyaux;FreeBSD kernel;FreeBSD kernel 12.x
+Noyaux;FreeBSD kernel;HardenedBSD kernel
+Noyaux;FreeBSD kernel;OPNsense kernel (HardenedBSD / FreeBSD)
+Noyaux;FreeBSD kernel;pfSense kernel (FreeBSD)
+Noyaux;FreeBSD kernel;TrueNAS CORE kernel (FreeBSD)
+Noyaux;Autres noyaux BSD;OpenBSD kernel
+Noyaux;Autres noyaux BSD;NetBSD kernel
+Noyaux;Autres noyaux BSD;DragonFly BSD kernel
+Noyaux;Noyaux Unix propriétaires;AIX kernel
+Noyaux;Noyaux Unix propriétaires;Solaris kernel (SunOS 5.11)
+Noyaux;Noyaux Unix propriétaires;SunOS 5.10
+Noyaux;Noyaux Unix propriétaires;illumos kernel
+Noyaux;Noyaux Unix propriétaires;HP-UX kernel
+Noyaux;Noyaux Unix propriétaires;z/OS kernel (BCP)
+Noyaux;Micro-noyaux / Hyperviseurs noyau;seL4
+Noyaux;Micro-noyaux / Hyperviseurs noyau;L4 / Fiasco.OC
+Noyaux;Micro-noyaux / Hyperviseurs noyau;MINIX 3
+Noyaux;Micro-noyaux / Hyperviseurs noyau;QNX Neutrino
+Noyaux;Micro-noyaux / Hyperviseurs noyau;GNU Hurd / GNU Mach
+Noyaux;Micro-noyaux / Hyperviseurs noyau;Zircon (Fuchsia)
+Noyaux;Micro-noyaux / Hyperviseurs noyau;HarmonyOS microkernel
+Noyaux;Micro-noyaux / Hyperviseurs noyau;VMkernel (ESXi)
+Noyaux;Micro-noyaux / Hyperviseurs noyau;Xen hypervisor
+Noyaux;Micro-noyaux / Hyperviseurs noyau;KVM (module noyau Linux)
+Noyaux;Micro-noyaux / Hyperviseurs noyau;bhyve (FreeBSD)
+Noyaux;Micro-noyaux / Hyperviseurs noyau;vmm (OpenBSD)
+Noyaux;Noyaux temps réel / embarqués;FreeRTOS kernel
+Noyaux;Noyaux temps réel / embarqués;Zephyr kernel
+Noyaux;Noyaux temps réel / embarqués;VxWorks kernel
+Noyaux;Noyaux temps réel / embarqués;ThreadX (Eclipse ThreadX / Azure RTOS)
+Noyaux;Noyaux temps réel / embarqués;RTEMS kernel
+Noyaux;Noyaux temps réel / embarqués;µC/OS-III
+Noyaux;Noyaux temps réel / embarqués;NuttX
+Hyperviseur;Proxmox;Proxmox VE 9.0
+Hyperviseur;Proxmox;Proxmox VE 8.4
+Hyperviseur;Proxmox;Proxmox VE 8.3
+Hyperviseur;Proxmox;Proxmox VE 8.2
+Hyperviseur;Proxmox;Proxmox VE 8.1
+Hyperviseur;Proxmox;Proxmox VE 8.0
+Hyperviseur;Proxmox;Proxmox VE 7.4
+Hyperviseur;Proxmox;Proxmox VE 7.x
+Hyperviseur;Proxmox;Proxmox VE 6.x
+Hyperviseur;Proxmox;Proxmox Backup Server 4
+Hyperviseur;Proxmox;Proxmox Backup Server 3
+Hyperviseur;Proxmox;Proxmox Datacenter Manager
+Hyperviseur;VMware / Broadcom;VMware ESXi 9.0
+Hyperviseur;VMware / Broadcom;VMware ESXi 8.0 U3
+Hyperviseur;VMware / Broadcom;VMware ESXi 8.0
+Hyperviseur;VMware / Broadcom;VMware ESXi 7.0 U3
+Hyperviseur;VMware / Broadcom;VMware ESXi 7.0
+Hyperviseur;VMware / Broadcom;VMware ESXi 6.7
+Hyperviseur;VMware / Broadcom;VMware ESXi 6.5
+Hyperviseur;VMware / Broadcom;VMware vCenter Server 9.0
+Hyperviseur;VMware / Broadcom;VMware vCenter Server 8.0
+Hyperviseur;VMware / Broadcom;VMware vCenter Server 7.0
+Hyperviseur;VMware / Broadcom;VMware vCenter Server 6.7
+Hyperviseur;VMware / Broadcom;VMware vSphere Foundation (VVF)
+Hyperviseur;VMware / Broadcom;VMware Cloud Foundation (VCF) 9
+Hyperviseur;VMware / Broadcom;VMware Cloud Foundation (VCF) 5
+Hyperviseur;VMware / Broadcom;VMware vSAN 8
+Hyperviseur;VMware / Broadcom;VMware NSX 4
+Hyperviseur;VMware / Broadcom;VMware Workstation Pro 17
+Hyperviseur;VMware / Broadcom;VMware Fusion Pro 13
+Hyperviseur;VMware / Broadcom;VMware Horizon 8
+Hyperviseur;VMware / Broadcom;VMware Aria Operations
+Hyperviseur;VMware / Broadcom;VMware Tanzu
+Hyperviseur;Microsoft;Hyper-V (Windows Server 2025)
+Hyperviseur;Microsoft;Hyper-V (Windows Server 2022)
+Hyperviseur;Microsoft;Hyper-V (Windows Server 2019)
+Hyperviseur;Microsoft;Hyper-V (Windows Server 2016)
+Hyperviseur;Microsoft;Hyper-V Server 2019 (gratuit)
+Hyperviseur;Microsoft;Hyper-V client (Windows 10/11)
+Hyperviseur;Microsoft;Azure Local (ex Azure Stack HCI)
+Hyperviseur;Microsoft;System Center Virtual Machine Manager 2025
+Hyperviseur;Microsoft;System Center Virtual Machine Manager 2022
+Hyperviseur;Microsoft;Windows Admin Center
+Hyperviseur;Microsoft;WSL2
+Hyperviseur;Microsoft;Windows Sandbox
+Hyperviseur;Citrix / XCP;Citrix Hypervisor 8.2 (XenServer)
+Hyperviseur;Citrix / XCP;XenServer 8
+Hyperviseur;Citrix / XCP;XCP-ng 8.3
+Hyperviseur;Citrix / XCP;XCP-ng 8.2 LTS
+Hyperviseur;Citrix / XCP;Xen Orchestra 5
+Hyperviseur;Citrix / XCP;Xen Project 4.19
+Hyperviseur;Citrix / XCP;Xen Project 4.18
+Hyperviseur;KVM & écosystème;KVM / QEMU 10
+Hyperviseur;KVM & écosystème;KVM / QEMU 9
+Hyperviseur;KVM & écosystème;KVM / QEMU 8
+Hyperviseur;KVM & écosystème;libvirt
+Hyperviseur;KVM & écosystème;virt-manager
+Hyperviseur;KVM & écosystème;oVirt 4.5
+Hyperviseur;KVM & écosystème;Red Hat Virtualization 4.4 (RHV)
+Hyperviseur;KVM & écosystème;OpenShift Virtualization
+Hyperviseur;KVM & écosystème;KubeVirt
+Hyperviseur;KVM & écosystème;OpenStack (Nova) 2025.1 Epoxy
+Hyperviseur;KVM & écosystème;OpenStack 2024.2 Dalmatian
+Hyperviseur;KVM & écosystème;OpenStack 2024.1 Caracal
+Hyperviseur;KVM & écosystème;OpenNebula 6
+Hyperviseur;KVM & écosystème;OpenNebula 7
+Hyperviseur;KVM & écosystème;Apache CloudStack 4.20
+Hyperviseur;KVM & écosystème;Harvester HCI 1.x
+Hyperviseur;KVM & écosystème;Incus
+Hyperviseur;KVM & écosystème;LXD 5
+Hyperviseur;KVM & écosystème;Cockpit Machines
+Hyperviseur;KVM & écosystème;Virtuozzo Hybrid Server 7
+Hyperviseur;KVM & écosystème;OpenStack Kolla
+Hyperviseur;Nutanix;Nutanix AHV
+Hyperviseur;Nutanix;Nutanix AOS 6.x
+Hyperviseur;Nutanix;Nutanix AOS 7.x
+Hyperviseur;Nutanix;Nutanix Prism Central
+Hyperviseur;Nutanix;Nutanix CE
+Hyperviseur;Autres hyperviseurs type 1;Oracle VM Server
+Hyperviseur;Autres hyperviseurs type 1;Oracle Linux KVM (OLVM)
+Hyperviseur;Autres hyperviseurs type 1;IBM PowerVM
+Hyperviseur;Autres hyperviseurs type 1;IBM z/VM 7
+Hyperviseur;Autres hyperviseurs type 1;bhyve
+Hyperviseur;Autres hyperviseurs type 1;SmartOS / Triton
+Hyperviseur;Autres hyperviseurs type 1;Scale Computing HyperCore
+Hyperviseur;Autres hyperviseurs type 1;Sangfor HCI
+Hyperviseur;Autres hyperviseurs type 1;Huawei FusionCompute
+Hyperviseur;Autres hyperviseurs type 1;Vates VMS
+Hyperviseur;Autres hyperviseurs type 1;StarWind VSAN / HCA
+Hyperviseur;Autres hyperviseurs type 1;Microsoft Azure Hypervisor
+Hyperviseur;Hyperviseurs type 2 / poste;Oracle VirtualBox 7.1
+Hyperviseur;Hyperviseurs type 2 / poste;Oracle VirtualBox 7.0
+Hyperviseur;Hyperviseurs type 2 / poste;Oracle VirtualBox 6.1
+Hyperviseur;Hyperviseurs type 2 / poste;Parallels Desktop 26
+Hyperviseur;Hyperviseurs type 2 / poste;Parallels Desktop 20
+Hyperviseur;Hyperviseurs type 2 / poste;UTM
+Hyperviseur;Hyperviseurs type 2 / poste;QEMU (poste)
+Hyperviseur;Hyperviseurs type 2 / poste;GNOME Boxes
+Hyperviseur;Hyperviseurs type 2 / poste;VMware Workstation Player
+Hyperviseur;Conteneurs / Orchestration;Docker Engine 28
+Hyperviseur;Conteneurs / Orchestration;Docker Engine 27
+Hyperviseur;Conteneurs / Orchestration;Docker Desktop
+Hyperviseur;Conteneurs / Orchestration;Docker Swarm
+Hyperviseur;Conteneurs / Orchestration;Podman 5
+Hyperviseur;Conteneurs / Orchestration;Podman 4
+Hyperviseur;Conteneurs / Orchestration;containerd 2
+Hyperviseur;Conteneurs / Orchestration;CRI-O
+Hyperviseur;Conteneurs / Orchestration;LXC
+Hyperviseur;Conteneurs / Orchestration;Kubernetes 1.34
+Hyperviseur;Conteneurs / Orchestration;Kubernetes 1.33
+Hyperviseur;Conteneurs / Orchestration;Kubernetes 1.32
+Hyperviseur;Conteneurs / Orchestration;Kubernetes 1.31
+Hyperviseur;Conteneurs / Orchestration;K3s
+Hyperviseur;Conteneurs / Orchestration;RKE2
+Hyperviseur;Conteneurs / Orchestration;MicroK8s
+Hyperviseur;Conteneurs / Orchestration;OpenShift 4.19
+Hyperviseur;Conteneurs / Orchestration;OpenShift 4.16
+Hyperviseur;Conteneurs / Orchestration;Rancher 2.x
+Hyperviseur;Conteneurs / Orchestration;Portainer
+Hyperviseur;Conteneurs / Orchestration;Nomad
+Hyperviseur;Conteneurs / Orchestration;Talos
+Hyperviseur;Conteneurs / Orchestration;Minikube
+Hyperviseur;Conteneurs / Orchestration;Kind
+Hyperviseur;Conteneurs / Orchestration;FreeBSD Jails
+Hyperviseur;Conteneurs / Orchestration;Solaris Zones
+Hyperviseur;Conteneurs / Orchestration;Firecracker
+Hyperviseur;Conteneurs / Orchestration;gVisor
+Hyperviseur;Conteneurs / Orchestration;Kata Containers
+Hyperviseur;Cloud public (IaaS);AWS EC2 (Nitro)
+Hyperviseur;Cloud public (IaaS);Microsoft Azure VM
+Hyperviseur;Cloud public (IaaS);Google Compute Engine
+Hyperviseur;Cloud public (IaaS);OVHcloud Public Cloud
+Hyperviseur;Cloud public (IaaS);OVHcloud Hosted Private Cloud
+Hyperviseur;Cloud public (IaaS);Scaleway
+Hyperviseur;Cloud public (IaaS);Outscale (3DS)
+Hyperviseur;Cloud public (IaaS);Oracle Cloud Infrastructure
+Hyperviseur;Cloud public (IaaS);IBM Cloud
+Hyperviseur;Cloud public (IaaS);Alibaba Cloud ECS
+Hyperviseur;Cloud public (IaaS);Hetzner Cloud
+Hyperviseur;Cloud public (IaaS);DigitalOcean Droplets
+Hyperviseur;Cloud public (IaaS);Bleu (Orange / Capgemini)
+Hyperviseur;Cloud public (IaaS);S3NS (Thales / Google)
+Hyperviseur;Cloud public (IaaS);NumSpot
+Application;ITSM / Inventaire / CMDB;GLPI 11
+Application;ITSM / Inventaire / CMDB;GLPI 10
+Application;ITSM / Inventaire / CMDB;GLPI 9.5
+Application;ITSM / Inventaire / CMDB;GLPI Agent 1.x
+Application;ITSM / Inventaire / CMDB;FusionInventory
+Application;ITSM / Inventaire / CMDB;OCS Inventory NG 2.x
+Application;ITSM / Inventaire / CMDB;iTop 3.x
+Application;ITSM / Inventaire / CMDB;ServiceNow
+Application;ITSM / Inventaire / CMDB;Jira Service Management
+Application;ITSM / Inventaire / CMDB;Freshservice
+Application;ITSM / Inventaire / CMDB;EasyVista
+Application;ITSM / Inventaire / CMDB;Snipe-IT
+Application;ITSM / Inventaire / CMDB;Ralph
+Application;ITSM / Inventaire / CMDB;NetBox 4
+Application;ITSM / Inventaire / CMDB;Lansweeper
+Application;ITSM / Inventaire / CMDB;ManageEngine ServiceDesk Plus
+Application;ITSM / Inventaire / CMDB;Zammad
+Application;ITSM / Inventaire / CMDB;osTicket
+Application;ITSM / Inventaire / CMDB;OTRS / OTOBO
+Application;ITSM / Inventaire / CMDB;Redmine 6
+Application;ITSM / Inventaire / CMDB;Redmine 5
+Application;SIEM / XDR / Supervision sécurité;Wazuh 4.13
+Application;SIEM / XDR / Supervision sécurité;Wazuh 4.12
+Application;SIEM / XDR / Supervision sécurité;Wazuh 4.9
+Application;SIEM / XDR / Supervision sécurité;Wazuh 4.7
+Application;SIEM / XDR / Supervision sécurité;OSSEC
+Application;SIEM / XDR / Supervision sécurité;Splunk Enterprise 9
+Application;SIEM / XDR / Supervision sécurité;Splunk Enterprise Security
+Application;SIEM / XDR / Supervision sécurité;IBM QRadar
+Application;SIEM / XDR / Supervision sécurité;Microsoft Sentinel
+Application;SIEM / XDR / Supervision sécurité;Elastic Security
+Application;SIEM / XDR / Supervision sécurité;Graylog 6
+Application;SIEM / XDR / Supervision sécurité;Graylog 5
+Application;SIEM / XDR / Supervision sécurité;ELK Stack (Elasticsearch/Logstash/Kibana) 8
+Application;SIEM / XDR / Supervision sécurité;OpenSearch 2
+Application;SIEM / XDR / Supervision sécurité;OpenSearch 3
+Application;SIEM / XDR / Supervision sécurité;Security Onion
+Application;SIEM / XDR / Supervision sécurité;Suricata 8
+Application;SIEM / XDR / Supervision sécurité;Suricata 7
+Application;SIEM / XDR / Supervision sécurité;Snort 3
+Application;SIEM / XDR / Supervision sécurité;Zeek 7
+Application;SIEM / XDR / Supervision sécurité;CrowdSec
+Application;SIEM / XDR / Supervision sécurité;Fail2ban
+Application;SIEM / XDR / Supervision sécurité;Sekoia.io
+Application;SIEM / XDR / Supervision sécurité;LogPoint
+Application;SIEM / XDR / Supervision sécurité;Rapid7 InsightIDR
+Application;SIEM / XDR / Supervision sécurité;Exabeam
+Application;SIEM / XDR / Supervision sécurité;Google SecOps (Chronicle)
+Application;SIEM / XDR / Supervision sécurité;TheHive 5
+Application;SIEM / XDR / Supervision sécurité;Cortex
+Application;SIEM / XDR / Supervision sécurité;MISP 2.5
+Application;SIEM / XDR / Supervision sécurité;OpenCTI 6
+Application;SIEM / XDR / Supervision sécurité;Shuffle SOAR
+Application;SIEM / XDR / Supervision sécurité;Velociraptor
+Application;SIEM / XDR / Supervision sécurité;osquery
+Application;SIEM / XDR / Supervision sécurité;Sysmon
+Application;SIEM / XDR / Supervision sécurité;Auditd
+Application;SIEM / XDR / Supervision sécurité;Falco
+Application;SIEM / XDR / Supervision sécurité;AIDE
+Application;SIEM / XDR / Supervision sécurité;Tripwire
+Application;SIEM / XDR / Supervision sécurité;Lynis
+Application;SIEM / XDR / Supervision sécurité;OpenSCAP
+Application;SIEM / XDR / Supervision sécurité;Chainsaw
+Application;SIEM / XDR / Supervision sécurité;Hayabusa
+Application;EDR / Antivirus / Protection poste;Microsoft Defender for Endpoint
+Application;EDR / Antivirus / Protection poste;Microsoft Defender Antivirus
+Application;EDR / Antivirus / Protection poste;CrowdStrike Falcon
+Application;EDR / Antivirus / Protection poste;SentinelOne Singularity
+Application;EDR / Antivirus / Protection poste;HarfangLab
+Application;EDR / Antivirus / Protection poste;Stormshield Endpoint Security (SES)
+Application;EDR / Antivirus / Protection poste;Sophos Intercept X
+Application;EDR / Antivirus / Protection poste;ESET PROTECT
+Application;EDR / Antivirus / Protection poste;Trellix (ex McAfee)
+Application;EDR / Antivirus / Protection poste;Trend Micro Vision One
+Application;EDR / Antivirus / Protection poste;Bitdefender GravityZone
+Application;EDR / Antivirus / Protection poste;Kaspersky Endpoint Security
+Application;EDR / Antivirus / Protection poste;Palo Alto Cortex XDR
+Application;EDR / Antivirus / Protection poste;Cybereason
+Application;EDR / Antivirus / Protection poste;WithSecure Elements
+Application;EDR / Antivirus / Protection poste;Tehtris
+Application;EDR / Antivirus / Protection poste;ClamAV
+Application;EDR / Antivirus / Protection poste;Malwarebytes
+Application;EDR / Antivirus / Protection poste;Symantec Endpoint Protection
+Application;EDR / Antivirus / Protection poste;Cisco Secure Endpoint
+Application;Supervision / Monitoring;Zabbix 7.4
+Application;Supervision / Monitoring;Zabbix 7.0 LTS
+Application;Supervision / Monitoring;Zabbix 6.0 LTS
+Application;Supervision / Monitoring;Centreon 24.10
+Application;Supervision / Monitoring;Centreon 24.04
+Application;Supervision / Monitoring;Nagios Core 4
+Application;Supervision / Monitoring;Nagios XI
+Application;Supervision / Monitoring;Icinga 2
+Application;Supervision / Monitoring;Checkmk 2.4
+Application;Supervision / Monitoring;Checkmk 2.3
+Application;Supervision / Monitoring;PRTG Network Monitor
+Application;Supervision / Monitoring;LibreNMS
+Application;Supervision / Monitoring;Observium
+Application;Supervision / Monitoring;Cacti
+Application;Supervision / Monitoring;Prometheus 3
+Application;Supervision / Monitoring;Prometheus 2
+Application;Supervision / Monitoring;Grafana 12
+Application;Supervision / Monitoring;Grafana 11
+Application;Supervision / Monitoring;Loki
+Application;Supervision / Monitoring;Tempo
+Application;Supervision / Monitoring;Mimir
+Application;Supervision / Monitoring;Alertmanager
+Application;Supervision / Monitoring;Netdata
+Application;Supervision / Monitoring;Uptime Kuma
+Application;Supervision / Monitoring;Datadog
+Application;Supervision / Monitoring;Dynatrace
+Application;Supervision / Monitoring;New Relic
+Application;Supervision / Monitoring;SolarWinds Orion
+Application;Supervision / Monitoring;Shinken
+Application;Supervision / Monitoring;Munin
+Application;Supervision / Monitoring;Telegraf
+Application;Supervision / Monitoring;InfluxDB 3
+Application;Supervision / Monitoring;InfluxDB 2
+Application;Supervision / Monitoring;Victoria Metrics
+Application;Supervision / Monitoring;Gatus
+Application;Supervision / Monitoring;ntopng
+Application;Gestion des vulnérabilités / Audit;OpenVAS / Greenbone GVM 22
+Application;Gestion des vulnérabilités / Audit;Nessus Professional 10
+Application;Gestion des vulnérabilités / Audit;Tenable.io / Tenable Vulnerability Management
+Application;Gestion des vulnérabilités / Audit;Tenable.sc
+Application;Gestion des vulnérabilités / Audit;Qualys VMDR
+Application;Gestion des vulnérabilités / Audit;Rapid7 InsightVM / Nexpose
+Application;Gestion des vulnérabilités / Audit;Cyberwatch
+Application;Gestion des vulnérabilités / Audit;Nuclei
+Application;Gestion des vulnérabilités / Audit;Nmap 7
+Application;Gestion des vulnérabilités / Audit;Masscan
+Application;Gestion des vulnérabilités / Audit;Nikto
+Application;Gestion des vulnérabilités / Audit;OWASP ZAP
+Application;Gestion des vulnérabilités / Audit;Burp Suite Pro
+Application;Gestion des vulnérabilités / Audit;Metasploit Framework 6
+Application;Gestion des vulnérabilités / Audit;Trivy
+Application;Gestion des vulnérabilités / Audit;Grype
+Application;Gestion des vulnérabilités / Audit;Clair
+Application;Gestion des vulnérabilités / Audit;Dependency-Check
+Application;Gestion des vulnérabilités / Audit;SonarQube 2025
+Application;Gestion des vulnérabilités / Audit;SonarQube 10
+Application;Gestion des vulnérabilités / Audit;PingCastle
+Application;Gestion des vulnérabilités / Audit;Purple Knight
+Application;Gestion des vulnérabilités / Audit;BloodHound CE
+Application;Gestion des vulnérabilités / Audit;ORADAD (ANSSI)
+Application;Gestion des vulnérabilités / Audit;ADRecon
+Application;Gestion des vulnérabilités / Audit;Testssl.sh
+Application;Gestion des vulnérabilités / Audit;Wireshark 4
+Application;Gestion des vulnérabilités / Audit;tcpdump
+Application;Gestion des vulnérabilités / Audit;Hashcat
+Application;Gestion des vulnérabilités / Audit;John the Ripper
+Application;Gestion des vulnérabilités / Audit;Hydra
+Application;Gestion des vulnérabilités / Audit;Responder
+Application;Gestion des vulnérabilités / Audit;Impacket
+Application;Gestion des vulnérabilités / Audit;Mimikatz
+Application;Gestion des vulnérabilités / Audit;Kali tools
+Application;Gestionnaires de mots de passe / Secrets;KeePass 2.5x
+Application;Gestionnaires de mots de passe / Secrets;KeePassXC 2.7
+Application;Gestionnaires de mots de passe / Secrets;KeePassDX
+Application;Gestionnaires de mots de passe / Secrets;Bitwarden
+Application;Gestionnaires de mots de passe / Secrets;Vaultwarden
+Application;Gestionnaires de mots de passe / Secrets;1Password
+Application;Gestionnaires de mots de passe / Secrets;Dashlane
+Application;Gestionnaires de mots de passe / Secrets;LastPass
+Application;Gestionnaires de mots de passe / Secrets;Passbolt 5
+Application;Gestionnaires de mots de passe / Secrets;Passbolt 4
+Application;Gestionnaires de mots de passe / Secrets;Psono
+Application;Gestionnaires de mots de passe / Secrets;TeamPass
+Application;Gestionnaires de mots de passe / Secrets;HashiCorp Vault 1.x
+Application;Gestionnaires de mots de passe / Secrets;OpenBao
+Application;Gestionnaires de mots de passe / Secrets;CyberArk Privileged Access Manager
+Application;Gestionnaires de mots de passe / Secrets;Delinea Secret Server
+Application;Gestionnaires de mots de passe / Secrets;WALLIX Bastion 12
+Application;Gestionnaires de mots de passe / Secrets;WALLIX Bastion 10
+Application;Gestionnaires de mots de passe / Secrets;Systancia Cleanroom
+Application;Gestionnaires de mots de passe / Secrets;Teleport
+Application;Gestionnaires de mots de passe / Secrets;Keeper
+Application;Gestionnaires de mots de passe / Secrets;Azure Key Vault
+Application;Gestionnaires de mots de passe / Secrets;AWS Secrets Manager
+Application;Gestionnaires de mots de passe / Secrets;Infisical
+Application;Gestionnaires de mots de passe / Secrets;Mozilla SOPS
+Application;Gestionnaires de mots de passe / Secrets;pass (password-store)
+Application;Serveurs Web / Reverse proxy;Apache HTTP Server 2.4
+Application;Serveurs Web / Reverse proxy;Nginx 1.28
+Application;Serveurs Web / Reverse proxy;Nginx 1.26
+Application;Serveurs Web / Reverse proxy;Nginx 1.24
+Application;Serveurs Web / Reverse proxy;Nginx Plus
+Application;Serveurs Web / Reverse proxy;Microsoft IIS 10
+Application;Serveurs Web / Reverse proxy;Microsoft IIS 8.5
+Application;Serveurs Web / Reverse proxy;Caddy 2
+Application;Serveurs Web / Reverse proxy;Lighttpd 1.4
+Application;Serveurs Web / Reverse proxy;LiteSpeed / OpenLiteSpeed
+Application;Serveurs Web / Reverse proxy;HAProxy 3.2
+Application;Serveurs Web / Reverse proxy;HAProxy 3.0
+Application;Serveurs Web / Reverse proxy;HAProxy 2.8
+Application;Serveurs Web / Reverse proxy;Traefik 3
+Application;Serveurs Web / Reverse proxy;Traefik 2
+Application;Serveurs Web / Reverse proxy;Envoy
+Application;Serveurs Web / Reverse proxy;Squid 6
+Application;Serveurs Web / Reverse proxy;Squid 5
+Application;Serveurs Web / Reverse proxy;Varnish 7
+Application;Serveurs Web / Reverse proxy;Apache Tomcat 11
+Application;Serveurs Web / Reverse proxy;Apache Tomcat 10.1
+Application;Serveurs Web / Reverse proxy;Apache Tomcat 9
+Application;Serveurs Web / Reverse proxy;Jetty 12
+Application;Serveurs Web / Reverse proxy;WildFly 35
+Application;Serveurs Web / Reverse proxy;JBoss EAP 8
+Application;Serveurs Web / Reverse proxy;WebLogic 14
+Application;Serveurs Web / Reverse proxy;WebSphere Liberty
+Application;Serveurs Web / Reverse proxy;Node.js 24 LTS
+Application;Serveurs Web / Reverse proxy;Node.js 22 LTS
+Application;Serveurs Web / Reverse proxy;Node.js 20 LTS
+Application;Serveurs Web / Reverse proxy;PHP-FPM 8.4
+Application;Serveurs Web / Reverse proxy;PHP-FPM 8.3
+Application;Serveurs Web / Reverse proxy;PHP-FPM 8.2
+Application;Serveurs Web / Reverse proxy;PHP 7.4
+Application;Serveurs Web / Reverse proxy;Gunicorn
+Application;Serveurs Web / Reverse proxy;uWSGI
+Application;Serveurs Web / Reverse proxy;Nginx Proxy Manager
+Application;Serveurs Web / Reverse proxy;F5 BIG-IP LTM 17
+Application;Serveurs Web / Reverse proxy;Citrix NetScaler ADC 14
+Application;Serveurs Web / Reverse proxy;Kemp LoadMaster
+Application;Serveurs Web / Reverse proxy;Keepalived
+Application;Annuaire / Identité / IAM;Active Directory Domain Services (Windows Server 2025)
+Application;Annuaire / Identité / IAM;Active Directory Domain Services (Windows Server 2022)
+Application;Annuaire / Identité / IAM;Active Directory Domain Services (Windows Server 2019)
+Application;Annuaire / Identité / IAM;Active Directory Certificate Services (ADCS)
+Application;Annuaire / Identité / IAM;Active Directory Federation Services (ADFS)
+Application;Annuaire / Identité / IAM;Microsoft Entra ID (ex Azure AD)
+Application;Annuaire / Identité / IAM;Microsoft Entra Connect
+Application;Annuaire / Identité / IAM;Samba 4.22
+Application;Annuaire / Identité / IAM;Samba 4.20
+Application;Annuaire / Identité / IAM;Samba AD DC
+Application;Annuaire / Identité / IAM;OpenLDAP 2.6
+Application;Annuaire / Identité / IAM;389 Directory Server
+Application;Annuaire / Identité / IAM;FreeIPA 4
+Application;Annuaire / Identité / IAM;Red Hat IdM
+Application;Annuaire / Identité / IAM;Keycloak 26
+Application;Annuaire / Identité / IAM;Keycloak 25
+Application;Annuaire / Identité / IAM;Authentik
+Application;Annuaire / Identité / IAM;Authelia
+Application;Annuaire / Identité / IAM;LemonLDAP::NG 2
+Application;Annuaire / Identité / IAM;Okta
+Application;Annuaire / Identité / IAM;Ping Identity
+Application;Annuaire / Identité / IAM;Auth0
+Application;Annuaire / Identité / IAM;Duo Security
+Application;Annuaire / Identité / IAM;privacyIDEA
+Application;Annuaire / Identité / IAM;FreeRADIUS 3
+Application;Annuaire / Identité / IAM;Microsoft NPS
+Application;Annuaire / Identité / IAM;Cisco ISE 3
+Application;Annuaire / Identité / IAM;Aruba ClearPass
+Application;Annuaire / Identité / IAM;PacketFence
+Application;Annuaire / Identité / IAM;Kerberos MIT 1.21
+Application;Annuaire / Identité / IAM;SSSD
+Application;Annuaire / Identité / IAM;Winbind
+Application;Messagerie / Collaboration;Microsoft Exchange Server SE
+Application;Messagerie / Collaboration;Microsoft Exchange Server 2019
+Application;Messagerie / Collaboration;Microsoft Exchange Server 2016
+Application;Messagerie / Collaboration;Microsoft Exchange Online
+Application;Messagerie / Collaboration;Microsoft 365
+Application;Messagerie / Collaboration;Microsoft Teams
+Application;Messagerie / Collaboration;Microsoft SharePoint Server SE
+Application;Messagerie / Collaboration;Microsoft SharePoint Server 2019
+Application;Messagerie / Collaboration;SharePoint Online
+Application;Messagerie / Collaboration;OneDrive
+Application;Messagerie / Collaboration;Postfix 3.10
+Application;Messagerie / Collaboration;Postfix 3.8
+Application;Messagerie / Collaboration;Exim 4.98
+Application;Messagerie / Collaboration;Sendmail
+Application;Messagerie / Collaboration;Dovecot 2.4
+Application;Messagerie / Collaboration;Dovecot 2.3
+Application;Messagerie / Collaboration;Zimbra 10
+Application;Messagerie / Collaboration;BlueMind 5
+Application;Messagerie / Collaboration;Roundcube 1.6
+Application;Messagerie / Collaboration;SOGo
+Application;Messagerie / Collaboration;Rspamd
+Application;Messagerie / Collaboration;SpamAssassin
+Application;Messagerie / Collaboration;Proofpoint
+Application;Messagerie / Collaboration;Mailinblack
+Application;Messagerie / Collaboration;Vade Secure
+Application;Messagerie / Collaboration;Mimecast
+Application;Messagerie / Collaboration;Thunderbird 140 ESR
+Application;Messagerie / Collaboration;Thunderbird 128 ESR
+Application;Messagerie / Collaboration;Microsoft Outlook (classic)
+Application;Messagerie / Collaboration;New Outlook
+Application;Messagerie / Collaboration;Google Workspace
+Application;Messagerie / Collaboration;Nextcloud Hub 10 (31)
+Application;Messagerie / Collaboration;Nextcloud Hub 9 (30)
+Application;Messagerie / Collaboration;ownCloud Infinite Scale
+Application;Messagerie / Collaboration;Seafile
+Application;Messagerie / Collaboration;Mattermost
+Application;Messagerie / Collaboration;Rocket.Chat
+Application;Messagerie / Collaboration;Element / Matrix Synapse
+Application;Messagerie / Collaboration;Tchap
+Application;Messagerie / Collaboration;Slack
+Application;Messagerie / Collaboration;Zoom
+Application;Messagerie / Collaboration;Jitsi Meet
+Application;Messagerie / Collaboration;BigBlueButton
+Application;Messagerie / Collaboration;Webex
+Application;Messagerie / Collaboration;Wimi
+Application;Messagerie / Collaboration;OnlyOffice Docs 9
+Application;Messagerie / Collaboration;OnlyOffice Docs 8
+Application;Messagerie / Collaboration;Collabora Online
+Application;Messagerie / Collaboration;XWiki
+Application;Messagerie / Collaboration;BookStack
+Application;Messagerie / Collaboration;Wiki.js
+Application;Messagerie / Collaboration;Confluence Data Center
+Application;Messagerie / Collaboration;MediaWiki
+Application;Messagerie / Collaboration;DokuWiki
+Application;Messagerie / Collaboration;Outline
+Application;Messagerie / Collaboration;Joplin
+Application;Messagerie / Collaboration;Obsidian
+Application;Messagerie / Collaboration;Notion
+Application;Bureautique;Microsoft Word 365
+Application;Bureautique;Microsoft Word 2024
+Application;Bureautique;Microsoft Word 2021
+Application;Bureautique;Microsoft Word 2019
+Application;Bureautique;Microsoft Word 2016
+Application;Bureautique;Microsoft Excel 365
+Application;Bureautique;Microsoft Excel 2024
+Application;Bureautique;Microsoft Excel 2021
+Application;Bureautique;Microsoft Excel 2019
+Application;Bureautique;Microsoft PowerPoint 365
+Application;Bureautique;Microsoft PowerPoint 2021
+Application;Bureautique;Microsoft Access 365
+Application;Bureautique;Microsoft Visio 2024
+Application;Bureautique;Microsoft Project 2024
+Application;Bureautique;Microsoft Office LTSC 2024
+Application;Bureautique;Microsoft Office LTSC 2021
+Application;Bureautique;Microsoft Office 2019
+Application;Bureautique;Microsoft Office 2016
+Application;Bureautique;LibreOffice 25.8
+Application;Bureautique;LibreOffice 25.2
+Application;Bureautique;LibreOffice 24.8
+Application;Bureautique;Apache OpenOffice 4.1
+Application;Bureautique;OnlyOffice Desktop Editors
+Application;Bureautique;WPS Office
+Application;Bureautique;Google Docs / Sheets
+Application;Bureautique;Adobe Acrobat Reader
+Application;Bureautique;Adobe Acrobat Pro
+Application;Bureautique;Foxit PDF Reader
+Application;Bureautique;PDF24
+Application;Bureautique;PDFsam
+Application;Bureautique;SumatraPDF
+Application;Bureautique;Draw.io / diagrams.net
+Application;Bureautique;Notepad++ 8
+Application;Bureautique;Visual Studio Code
+Application;Bureautique;Sublime Text
+Application;Bureautique;7-Zip 25
+Application;Bureautique;7-Zip 24
+Application;Bureautique;WinRAR 7
+Application;Bureautique;PeaZip
+Application;Bureautique;VLC 3
+Application;Bureautique;GIMP 3
+Application;Bureautique;Inkscape 1.4
+Application;Bureautique;Greenshot
+Application;Bureautique;ShareX
+Application;Bureautique;Firefox 143
+Application;Bureautique;Firefox ESR 140
+Application;Bureautique;Firefox ESR 128
+Application;Bureautique;Google Chrome
+Application;Bureautique;Microsoft Edge
+Application;Bureautique;Chromium
+Application;Bureautique;Brave
+Application;Bureautique;Opera
+Application;Bureautique;Safari
+Application;Sauvegarde / PRA;Veeam Backup & Replication 13
+Application;Sauvegarde / PRA;Veeam Backup & Replication 12
+Application;Sauvegarde / PRA;Veeam Agent
+Application;Sauvegarde / PRA;Veeam Backup for Microsoft 365
+Application;Sauvegarde / PRA;Proxmox Backup Server
+Application;Sauvegarde / PRA;Bacula 15
+Application;Sauvegarde / PRA;Bareos 24
+Application;Sauvegarde / PRA;BorgBackup
+Application;Sauvegarde / PRA;Restic
+Application;Sauvegarde / PRA;Duplicati
+Application;Sauvegarde / PRA;Rsync
+Application;Sauvegarde / PRA;Rclone
+Application;Sauvegarde / PRA;UrBackup
+Application;Sauvegarde / PRA;Acronis Cyber Protect
+Application;Sauvegarde / PRA;Commvault
+Application;Sauvegarde / PRA;Veritas NetBackup
+Application;Sauvegarde / PRA;Veritas Backup Exec
+Application;Sauvegarde / PRA;Rubrik
+Application;Sauvegarde / PRA;Cohesity
+Application;Sauvegarde / PRA;Arcserve UDP
+Application;Sauvegarde / PRA;Atempo Tina
+Application;Sauvegarde / PRA;Atempo Lina
+Application;Sauvegarde / PRA;Nakivo
+Application;Sauvegarde / PRA;IBM Spectrum Protect (TSM)
+Application;Sauvegarde / PRA;Windows Server Backup
+Application;Sauvegarde / PRA;Time Machine
+Application;Sauvegarde / PRA;Synology Active Backup
+Application;Sauvegarde / PRA;Kopia
+Application;Sauvegarde / PRA;Zerto
+Application;Déploiement / Gestion de parc / MDM;Microsoft Intune
+Application;Déploiement / Gestion de parc / MDM;Microsoft Configuration Manager (SCCM / MECM)
+Application;Déploiement / Gestion de parc / MDM;WSUS
+Application;Déploiement / Gestion de parc / MDM;Windows Autopilot
+Application;Déploiement / Gestion de parc / MDM;Windows Deployment Services (WDS)
+Application;Déploiement / Gestion de parc / MDM;MDT
+Application;Déploiement / Gestion de parc / MDM;FOG Project
+Application;Déploiement / Gestion de parc / MDM;Clonezilla
+Application;Déploiement / Gestion de parc / MDM;PXE / iPXE
+Application;Déploiement / Gestion de parc / MDM;WAPT
+Application;Déploiement / Gestion de parc / MDM;OPSI
+Application;Déploiement / Gestion de parc / MDM;PDQ Deploy
+Application;Déploiement / Gestion de parc / MDM;Chocolatey
+Application;Déploiement / Gestion de parc / MDM;Winget
+Application;Déploiement / Gestion de parc / MDM;Scoop
+Application;Déploiement / Gestion de parc / MDM;Ninite
+Application;Déploiement / Gestion de parc / MDM;ManageEngine Endpoint Central
+Application;Déploiement / Gestion de parc / MDM;Ivanti Endpoint Manager
+Application;Déploiement / Gestion de parc / MDM;Jamf Pro
+Application;Déploiement / Gestion de parc / MDM;Kandji
+Application;Déploiement / Gestion de parc / MDM;Microsoft LAPS / Windows LAPS
+Application;Déploiement / Gestion de parc / MDM;Group Policy (GPO)
+Application;Déploiement / Gestion de parc / MDM;Mobile Iron / Ivanti Neurons
+Application;Déploiement / Gestion de parc / MDM;VMware Workspace ONE
+Application;Déploiement / Gestion de parc / MDM;Tanium
+Application;Déploiement / Gestion de parc / MDM;NinjaOne
+Application;Déploiement / Gestion de parc / MDM;Atera
+Application;Déploiement / Gestion de parc / MDM;Datto RMM
+Application;Déploiement / Gestion de parc / MDM;Fleet (osquery)
+Application;Déploiement / Gestion de parc / MDM;Landscape (Ubuntu)
+Application;Déploiement / Gestion de parc / MDM;Red Hat Satellite 6
+Application;Déploiement / Gestion de parc / MDM;Foreman
+Application;Déploiement / Gestion de parc / MDM;Spacewalk / Uyuni
+Application;Déploiement / Gestion de parc / MDM;SUSE Manager
+Application;Automatisation / IaC / DevOps;Ansible Core 2.19
+Application;Automatisation / IaC / DevOps;Ansible Core 2.17
+Application;Automatisation / IaC / DevOps;Ansible AWX
+Application;Automatisation / IaC / DevOps;Red Hat Ansible Automation Platform
+Application;Automatisation / IaC / DevOps;Terraform 1.x
+Application;Automatisation / IaC / DevOps;OpenTofu
+Application;Automatisation / IaC / DevOps;Puppet 8
+Application;Automatisation / IaC / DevOps;Chef
+Application;Automatisation / IaC / DevOps;SaltStack 3007
+Application;Automatisation / IaC / DevOps;Packer
+Application;Automatisation / IaC / DevOps;Vagrant
+Application;Automatisation / IaC / DevOps;Pulumi
+Application;Automatisation / IaC / DevOps;Cloud-init
+Application;Automatisation / IaC / DevOps;PowerShell 7.5
+Application;Automatisation / IaC / DevOps;Windows PowerShell 5.1
+Application;Automatisation / IaC / DevOps;Bash 5
+Application;Automatisation / IaC / DevOps;Python 3.13
+Application;Automatisation / IaC / DevOps;Python 3.12
+Application;Automatisation / IaC / DevOps;Python 2.7
+Application;Automatisation / IaC / DevOps;Git 2.x
+Application;Automatisation / IaC / DevOps;GitLab CE/EE 18
+Application;Automatisation / IaC / DevOps;GitLab CE/EE 17
+Application;Automatisation / IaC / DevOps;GitHub Enterprise Server
+Application;Automatisation / IaC / DevOps;Gitea
+Application;Automatisation / IaC / DevOps;Forgejo
+Application;Automatisation / IaC / DevOps;Bitbucket
+Application;Automatisation / IaC / DevOps;Jenkins LTS
+Application;Automatisation / IaC / DevOps;GitLab CI
+Application;Automatisation / IaC / DevOps;GitHub Actions
+Application;Automatisation / IaC / DevOps;Azure DevOps Server
+Application;Automatisation / IaC / DevOps;ArgoCD
+Application;Automatisation / IaC / DevOps;FluxCD
+Application;Automatisation / IaC / DevOps;Helm 3
+Application;Automatisation / IaC / DevOps;Kustomize
+Application;Automatisation / IaC / DevOps;Harbor
+Application;Automatisation / IaC / DevOps;Nexus Repository 3
+Application;Automatisation / IaC / DevOps;JFrog Artifactory
+Application;Automatisation / IaC / DevOps;SonarQube
+Application;Automatisation / IaC / DevOps;Rundeck
+Application;Automatisation / IaC / DevOps;n8n
+Application;Automatisation / IaC / DevOps;Semaphore UI
+Application;Réseau / Services d'infrastructure;ISC BIND 9.20
+Application;Réseau / Services d'infrastructure;ISC BIND 9.18
+Application;Réseau / Services d'infrastructure;Unbound
+Application;Réseau / Services d'infrastructure;PowerDNS
+Application;Réseau / Services d'infrastructure;dnsmasq
+Application;Réseau / Services d'infrastructure;Pi-hole
+Application;Réseau / Services d'infrastructure;AdGuard Home
+Application;Réseau / Services d'infrastructure;Microsoft DNS Server
+Application;Réseau / Services d'infrastructure;Microsoft DHCP Server
+Application;Réseau / Services d'infrastructure;ISC DHCP
+Application;Réseau / Services d'infrastructure;ISC Kea DHCP
+Application;Réseau / Services d'infrastructure;Chrony
+Application;Réseau / Services d'infrastructure;NTPd
+Application;Réseau / Services d'infrastructure;OpenVPN 2.6
+Application;Réseau / Services d'infrastructure;OpenVPN Access Server
+Application;Réseau / Services d'infrastructure;WireGuard
+Application;Réseau / Services d'infrastructure;strongSwan
+Application;Réseau / Services d'infrastructure;Libreswan
+Application;Réseau / Services d'infrastructure;IPsec (natif)
+Application;Réseau / Services d'infrastructure;FortiClient VPN
+Application;Réseau / Services d'infrastructure;Cisco AnyConnect / Secure Client
+Application;Réseau / Services d'infrastructure;GlobalProtect
+Application;Réseau / Services d'infrastructure;Stormshield VPN SSL
+Application;Réseau / Services d'infrastructure;Tailscale
+Application;Réseau / Services d'infrastructure;Headscale
+Application;Réseau / Services d'infrastructure;ZeroTier
+Application;Réseau / Services d'infrastructure;NetBird
+Application;Réseau / Services d'infrastructure;Zscaler
+Application;Réseau / Services d'infrastructure;Cloudflare Zero Trust
+Application;Réseau / Services d'infrastructure;Guacamole 1.5
+Application;Réseau / Services d'infrastructure;MeshCentral
+Application;Réseau / Services d'infrastructure;RustDesk
+Application;Réseau / Services d'infrastructure;TeamViewer
+Application;Réseau / Services d'infrastructure;AnyDesk
+Application;Réseau / Services d'infrastructure;Remote Desktop Services (RDS)
+Application;Réseau / Services d'infrastructure;Microsoft RD Gateway
+Application;Réseau / Services d'infrastructure;mRemoteNG
+Application;Réseau / Services d'infrastructure;Remmina
+Application;Réseau / Services d'infrastructure;PuTTY 0.83
+Application;Réseau / Services d'infrastructure;KiTTY
+Application;Réseau / Services d'infrastructure;MobaXterm
+Application;Réseau / Services d'infrastructure;WinSCP 6
+Application;Réseau / Services d'infrastructure;FileZilla 3
+Application;Réseau / Services d'infrastructure;OpenSSH 10
+Application;Réseau / Services d'infrastructure;OpenSSH 9
+Application;Réseau / Services d'infrastructure;Dropbear
+Application;Réseau / Services d'infrastructure;vsftpd
+Application;Réseau / Services d'infrastructure;ProFTPD
+Application;Réseau / Services d'infrastructure;Pure-FTPd
+Application;Réseau / Services d'infrastructure;Samba (partage SMB)
+Application;Réseau / Services d'infrastructure;NFS server (nfs-utils)
+Application;Réseau / Services d'infrastructure;Netatalk
+Application;Réseau / Services d'infrastructure;iSCSI target (targetcli / LIO)
+Application;Réseau / Services d'infrastructure;Open vSwitch
+Application;Réseau / Services d'infrastructure;FRRouting
+Application;Réseau / Services d'infrastructure;Quagga
+Application;Réseau / Services d'infrastructure;BIRD
+Application;Réseau / Services d'infrastructure;Keepalived / VRRP
+Application;Réseau / Services d'infrastructure;Rsyslog 8
+Application;Réseau / Services d'infrastructure;syslog-ng 4
+Application;Réseau / Services d'infrastructure;NXLog
+Application;Réseau / Services d'infrastructure;Fluentd
+Application;Réseau / Services d'infrastructure;Fluent Bit
+Application;Réseau / Services d'infrastructure;Vector
+Application;Réseau / Services d'infrastructure;Logstash
+Application;Réseau / Services d'infrastructure;Beats (Filebeat / Winlogbeat)
+Application;Réseau / Services d'infrastructure;Kiwi Syslog
+Application;Réseau / Services d'infrastructure;Ceph Squid 19
+Application;Réseau / Services d'infrastructure;Ceph Reef 18
+Application;Réseau / Services d'infrastructure;GlusterFS
+Application;Réseau / Services d'infrastructure;MinIO
+Application;Réseau / Services d'infrastructure;ZFS (OpenZFS 2.3)
+Application;Réseau / Services d'infrastructure;Btrfs
+Application;Réseau / Services d'infrastructure;DRBD
+Application;Réseau / Services d'infrastructure;Pacemaker / Corosync
+Application;Réseau / Services d'infrastructure;phpIPAM
+Application;Réseau / Services d'infrastructure;Oxidized
+Application;Réseau / Services d'infrastructure;RANCID
+Application;Réseau / Services d'infrastructure;Nmap
+Application;Réseau / Services d'infrastructure;Netdisco
+Application;Réseau / Services d'infrastructure;Smokeping
+Application;Réseau / Services d'infrastructure;Wireshark
+Application;PKI / Chiffrement;OpenSSL 3.5
+Application;PKI / Chiffrement;OpenSSL 3.0 LTS
+Application;PKI / Chiffrement;OpenSSL 1.1.1
+Application;PKI / Chiffrement;LibreSSL
+Application;PKI / Chiffrement;BoringSSL
+Application;PKI / Chiffrement;GnuTLS
+Application;PKI / Chiffrement;wolfSSL
+Application;PKI / Chiffrement;Mbed TLS
+Application;PKI / Chiffrement;Let's Encrypt / Certbot
+Application;PKI / Chiffrement;acme.sh
+Application;PKI / Chiffrement;EJBCA
+Application;PKI / Chiffrement;Smallstep step-ca
+Application;PKI / Chiffrement;XCA
+Application;PKI / Chiffrement;Microsoft ADCS
+Application;PKI / Chiffrement;HashiCorp Vault PKI
+Application;PKI / Chiffrement;GnuPG 2.4
+Application;PKI / Chiffrement;Kleopatra / Gpg4win
+Application;PKI / Chiffrement;VeraCrypt 1.26
+Application;PKI / Chiffrement;BitLocker
+Application;PKI / Chiffrement;LUKS / cryptsetup
+Application;PKI / Chiffrement;FileVault
+Application;PKI / Chiffrement;Cryhod
+Application;PKI / Chiffrement;ZoneCentral / ZED! (Prim'X)
+Application;PKI / Chiffrement;Stormshield Data Security
+Application;PKI / Chiffrement;Thales Luna HSM
+Application;PKI / Chiffrement;YubiKey / YubiHSM
+Application;PKI / Chiffrement;Age
+Application;Développement / Runtimes;Java JDK 25 LTS
+Application;Développement / Runtimes;Java JDK 21 LTS
+Application;Développement / Runtimes;Java JDK 17 LTS
+Application;Développement / Runtimes;Java JDK 11 LTS
+Application;Développement / Runtimes;Java JRE 8
+Application;Développement / Runtimes;OpenJDK / Temurin
+Application;Développement / Runtimes;.NET 9
+Application;Développement / Runtimes;.NET 8 LTS
+Application;Développement / Runtimes;.NET Framework 4.8.1
+Application;Développement / Runtimes;.NET Framework 3.5
+Application;Développement / Runtimes;Visual C++ Redistributable
+Application;Développement / Runtimes;Go 1.25
+Application;Développement / Runtimes;Rust 1.9x
+Application;Développement / Runtimes;Ruby 3.4
+Application;Développement / Runtimes;Perl 5.40
+Application;Développement / Runtimes;PHP 8.4
+Application;Développement / Runtimes;Composer
+Application;Développement / Runtimes;npm / pnpm / Yarn
+Application;Développement / Runtimes;Django 5
+Application;Développement / Runtimes;Laravel 12
+Application;Développement / Runtimes;Symfony 7
+Application;Développement / Runtimes;Spring Boot 3
+Application;Développement / Runtimes;React 19
+Application;Développement / Runtimes;Angular 20
+Application;Développement / Runtimes;Vue.js 3
+Application;Développement / Runtimes;WordPress 6.8
+Application;Développement / Runtimes;Drupal 11
+Application;Développement / Runtimes;Joomla 5
+Application;Développement / Runtimes;Magento / Adobe Commerce 2.4
+Application;Développement / Runtimes;PrestaShop 9
+Application;Développement / Runtimes;PrestaShop 8
+Application;Développement / Runtimes;Moodle 5
+Application;Développement / Runtimes;Moodle 4.5
+Application;Développement / Runtimes;Odoo 18
+Application;Développement / Runtimes;Odoo 17
+Application;Développement / Runtimes;Dolibarr 21
+Application;Développement / Runtimes;Visual Studio 2022
+Application;Développement / Runtimes;JetBrains IntelliJ IDEA
+Application;Développement / Runtimes;Eclipse IDE
+Application;Développement / Runtimes;Postman
+Application;Développement / Runtimes;Swagger / OpenAPI
+Application;Métier / ERP / Divers;SAP S/4HANA
+Application;Métier / ERP / Divers;SAP ECC 6
+Application;Métier / ERP / Divers;SAP NetWeaver
+Application;Métier / ERP / Divers;Sage 100
+Application;Métier / ERP / Divers;Sage X3
+Application;Métier / ERP / Divers;Cegid
+Application;Métier / ERP / Divers;Microsoft Dynamics 365
+Application;Métier / ERP / Divers;Oracle E-Business Suite
+Application;Métier / ERP / Divers;Salesforce
+Application;Métier / ERP / Divers;Odoo
+Application;Métier / ERP / Divers;Dolibarr
+Application;Métier / ERP / Divers;EBP
+Application;Métier / ERP / Divers;Pronote
+Application;Métier / ERP / Divers;Chorus Pro
+Application;Métier / ERP / Divers;Metabase
+Application;Métier / ERP / Divers;Apache Superset
+Application;Métier / ERP / Divers;Power BI
+Application;Métier / ERP / Divers;Tableau
+Application;Métier / ERP / Divers;Qlik Sense
+Application;Métier / ERP / Divers;Apache Kafka 4
+Application;Métier / ERP / Divers;Apache Kafka 3
+Application;Métier / ERP / Divers;RabbitMQ 4
+Application;Métier / ERP / Divers;RabbitMQ 3
+Application;Métier / ERP / Divers;Mosquitto (MQTT)
+Application;Métier / ERP / Divers;ActiveMQ
+Application;Métier / ERP / Divers;Apache Airflow
+Application;Métier / ERP / Divers;Apache Spark
+Application;Métier / ERP / Divers;Hadoop
+Application;Métier / ERP / Divers;Jupyter
+Application;Métier / ERP / Divers;Home Assistant
+Application;Métier / ERP / Divers;Node-RED
+Application;Métier / ERP / Divers;Asterisk
+Application;Métier / ERP / Divers;FreePBX
+Application;Métier / ERP / Divers;3CX
+Application;Métier / ERP / Divers;Xivo / Wazo
+Application;Métier / ERP / Divers;Kamailio
+Application;Sécurité réseau / Pare-feu logiciels;iptables
+Application;Sécurité réseau / Pare-feu logiciels;nftables
+Application;Sécurité réseau / Pare-feu logiciels;firewalld
+Application;Sécurité réseau / Pare-feu logiciels;UFW
+Application;Sécurité réseau / Pare-feu logiciels;pf (Packet Filter)
+Application;Sécurité réseau / Pare-feu logiciels;ipfw
+Application;Sécurité réseau / Pare-feu logiciels;Windows Defender Firewall
+Application;Sécurité réseau / Pare-feu logiciels;ModSecurity 3
+Application;Sécurité réseau / Pare-feu logiciels;Coraza WAF
+Application;Sécurité réseau / Pare-feu logiciels;BunkerWeb
+Application;Sécurité réseau / Pare-feu logiciels;NAXSI
+Application;Sécurité réseau / Pare-feu logiciels;Cloudflare WAF
+Application;Sécurité réseau / Pare-feu logiciels;F5 Advanced WAF
+Application;Sécurité réseau / Pare-feu logiciels;Imperva
+Application;Sécurité réseau / Pare-feu logiciels;Fortinet FortiWeb
+Application;Sécurité réseau / Pare-feu logiciels;Fortinet FortiGate
+Application;Sécurité réseau / Pare-feu logiciels;Fortinet FortiAnalyzer
+Application;Sécurité réseau / Pare-feu logiciels;Fortinet FortiManager
+Application;Sécurité réseau / Pare-feu logiciels;Fortinet FortiAuthenticator
+Application;Sécurité réseau / Pare-feu logiciels;Palo Alto Panorama
+Application;Sécurité réseau / Pare-feu logiciels;Stormshield SMC
+Application;Sécurité réseau / Pare-feu logiciels;Cisco FMC
+Application;Sécurité réseau / Pare-feu logiciels;Zeek
+Application;Sécurité réseau / Pare-feu logiciels;ntopng
+Application;Sécurité réseau / Pare-feu logiciels;Squid + SquidGuard
+Application;Sécurité réseau / Pare-feu logiciels;E2Guardian
+Application;Sécurité réseau / Pare-feu logiciels;OPNsense Zenarmor (Sensei)
+Application;Sécurité réseau / Pare-feu logiciels;Olfeo
+Application;Sécurité réseau / Pare-feu logiciels;Forcepoint
+Application;Sécurité réseau / Pare-feu logiciels;Netskope
+Application;Sécurité réseau / Pare-feu logiciels;Vectra AI
+Application;Sécurité réseau / Pare-feu logiciels;Darktrace
+Application;Sécurité réseau / Pare-feu logiciels;Gatewatcher
+Application;Sécurité réseau / Pare-feu logiciels;Sesame IT
+Application;Sécurité réseau / Pare-feu logiciels;Ossia
+Application;Sécurité réseau / Pare-feu logiciels;Pradeo
+Application;Sécurité réseau / Pare-feu logiciels;Tehtris
+BDD;SGBD relationnels - MySQL/MariaDB;MySQL 9.4
+BDD;SGBD relationnels - MySQL/MariaDB;MySQL 8.4 LTS
+BDD;SGBD relationnels - MySQL/MariaDB;MySQL 8.0
+BDD;SGBD relationnels - MySQL/MariaDB;MySQL 5.7
+BDD;SGBD relationnels - MySQL/MariaDB;MySQL 5.6
+BDD;SGBD relationnels - MySQL/MariaDB;MariaDB 12
+BDD;SGBD relationnels - MySQL/MariaDB;MariaDB 11.8 LTS
+BDD;SGBD relationnels - MySQL/MariaDB;MariaDB 11.4 LTS
+BDD;SGBD relationnels - MySQL/MariaDB;MariaDB 10.11 LTS
+BDD;SGBD relationnels - MySQL/MariaDB;MariaDB 10.6 LTS
+BDD;SGBD relationnels - MySQL/MariaDB;MariaDB 10.5
+BDD;SGBD relationnels - MySQL/MariaDB;MariaDB 10.3
+BDD;SGBD relationnels - MySQL/MariaDB;Percona Server for MySQL 8.4
+BDD;SGBD relationnels - MySQL/MariaDB;Percona XtraDB Cluster
+BDD;SGBD relationnels - MySQL/MariaDB;MariaDB Galera Cluster
+BDD;SGBD relationnels - MySQL/MariaDB;MySQL InnoDB Cluster
+BDD;SGBD relationnels - MySQL/MariaDB;MySQL NDB Cluster
+BDD;SGBD relationnels - MySQL/MariaDB;TiDB
+BDD;SGBD relationnels - MySQL/MariaDB;Vitess
+BDD;SGBD relationnels - MySQL/MariaDB;ProxySQL
+BDD;SGBD relationnels - MySQL/MariaDB;MaxScale
+BDD;SGBD relationnels - PostgreSQL;PostgreSQL 18
+BDD;SGBD relationnels - PostgreSQL;PostgreSQL 17
+BDD;SGBD relationnels - PostgreSQL;PostgreSQL 16
+BDD;SGBD relationnels - PostgreSQL;PostgreSQL 15
+BDD;SGBD relationnels - PostgreSQL;PostgreSQL 14
+BDD;SGBD relationnels - PostgreSQL;PostgreSQL 13
+BDD;SGBD relationnels - PostgreSQL;PostgreSQL 12
+BDD;SGBD relationnels - PostgreSQL;PostgreSQL 11
+BDD;SGBD relationnels - PostgreSQL;PostGIS 3
+BDD;SGBD relationnels - PostgreSQL;TimescaleDB
+BDD;SGBD relationnels - PostgreSQL;Citus
+BDD;SGBD relationnels - PostgreSQL;EDB Postgres Advanced Server
+BDD;SGBD relationnels - PostgreSQL;Patroni
+BDD;SGBD relationnels - PostgreSQL;PgBouncer
+BDD;SGBD relationnels - PostgreSQL;Pgpool-II
+BDD;SGBD relationnels - PostgreSQL;YugabyteDB
+BDD;SGBD relationnels - PostgreSQL;CockroachDB
+BDD;SGBD relationnels - PostgreSQL;Neon
+BDD;SGBD relationnels - PostgreSQL;Supabase
+BDD;SGBD relationnels - Microsoft;SQL Server 2025
+BDD;SGBD relationnels - Microsoft;SQL Server 2022
+BDD;SGBD relationnels - Microsoft;SQL Server 2019
+BDD;SGBD relationnels - Microsoft;SQL Server 2017
+BDD;SGBD relationnels - Microsoft;SQL Server 2016
+BDD;SGBD relationnels - Microsoft;SQL Server 2014
+BDD;SGBD relationnels - Microsoft;SQL Server 2012
+BDD;SGBD relationnels - Microsoft;SQL Server Express
+BDD;SGBD relationnels - Microsoft;Azure SQL Database
+BDD;SGBD relationnels - Microsoft;Azure SQL Managed Instance
+BDD;SGBD relationnels - Microsoft;Microsoft Access (Jet / ACE)
+BDD;SGBD relationnels - Microsoft;SQL Server LocalDB
+BDD;SGBD relationnels - Microsoft;Windows Internal Database (WID)
+BDD;SGBD relationnels - Oracle / IBM / Autres;Oracle Database 23ai
+BDD;SGBD relationnels - Oracle / IBM / Autres;Oracle Database 21c
+BDD;SGBD relationnels - Oracle / IBM / Autres;Oracle Database 19c
+BDD;SGBD relationnels - Oracle / IBM / Autres;Oracle Database 12c
+BDD;SGBD relationnels - Oracle / IBM / Autres;Oracle Database 11g
+BDD;SGBD relationnels - Oracle / IBM / Autres;Oracle Exadata
+BDD;SGBD relationnels - Oracle / IBM / Autres;Oracle RAC
+BDD;SGBD relationnels - Oracle / IBM / Autres;Oracle MySQL HeatWave
+BDD;SGBD relationnels - Oracle / IBM / Autres;IBM Db2 12
+BDD;SGBD relationnels - Oracle / IBM / Autres;IBM Db2 11.5
+BDD;SGBD relationnels - Oracle / IBM / Autres;IBM Informix
+BDD;SGBD relationnels - Oracle / IBM / Autres;SAP HANA 2.0
+BDD;SGBD relationnels - Oracle / IBM / Autres;SAP ASE (Sybase)
+BDD;SGBD relationnels - Oracle / IBM / Autres;SAP MaxDB
+BDD;SGBD relationnels - Oracle / IBM / Autres;Teradata
+BDD;SGBD relationnels - Oracle / IBM / Autres;Firebird 5
+BDD;SGBD relationnels - Oracle / IBM / Autres;Firebird 4
+BDD;SGBD relationnels - Oracle / IBM / Autres;Ingres
+BDD;SGBD relationnels - Oracle / IBM / Autres;H2 Database
+BDD;SGBD relationnels - Oracle / IBM / Autres;HSQLDB
+BDD;SGBD relationnels - Oracle / IBM / Autres;Apache Derby
+BDD;SGBD relationnels - Oracle / IBM / Autres;HFSQL (WinDev)
+BDD;SGBD relationnels - Oracle / IBM / Autres;4D
+BDD;SGBD relationnels - Oracle / IBM / Autres;FileMaker
+BDD;SGBD embarqués / fichiers;SQLite 3.50
+BDD;SGBD embarqués / fichiers;SQLite 3.4x
+BDD;SGBD embarqués / fichiers;DuckDB 1.x
+BDD;SGBD embarqués / fichiers;Berkeley DB
+BDD;SGBD embarqués / fichiers;LMDB
+BDD;SGBD embarqués / fichiers;RocksDB
+BDD;SGBD embarqués / fichiers;LevelDB
+BDD;SGBD embarqués / fichiers;Realm
+BDD;SGBD embarqués / fichiers;ESE (Extensible Storage Engine)
+BDD;SGBD embarqués / fichiers;Microsoft SQL Server Compact
+BDD;NoSQL - Documents;MongoDB 8.0
+BDD;NoSQL - Documents;MongoDB 7.0
+BDD;NoSQL - Documents;MongoDB 6.0
+BDD;NoSQL - Documents;MongoDB 5.0
+BDD;NoSQL - Documents;MongoDB 4.4
+BDD;NoSQL - Documents;Percona Server for MongoDB
+BDD;NoSQL - Documents;FerretDB
+BDD;NoSQL - Documents;CouchDB 3
+BDD;NoSQL - Documents;Couchbase Server 7
+BDD;NoSQL - Documents;RavenDB
+BDD;NoSQL - Documents;Amazon DocumentDB
+BDD;NoSQL - Documents;Azure Cosmos DB
+BDD;NoSQL - Documents;Google Firestore
+BDD;NoSQL - Documents;ArangoDB
+BDD;NoSQL - Clé/Valeur & Cache;Redis 8
+BDD;NoSQL - Clé/Valeur & Cache;Redis 7.4
+BDD;NoSQL - Clé/Valeur & Cache;Redis 7.2
+BDD;NoSQL - Clé/Valeur & Cache;Redis 6.2
+BDD;NoSQL - Clé/Valeur & Cache;Valkey 8
+BDD;NoSQL - Clé/Valeur & Cache;KeyDB
+BDD;NoSQL - Clé/Valeur & Cache;Dragonfly
+BDD;NoSQL - Clé/Valeur & Cache;Memcached 1.6
+BDD;NoSQL - Clé/Valeur & Cache;etcd 3.5
+BDD;NoSQL - Clé/Valeur & Cache;etcd 3.6
+BDD;NoSQL - Clé/Valeur & Cache;Consul KV
+BDD;NoSQL - Clé/Valeur & Cache;Hazelcast
+BDD;NoSQL - Clé/Valeur & Cache;Apache Ignite
+BDD;NoSQL - Clé/Valeur & Cache;Amazon DynamoDB
+BDD;NoSQL - Clé/Valeur & Cache;Aerospike
+BDD;NoSQL - Clé/Valeur & Cache;Riak KV
+BDD;NoSQL - Colonnes larges;Apache Cassandra 5
+BDD;NoSQL - Colonnes larges;Apache Cassandra 4.1
+BDD;NoSQL - Colonnes larges;ScyllaDB
+BDD;NoSQL - Colonnes larges;Apache HBase
+BDD;NoSQL - Colonnes larges;Google Bigtable
+BDD;NoSQL - Colonnes larges;ClickHouse 25
+BDD;NoSQL - Colonnes larges;Apache Druid
+BDD;NoSQL - Colonnes larges;Apache Pinot
+BDD;Moteurs de recherche / Indexation;Elasticsearch 9
+BDD;Moteurs de recherche / Indexation;Elasticsearch 8
+BDD;Moteurs de recherche / Indexation;Elasticsearch 7
+BDD;Moteurs de recherche / Indexation;OpenSearch 3
+BDD;Moteurs de recherche / Indexation;OpenSearch 2
+BDD;Moteurs de recherche / Indexation;Apache Solr 9
+BDD;Moteurs de recherche / Indexation;Meilisearch
+BDD;Moteurs de recherche / Indexation;Typesense
+BDD;Moteurs de recherche / Indexation;Manticore Search
+BDD;Moteurs de recherche / Indexation;Sphinx
+BDD;Moteurs de recherche / Indexation;Wazuh Indexer (OpenSearch)
+BDD;Séries temporelles;InfluxDB 3
+BDD;Séries temporelles;InfluxDB 2
+BDD;Séries temporelles;InfluxDB 1.8
+BDD;Séries temporelles;Prometheus TSDB
+BDD;Séries temporelles;TimescaleDB
+BDD;Séries temporelles;VictoriaMetrics
+BDD;Séries temporelles;QuestDB
+BDD;Séries temporelles;Graphite / Whisper
+BDD;Séries temporelles;OpenTSDB
+BDD;Séries temporelles;RRDtool
+BDD;Séries temporelles;M3DB
+BDD;Graphes;Neo4j 5
+BDD;Graphes;Neo4j 2025
+BDD;Graphes;JanusGraph
+BDD;Graphes;ArangoDB
+BDD;Graphes;OrientDB
+BDD;Graphes;Amazon Neptune
+BDD;Graphes;Dgraph
+BDD;Graphes;Memgraph
+BDD;Graphes;TigerGraph
+BDD;Vectorielles;pgvector
+BDD;Vectorielles;Qdrant
+BDD;Vectorielles;Milvus
+BDD;Vectorielles;Weaviate
+BDD;Vectorielles;Chroma
+BDD;Vectorielles;Pinecone
+BDD;Vectorielles;FAISS
+BDD;Data warehouse / Cloud;Snowflake
+BDD;Data warehouse / Cloud;Google BigQuery
+BDD;Data warehouse / Cloud;Amazon Redshift
+BDD;Data warehouse / Cloud;Azure Synapse Analytics
+BDD;Data warehouse / Cloud;Databricks
+BDD;Data warehouse / Cloud;Amazon RDS
+BDD;Data warehouse / Cloud;Amazon Aurora
+BDD;Data warehouse / Cloud;Google Cloud SQL
+BDD;Data warehouse / Cloud;Google Spanner
+BDD;Data warehouse / Cloud;OVHcloud Managed Databases
+BDD;Data warehouse / Cloud;Apache Hive
+BDD;Data warehouse / Cloud;Trino / Presto
+BDD;Data warehouse / Cloud;Apache Iceberg
+BDD;Data warehouse / Cloud;Delta Lake
+BDD;Outils d'administration BDD;phpMyAdmin 5
+BDD;Outils d'administration BDD;Adminer
+BDD;Outils d'administration BDD;pgAdmin 4
+BDD;Outils d'administration BDD;DBeaver
+BDD;Outils d'administration BDD;MySQL Workbench
+BDD;Outils d'administration BDD;SQL Server Management Studio (SSMS) 21
+BDD;Outils d'administration BDD;Azure Data Studio
+BDD;Outils d'administration BDD;Oracle SQL Developer
+BDD;Outils d'administration BDD;HeidiSQL
+BDD;Outils d'administration BDD;MongoDB Compass
+BDD;Outils d'administration BDD;RedisInsight
+BDD;Outils d'administration BDD;DataGrip
+BDD;Outils d'administration BDD;Percona XtraBackup
+BDD;Outils d'administration BDD;mysqldump
+BDD;Outils d'administration BDD;pg_dump / pgBackRest
+BDD;Outils d'administration BDD;Barman
+BDD;Outils d'administration BDD;Oracle RMAN
+Protocole;Web / Applicatif;HTTP/1.0
+Protocole;Web / Applicatif;HTTP/1.1
+Protocole;Web / Applicatif;HTTP/2
+Protocole;Web / Applicatif;HTTP/3 (QUIC)
+Protocole;Web / Applicatif;HTTPS
+Protocole;Web / Applicatif;WebSocket
+Protocole;Web / Applicatif;WebDAV
+Protocole;Web / Applicatif;CalDAV
+Protocole;Web / Applicatif;CardDAV
+Protocole;Web / Applicatif;REST
+Protocole;Web / Applicatif;SOAP
+Protocole;Web / Applicatif;GraphQL
+Protocole;Web / Applicatif;gRPC
+Protocole;Web / Applicatif;JSON-RPC
+Protocole;Web / Applicatif;XML-RPC
+Protocole;Web / Applicatif;SSE (Server-Sent Events)
+Protocole;Web / Applicatif;CoAP
+Protocole;Web / Applicatif;AMQP 0-9-1
+Protocole;Web / Applicatif;AMQP 1.0
+Protocole;Web / Applicatif;MQTT 3.1.1
+Protocole;Web / Applicatif;MQTT 5
+Protocole;Web / Applicatif;STOMP
+Protocole;Web / Applicatif;XMPP
+Protocole;Web / Applicatif;SIP
+Protocole;Web / Applicatif;RTP / SRTP
+Protocole;Web / Applicatif;RTSP
+Protocole;Web / Applicatif;WebRTC
+Protocole;Web / Applicatif;H.323
+Protocole;Web / Applicatif;IRC
+Protocole;Web / Applicatif;Matrix
+Protocole;Sécurité / Chiffrement;TLS 1.3
+Protocole;Sécurité / Chiffrement;TLS 1.2
+Protocole;Sécurité / Chiffrement;TLS 1.1 (obsolète)
+Protocole;Sécurité / Chiffrement;TLS 1.0 (obsolète)
+Protocole;Sécurité / Chiffrement;SSL 3.0 (obsolète)
+Protocole;Sécurité / Chiffrement;SSL 2.0 (obsolète)
+Protocole;Sécurité / Chiffrement;DTLS
+Protocole;Sécurité / Chiffrement;mTLS
+Protocole;Sécurité / Chiffrement;SSH-2
+Protocole;Sécurité / Chiffrement;SSH-1 (obsolète)
+Protocole;Sécurité / Chiffrement;IPsec (IKEv2)
+Protocole;Sécurité / Chiffrement;IPsec (IKEv1)
+Protocole;Sécurité / Chiffrement;ESP
+Protocole;Sécurité / Chiffrement;AH
+Protocole;Sécurité / Chiffrement;WireGuard
+Protocole;Sécurité / Chiffrement;OpenVPN
+Protocole;Sécurité / Chiffrement;L2TP/IPsec
+Protocole;Sécurité / Chiffrement;PPTP (obsolète)
+Protocole;Sécurité / Chiffrement;SSTP
+Protocole;Sécurité / Chiffrement;MACsec (802.1AE)
+Protocole;Sécurité / Chiffrement;DNSSEC
+Protocole;Sécurité / Chiffrement;DoH (DNS over HTTPS)
+Protocole;Sécurité / Chiffrement;DoT (DNS over TLS)
+Protocole;Sécurité / Chiffrement;DoQ (DNS over QUIC)
+Protocole;Sécurité / Chiffrement;S/MIME
+Protocole;Sécurité / Chiffrement;PGP / OpenPGP
+Protocole;Sécurité / Chiffrement;STARTTLS
+Protocole;Sécurité / Chiffrement;HSTS
+Protocole;Sécurité / Chiffrement;OCSP
+Protocole;Sécurité / Chiffrement;OCSP Stapling
+Protocole;Sécurité / Chiffrement;CRL
+Protocole;Sécurité / Chiffrement;ACME
+Protocole;Sécurité / Chiffrement;SCEP
+Protocole;Sécurité / Chiffrement;EST
+Protocole;Sécurité / Chiffrement;CMP
+Protocole;Sécurité / Chiffrement;PKCS#11
+Protocole;Sécurité / Chiffrement;PKCS#12
+Protocole;Sécurité / Chiffrement;X.509
+Protocole;Sécurité / Chiffrement;Noise Protocol
+Protocole;Sécurité / Chiffrement;Signal Protocol
+Protocole;Sécurité / Chiffrement;SRP
+Protocole;Sécurité / Chiffrement;ZRTP
+Protocole;Authentification / Identité;Kerberos v5
+Protocole;Authentification / Identité;NTLMv2
+Protocole;Authentification / Identité;NTLMv1 (obsolète)
+Protocole;Authentification / Identité;LM (obsolète)
+Protocole;Authentification / Identité;LDAP
+Protocole;Authentification / Identité;LDAPS
+Protocole;Authentification / Identité;LDAP StartTLS
+Protocole;Authentification / Identité;RADIUS
+Protocole;Authentification / Identité;RadSec (RADIUS over TLS)
+Protocole;Authentification / Identité;TACACS+
+Protocole;Authentification / Identité;Diameter
+Protocole;Authentification / Identité;802.1X
+Protocole;Authentification / Identité;EAP-TLS
+Protocole;Authentification / Identité;EAP-TTLS
+Protocole;Authentification / Identité;PEAP (MSCHAPv2)
+Protocole;Authentification / Identité;EAP-FAST
+Protocole;Authentification / Identité;SAML 2.0
+Protocole;Authentification / Identité;OAuth 2.0
+Protocole;Authentification / Identité;OAuth 2.1
+Protocole;Authentification / Identité;OpenID Connect (OIDC)
+Protocole;Authentification / Identité;WS-Federation
+Protocole;Authentification / Identité;SCIM 2.0
+Protocole;Authentification / Identité;FIDO2 / WebAuthn
+Protocole;Authentification / Identité;Passkeys
+Protocole;Authentification / Identité;U2F
+Protocole;Authentification / Identité;TOTP (RFC 6238)
+Protocole;Authentification / Identité;HOTP (RFC 4226)
+Protocole;Authentification / Identité;CHAP
+Protocole;Authentification / Identité;MS-CHAPv2
+Protocole;Authentification / Identité;PAP
+Protocole;Authentification / Identité;CAS
+Protocole;Authentification / Identité;SPNEGO
+Protocole;Authentification / Identité;JWT
+Protocole;Administration / Accès distant;SSH
+Protocole;Administration / Accès distant;Telnet (obsolète)
+Protocole;Administration / Accès distant;RDP
+Protocole;Administration / Accès distant;VNC / RFB
+Protocole;Administration / Accès distant;SPICE
+Protocole;Administration / Accès distant;ICA / HDX (Citrix)
+Protocole;Administration / Accès distant;PCoIP
+Protocole;Administration / Accès distant;Blast Extreme
+Protocole;Administration / Accès distant;NX
+Protocole;Administration / Accès distant;X11
+Protocole;Administration / Accès distant;WinRM
+Protocole;Administration / Accès distant;WMI
+Protocole;Administration / Accès distant;DCOM
+Protocole;Administration / Accès distant;PowerShell Remoting (PSRP)
+Protocole;Administration / Accès distant;IPMI
+Protocole;Administration / Accès distant;Redfish
+Protocole;Administration / Accès distant;iLO
+Protocole;Administration / Accès distant;iDRAC
+Protocole;Administration / Accès distant;AMT (Intel vPro)
+Protocole;Administration / Accès distant;Serial console
+Protocole;Administration / Accès distant;NETCONF
+Protocole;Administration / Accès distant;RESTCONF
+Protocole;Administration / Accès distant;gNMI
+Protocole;Administration / Accès distant;Ansible (SSH/WinRM)
+Protocole;Supervision / Journalisation;Syslog (RFC 3164 - BSD)
+Protocole;Supervision / Journalisation;Syslog (RFC 5424)
+Protocole;Supervision / Journalisation;Syslog over TLS (RFC 5425)
+Protocole;Supervision / Journalisation;RELP
+Protocole;Supervision / Journalisation;GELF
+Protocole;Supervision / Journalisation;CEF
+Protocole;Supervision / Journalisation;LEEF
+Protocole;Supervision / Journalisation;SNMPv1 (obsolète)
+Protocole;Supervision / Journalisation;SNMPv2c
+Protocole;Supervision / Journalisation;SNMPv3
+Protocole;Supervision / Journalisation;SNMP Trap
+Protocole;Supervision / Journalisation;NetFlow v5
+Protocole;Supervision / Journalisation;NetFlow v9
+Protocole;Supervision / Journalisation;IPFIX
+Protocole;Supervision / Journalisation;sFlow
+Protocole;Supervision / Journalisation;jFlow
+Protocole;Supervision / Journalisation;Windows Event Forwarding (WEF)
+Protocole;Supervision / Journalisation;WMI
+Protocole;Supervision / Journalisation;OpenTelemetry (OTLP)
+Protocole;Supervision / Journalisation;Prometheus exposition format
+Protocole;Supervision / Journalisation;ICMP
+Protocole;Supervision / Journalisation;Zabbix protocol
+Protocole;Supervision / Journalisation;NRPE
+Protocole;Supervision / Journalisation;NSCA
+Protocole;Supervision / Journalisation;LLDP
+Protocole;Supervision / Journalisation;CDP
+Protocole;Supervision / Journalisation;Beats protocol (Lumberjack)
+Protocole;Transfert de fichiers / Partage;FTP
+Protocole;Transfert de fichiers / Partage;FTPS
+Protocole;Transfert de fichiers / Partage;SFTP
+Protocole;Transfert de fichiers / Partage;SCP
+Protocole;Transfert de fichiers / Partage;TFTP
+Protocole;Transfert de fichiers / Partage;SMB 1 / CIFS (obsolète)
+Protocole;Transfert de fichiers / Partage;SMB 2
+Protocole;Transfert de fichiers / Partage;SMB 3.1.1
+Protocole;Transfert de fichiers / Partage;NFSv3
+Protocole;Transfert de fichiers / Partage;NFSv4
+Protocole;Transfert de fichiers / Partage;NFSv4.1
+Protocole;Transfert de fichiers / Partage;NFSv4.2
+Protocole;Transfert de fichiers / Partage;AFP
+Protocole;Transfert de fichiers / Partage;iSCSI
+Protocole;Transfert de fichiers / Partage;NVMe-oF
+Protocole;Transfert de fichiers / Partage;NVMe/TCP
+Protocole;Transfert de fichiers / Partage;Fibre Channel
+Protocole;Transfert de fichiers / Partage;FCoE
+Protocole;Transfert de fichiers / Partage;AoE
+Protocole;Transfert de fichiers / Partage;rsync
+Protocole;Transfert de fichiers / Partage;WebDAV
+Protocole;Transfert de fichiers / Partage;BitTorrent
+Protocole;Transfert de fichiers / Partage;S3 API
+Protocole;Transfert de fichiers / Partage;HTTP(S) download
+Protocole;Messagerie;SMTP
+Protocole;Messagerie;SMTPS (465)
+Protocole;Messagerie;Submission (587)
+Protocole;Messagerie;ESMTP
+Protocole;Messagerie;LMTP
+Protocole;Messagerie;POP3
+Protocole;Messagerie;POP3S
+Protocole;Messagerie;IMAP4
+Protocole;Messagerie;IMAPS
+Protocole;Messagerie;JMAP
+Protocole;Messagerie;MAPI / RPC over HTTP
+Protocole;Messagerie;MAPI over HTTP
+Protocole;Messagerie;Exchange ActiveSync
+Protocole;Messagerie;EWS (Exchange Web Services)
+Protocole;Messagerie;SPF
+Protocole;Messagerie;DKIM
+Protocole;Messagerie;DMARC
+Protocole;Messagerie;ARC
+Protocole;Messagerie;MTA-STS
+Protocole;Messagerie;DANE
+Protocole;Messagerie;BIMI
+Protocole;Réseau - Services;DNS
+Protocole;Réseau - Services;mDNS
+Protocole;Réseau - Services;LLMNR
+Protocole;Réseau - Services;NetBIOS-NS
+Protocole;Réseau - Services;NetBIOS
+Protocole;Réseau - Services;DHCPv4
+Protocole;Réseau - Services;DHCPv6
+Protocole;Réseau - Services;SLAAC
+Protocole;Réseau - Services;BOOTP
+Protocole;Réseau - Services;PXE
+Protocole;Réseau - Services;NTP
+Protocole;Réseau - Services;NTS (Network Time Security)
+Protocole;Réseau - Services;PTP (IEEE 1588)
+Protocole;Réseau - Services;SNTP
+Protocole;Réseau - Services;ARP
+Protocole;Réseau - Services;NDP
+Protocole;Réseau - Services;RARP
+Protocole;Réseau - Services;UPnP
+Protocole;Réseau - Services;SSDP
+Protocole;Réseau - Services;WPAD
+Protocole;Réseau - Services;WSUS (HTTP/HTTPS)
+Protocole;Réseau - Services;Proxy HTTP CONNECT
+Protocole;Réseau - Services;SOCKS5
+Protocole;Réseau - Services;RPC (MS-RPC)
+Protocole;Réseau - Services;ONC RPC / Portmapper
+Protocole;Réseau - Services;NIS (obsolète)
+Protocole;Réseau - Services;Zeroconf / Bonjour
+Protocole;Réseau - Transport / Internet;IPv4
+Protocole;Réseau - Transport / Internet;IPv6
+Protocole;Réseau - Transport / Internet;ICMP
+Protocole;Réseau - Transport / Internet;ICMPv6
+Protocole;Réseau - Transport / Internet;IGMP
+Protocole;Réseau - Transport / Internet;MLD
+Protocole;Réseau - Transport / Internet;TCP
+Protocole;Réseau - Transport / Internet;UDP
+Protocole;Réseau - Transport / Internet;SCTP
+Protocole;Réseau - Transport / Internet;QUIC
+Protocole;Réseau - Transport / Internet;GRE
+Protocole;Réseau - Transport / Internet;IP-in-IP
+Protocole;Réseau - Transport / Internet;VXLAN
+Protocole;Réseau - Transport / Internet;GENEVE
+Protocole;Réseau - Transport / Internet;NVGRE
+Protocole;Réseau - Transport / Internet;MPLS
+Protocole;Réseau - Transport / Internet;SRv6
+Protocole;Réseau - Transport / Internet;PPP
+Protocole;Réseau - Transport / Internet;PPPoE
+Protocole;Réseau - Transport / Internet;NAT
+Protocole;Réseau - Transport / Internet;NAT-T
+Protocole;Réseau - Transport / Internet;PAT
+Protocole;Réseau - Routage;OSPFv2
+Protocole;Réseau - Routage;OSPFv3
+Protocole;Réseau - Routage;BGP-4
+Protocole;Réseau - Routage;MP-BGP
+Protocole;Réseau - Routage;EVPN
+Protocole;Réseau - Routage;IS-IS
+Protocole;Réseau - Routage;RIPv1 (obsolète)
+Protocole;Réseau - Routage;RIPv2
+Protocole;Réseau - Routage;RIPng
+Protocole;Réseau - Routage;EIGRP
+Protocole;Réseau - Routage;VRRP
+Protocole;Réseau - Routage;HSRP
+Protocole;Réseau - Routage;GLBP
+Protocole;Réseau - Routage;CARP
+Protocole;Réseau - Routage;PIM-SM
+Protocole;Réseau - Routage;BFD
+Protocole;Réseau - Routage;LDP
+Protocole;Réseau - Routage;RSVP-TE
+Protocole;Réseau - Routage;Policy-Based Routing
+Protocole;Réseau - Couche 2;Ethernet (IEEE 802.3)
+Protocole;Réseau - Couche 2;802.1Q (VLAN)
+Protocole;Réseau - Couche 2;802.1ad (QinQ)
+Protocole;Réseau - Couche 2;802.1D (STP)
+Protocole;Réseau - Couche 2;802.1w (RSTP)
+Protocole;Réseau - Couche 2;802.1s (MSTP)
+Protocole;Réseau - Couche 2;PVST+
+Protocole;Réseau - Couche 2;LACP (802.3ad / 802.1AX)
+Protocole;Réseau - Couche 2;PAgP
+Protocole;Réseau - Couche 2;LLDP
+Protocole;Réseau - Couche 2;CDP
+Protocole;Réseau - Couche 2;VTP
+Protocole;Réseau - Couche 2;DTP
+Protocole;Réseau - Couche 2;TRILL
+Protocole;Réseau - Couche 2;SPB
+Protocole;Réseau - Couche 2;PoE (802.3af/at/bt)
+Protocole;Réseau - Couche 2;Jumbo Frames
+Protocole;Sans-fil;Wi-Fi 4 (802.11n)
+Protocole;Sans-fil;Wi-Fi 5 (802.11ac)
+Protocole;Sans-fil;Wi-Fi 6 (802.11ax)
+Protocole;Sans-fil;Wi-Fi 6E
+Protocole;Sans-fil;Wi-Fi 7 (802.11be)
+Protocole;Sans-fil;802.11a/b/g
+Protocole;Sans-fil;WEP (obsolète)
+Protocole;Sans-fil;WPA (obsolète)
+Protocole;Sans-fil;WPA2-Personal
+Protocole;Sans-fil;WPA2-Enterprise
+Protocole;Sans-fil;WPA3-Personal (SAE)
+Protocole;Sans-fil;WPA3-Enterprise
+Protocole;Sans-fil;OWE
+Protocole;Sans-fil;802.11r
+Protocole;Sans-fil;802.11k/v
+Protocole;Sans-fil;802.11w (PMF)
+Protocole;Sans-fil;CAPWAP
+Protocole;Sans-fil;Bluetooth 5.x
+Protocole;Sans-fil;Bluetooth LE
+Protocole;Sans-fil;Zigbee
+Protocole;Sans-fil;Z-Wave
+Protocole;Sans-fil;Thread
+Protocole;Sans-fil;Matter
+Protocole;Sans-fil;LoRaWAN
+Protocole;Sans-fil;Sigfox
+Protocole;Sans-fil;NB-IoT
+Protocole;Sans-fil;LTE-M
+Protocole;Sans-fil;4G LTE
+Protocole;Sans-fil;5G NR
+Protocole;Sans-fil;NFC
+Protocole;Sans-fil;RFID
+Protocole;Industriel / OT;Modbus TCP
+Protocole;Industriel / OT;Modbus RTU
+Protocole;Industriel / OT;OPC UA
+Protocole;Industriel / OT;OPC DA
+Protocole;Industriel / OT;DNP3
+Protocole;Industriel / OT;IEC 60870-5-104
+Protocole;Industriel / OT;IEC 61850
+Protocole;Industriel / OT;PROFINET
+Protocole;Industriel / OT;PROFIBUS
+Protocole;Industriel / OT;EtherNet/IP (CIP)
+Protocole;Industriel / OT;EtherCAT
+Protocole;Industriel / OT;BACnet
+Protocole;Industriel / OT;KNX
+Protocole;Industriel / OT;CAN bus
+Protocole;Industriel / OT;S7comm
+Protocole;Industriel / OT;HART
+Protocole;Industriel / OT;M-Bus
+Protocole;Industriel / OT;DLMS/COSEM
+Protocole;Virtualisation / Stockage / Cluster;VMware vMotion
+Protocole;Virtualisation / Stockage / Cluster;VMware VMCI
+Protocole;Virtualisation / Stockage / Cluster;VMware VAAI
+Protocole;Virtualisation / Stockage / Cluster;Hyper-V Live Migration
+Protocole;Virtualisation / Stockage / Cluster;Corosync / Totem
+Protocole;Virtualisation / Stockage / Cluster;Ceph RADOS
+Protocole;Virtualisation / Stockage / Cluster;Gluster protocol
+Protocole;Virtualisation / Stockage / Cluster;DRBD
+Protocole;Virtualisation / Stockage / Cluster;Proxmox cluster (pmxcfs)
+Protocole;Virtualisation / Stockage / Cluster;Kubernetes API
+Protocole;Virtualisation / Stockage / Cluster;etcd raft
+Protocole;Virtualisation / Stockage / Cluster;Raft
+Protocole;Virtualisation / Stockage / Cluster;Paxos
+Protocole;Virtualisation / Stockage / Cluster;CARP
+Protocole;Virtualisation / Stockage / Cluster;VRRP
+Protocole;Bases de données (protocoles filaires);MySQL protocol
+Protocole;Bases de données (protocoles filaires);PostgreSQL wire protocol
+Protocole;Bases de données (protocoles filaires);TDS (SQL Server)
+Protocole;Bases de données (protocoles filaires);Oracle TNS / Net8
+Protocole;Bases de données (protocoles filaires);MongoDB Wire Protocol
+Protocole;Bases de données (protocoles filaires);RESP (Redis)
+Protocole;Bases de données (protocoles filaires);Memcached protocol
+Protocole;Bases de données (protocoles filaires);CQL (Cassandra)
+Protocole;Bases de données (protocoles filaires);ODBC
+Protocole;Bases de données (protocoles filaires);JDBC
+Protocole;Bases de données (protocoles filaires);OLE DB
+Protocole;Bases de données (protocoles filaires);ADO.NET
+Protocole;Impression / Divers;IPP
+Protocole;Impression / Divers;IPPS
+Protocole;Impression / Divers;LPD/LPR
+Protocole;Impression / Divers;RAW 9100 (JetDirect)
+Protocole;Impression / Divers;SMB printing
+Protocole;Impression / Divers;AirPrint
+Protocole;Impression / Divers;Mopria
+Protocole;Impression / Divers;WSD
+Protocole;Impression / Divers;CUPS
+Protocole;Impression / Divers;SANE
+Protocole;Impression / Divers;eSCL
+Réglementation;Normes ISO / IEC;ISO/IEC 27001:2022
+Réglementation;Normes ISO / IEC;ISO/IEC 27001:2013
+Réglementation;Normes ISO / IEC;ISO/IEC 27002:2022
+Réglementation;Normes ISO / IEC;ISO/IEC 27002:2013
+Réglementation;Normes ISO / IEC;ISO/IEC 27003
+Réglementation;Normes ISO / IEC;ISO/IEC 27004
+Réglementation;Normes ISO / IEC;ISO/IEC 27005:2022
+Réglementation;Normes ISO / IEC;ISO/IEC 27007
+Réglementation;Normes ISO / IEC;ISO/IEC 27017 (Cloud)
+Réglementation;Normes ISO / IEC;ISO/IEC 27018 (Données perso cloud)
+Réglementation;Normes ISO / IEC;ISO/IEC 27019 (Énergie)
+Réglementation;Normes ISO / IEC;ISO/IEC 27031 (Continuité TIC)
+Réglementation;Normes ISO / IEC;ISO/IEC 27032 (Cybersécurité)
+Réglementation;Normes ISO / IEC;ISO/IEC 27033 (Sécurité réseau)
+Réglementation;Normes ISO / IEC;ISO/IEC 27034 (Sécurité applicative)
+Réglementation;Normes ISO / IEC;ISO/IEC 27035 (Gestion des incidents)
+Réglementation;Normes ISO / IEC;ISO/IEC 27036 (Fournisseurs)
+Réglementation;Normes ISO / IEC;ISO/IEC 27037 (Preuves numériques)
+Réglementation;Normes ISO / IEC;ISO/IEC 27701 (Vie privée - PIMS)
+Réglementation;Normes ISO / IEC;ISO/IEC 27799 (Santé)
+Réglementation;Normes ISO / IEC;ISO 22301 (Continuité d'activité)
+Réglementation;Normes ISO / IEC;ISO 22313
+Réglementation;Normes ISO / IEC;ISO 31000 (Management des risques)
+Réglementation;Normes ISO / IEC;ISO/IEC 20000-1 (Gestion des services IT)
+Réglementation;Normes ISO / IEC;ISO 9001 (Qualité)
+Réglementation;Normes ISO / IEC;ISO 14001 (Environnement)
+Réglementation;Normes ISO / IEC;ISO 50001 (Énergie)
+Réglementation;Normes ISO / IEC;ISO/IEC 42001 (IA)
+Réglementation;Normes ISO / IEC;ISO/IEC 23894 (Risques IA)
+Réglementation;Normes ISO / IEC;ISO/IEC 15408 (Critères Communs)
+Réglementation;Normes ISO / IEC;ISO/IEC 19790 (Modules crypto)
+Réglementation;Normes ISO / IEC;ISO/IEC 17025
+Réglementation;Normes ISO / IEC;ISO/IEC 17065
+Réglementation;Normes ISO / IEC;ISO/IEC 29100 (Vie privée)
+Réglementation;Normes ISO / IEC;ISO/IEC 29134 (AIPD)
+Réglementation;Normes ISO / IEC;ISO/IEC 38500 (Gouvernance IT)
+Réglementation;Normes ISO / IEC;ISO/IEC 62443 (Sécurité industrielle)
+Réglementation;Normes ISO / IEC;IEC 62443-2-1
+Réglementation;Normes ISO / IEC;IEC 62443-3-3
+Réglementation;Normes ISO / IEC;IEC 62443-4-2
+Réglementation;Normes ISO / IEC;ISO 28000 (Supply chain)
+Réglementation;Normes ISO / IEC;ISO/SAE 21434 (Automobile)
+Réglementation;Réglementation France - ANSSI / SGDSN;II 901 (Instruction interministérielle - Diffusion Restreinte)
+Réglementation;Réglementation France - ANSSI / SGDSN;IGI 1300 (Protection du secret de la défense nationale)
+Réglementation;Réglementation France - ANSSI / SGDSN;II 300 (Protection des systèmes d'information sensibles)
+Réglementation;Réglementation France - ANSSI / SGDSN;II 910 (Articles contrôlés de la SSI - ACSSI)
+Réglementation;Réglementation France - ANSSI / SGDSN;II 920 (Systèmes traitant du secret)
+Réglementation;Réglementation France - ANSSI / SGDSN;PSSIE (Politique SSI de l'État)
+Réglementation;Réglementation France - ANSSI / SGDSN;RGS v2 (Référentiel Général de Sécurité)
+Réglementation;Réglementation France - ANSSI / SGDSN;LPM 2013 - Article 22 (OIV)
+Réglementation;Réglementation France - ANSSI / SGDSN;LPM 2024-2030
+Réglementation;Réglementation France - ANSSI / SGDSN;Arrêtés sectoriels OIV
+Réglementation;Réglementation France - ANSSI / SGDSN;Décret OSE (NIS1)
+Réglementation;Réglementation France - ANSSI / SGDSN;SecNumCloud 3.2
+Réglementation;Réglementation France - ANSSI / SGDSN;Qualification PASSI (Prestataires d'audit)
+Réglementation;Réglementation France - ANSSI / SGDSN;Qualification PRIS (Réponse aux incidents)
+Réglementation;Réglementation France - ANSSI / SGDSN;Qualification PDIS (Détection d'incidents)
+Réglementation;Réglementation France - ANSSI / SGDSN;Qualification PACS (Accompagnement & conseil)
+Réglementation;Réglementation France - ANSSI / SGDSN;Qualification PVID (Vérification d'identité)
+Réglementation;Réglementation France - ANSSI / SGDSN;CSPN (Certification de Sécurité de Premier Niveau)
+Réglementation;Réglementation France - ANSSI / SGDSN;Critères Communs (CC) - certification ANSSI
+Réglementation;Réglementation France - ANSSI / SGDSN;Guide d'hygiène informatique ANSSI (42 mesures)
+Réglementation;Réglementation France - ANSSI / SGDSN;Recommandations de sécurité Linux ANSSI (BP-028)
+Réglementation;Réglementation France - ANSSI / SGDSN;Recommandations Active Directory ANSSI
+Réglementation;Réglementation France - ANSSI / SGDSN;Recommandations TLS ANSSI
+Réglementation;Réglementation France - ANSSI / SGDSN;Recommandations SSH OpenSSH ANSSI
+Réglementation;Réglementation France - ANSSI / SGDSN;Recommandations IPsec ANSSI
+Réglementation;Réglementation France - ANSSI / SGDSN;Recommandations journalisation ANSSI
+Réglementation;Réglementation France - ANSSI / SGDSN;Recommandations administration sécurisée SI (PA-022)
+Réglementation;Réglementation France - ANSSI / SGDSN;Recommandations architecture SI sensibles ou DR (PA-102)
+Réglementation;Réglementation France - ANSSI / SGDSN;Guide EBIOS Risk Manager
+Réglementation;Réglementation France - ANSSI / SGDSN;MonServiceSécurisé
+Réglementation;Réglementation France - ANSSI / SGDSN;MonAideCyber
+Réglementation;Réglementation France - ANSSI / SGDSN;Homologation de sécurité (guide ANSSI)
+Réglementation;Réglementation France - ANSSI / SGDSN;Référentiel Général d'Interopérabilité (RGI)
+Réglementation;Réglementation France - ANSSI / SGDSN;RGAA (Accessibilité)
+Réglementation;Réglementation France - ANSSI / SGDSN;RGESN (Écoconception numérique)
+Réglementation;Réglementation France - ANSSI / SGDSN;Doctrine Cloud au centre
+Réglementation;Réglementation France - ANSSI / SGDSN;PGSSI-S (Santé)
+Réglementation;Réglementation France - ANSSI / SGDSN;HDS (Hébergeur de Données de Santé) v2
+Réglementation;Réglementation France - ANSSI / SGDSN;Référentiel CaRE (Santé)
+Réglementation;Réglementation France - ANSSI / SGDSN;Cyberscore (Loi 2022-309)
+Réglementation;Réglementation France - ANSSI / SGDSN;Loi Godfrain (Art. 323-1 Code pénal)
+Réglementation;Réglementation France - ANSSI / SGDSN;LCEN
+Réglementation;Réglementation France - ANSSI / SGDSN;Loi Informatique et Libertés
+Réglementation;Réglementation France - ANSSI / SGDSN;Référentiel ANSSI PAMS
+Réglementation;Réglementation France - ANSSI / SGDSN;Référentiel PSCO / PSDC (eIDAS FR)
+Réglementation;Réglementation Union Européenne;NIS2 (Directive UE 2022/2555)
+Réglementation;Réglementation Union Européenne;NIS1 (Directive UE 2016/1148)
+Réglementation;Réglementation Union Européenne;RGPD / GDPR (Règlement UE 2016/679)
+Réglementation;Réglementation Union Européenne;DORA (Règlement UE 2022/2554 - Finance)
+Réglementation;Réglementation Union Européenne;CRA - Cyber Resilience Act (Règlement UE 2024/2847)
+Réglementation;Réglementation Union Européenne;CER - Directive Résilience des entités critiques
+Réglementation;Réglementation Union Européenne;AI Act (Règlement UE 2024/1689)
+Réglementation;Réglementation Union Européenne;eIDAS (Règlement UE 910/2014)
+Réglementation;Réglementation Union Européenne;eIDAS 2 (Règlement UE 2024/1183)
+Réglementation;Réglementation Union Européenne;Cybersecurity Act (Règlement UE 2019/881)
+Réglementation;Réglementation Union Européenne;EUCC (Schéma de certification Critères Communs UE)
+Réglementation;Réglementation Union Européenne;EUCS (Schéma de certification cloud UE)
+Réglementation;Réglementation Union Européenne;Cyber Solidarity Act
+Réglementation;Réglementation Union Européenne;Data Act
+Réglementation;Réglementation Union Européenne;Data Governance Act
+Réglementation;Réglementation Union Européenne;DSA (Digital Services Act)
+Réglementation;Réglementation Union Européenne;DMA (Digital Markets Act)
+Réglementation;Réglementation Union Européenne;Directive ePrivacy
+Réglementation;Réglementation Union Européenne;Directive RED (équipements radio) - Acte délégué cybersécurité
+Réglementation;Réglementation Union Européenne;NIS2 - Actes d'exécution (UE 2024/2690)
+Réglementation;Réglementation Union Européenne;ENISA - Guides et bonnes pratiques
+Réglementation;Réglementation Union Européenne;Directive PSD2 (Paiements)
+Réglementation;Réglementation Union Européenne;EBA Guidelines ICT & Security Risk
+Réglementation;Réglementation Union Européenne;MiCA
+Réglementation;Référentiels CIS;CIS Controls v8.1
+Réglementation;Référentiels CIS;CIS Controls v8
+Réglementation;Référentiels CIS;CIS Controls v7.1
+Réglementation;Référentiels CIS;CIS Benchmark Debian Linux 12
+Réglementation;Référentiels CIS;CIS Benchmark Debian Linux 11
+Réglementation;Référentiels CIS;CIS Benchmark Ubuntu Linux 24.04 LTS
+Réglementation;Référentiels CIS;CIS Benchmark Ubuntu Linux 22.04 LTS
+Réglementation;Référentiels CIS;CIS Benchmark RHEL 9
+Réglementation;Référentiels CIS;CIS Benchmark RHEL 8
+Réglementation;Référentiels CIS;CIS Benchmark Rocky / Alma Linux 9
+Réglementation;Référentiels CIS;CIS Benchmark Windows 11 Enterprise
+Réglementation;Référentiels CIS;CIS Benchmark Windows 10 Enterprise
+Réglementation;Référentiels CIS;CIS Benchmark Windows Server 2025
+Réglementation;Référentiels CIS;CIS Benchmark Windows Server 2022
+Réglementation;Référentiels CIS;CIS Benchmark Windows Server 2019
+Réglementation;Référentiels CIS;CIS Benchmark macOS
+Réglementation;Référentiels CIS;CIS Benchmark FreeBSD
+Réglementation;Référentiels CIS;CIS Benchmark VMware ESXi 8
+Réglementation;Référentiels CIS;CIS Benchmark Docker
+Réglementation;Référentiels CIS;CIS Benchmark Kubernetes
+Réglementation;Référentiels CIS;CIS Benchmark Apache HTTP Server
+Réglementation;Référentiels CIS;CIS Benchmark Nginx
+Réglementation;Référentiels CIS;CIS Benchmark Microsoft IIS
+Réglementation;Référentiels CIS;CIS Benchmark MySQL
+Réglementation;Référentiels CIS;CIS Benchmark PostgreSQL
+Réglementation;Référentiels CIS;CIS Benchmark Microsoft SQL Server
+Réglementation;Référentiels CIS;CIS Benchmark Oracle Database
+Réglementation;Référentiels CIS;CIS Benchmark MongoDB
+Réglementation;Référentiels CIS;CIS Benchmark Microsoft 365
+Réglementation;Référentiels CIS;CIS Benchmark Microsoft Azure
+Réglementation;Référentiels CIS;CIS Benchmark AWS
+Réglementation;Référentiels CIS;CIS Benchmark Google Cloud
+Réglementation;Référentiels CIS;CIS Benchmark Cisco IOS
+Réglementation;Référentiels CIS;CIS Benchmark Palo Alto
+Réglementation;Référentiels CIS;CIS Benchmark Fortinet FortiGate
+Réglementation;Référentiels CIS;CIS Benchmark Google Chrome
+Réglementation;Référentiels CIS;CIS Benchmark Mozilla Firefox
+Réglementation;Référentiels CIS;CIS Benchmark Microsoft Office
+Réglementation;Référentiels CIS;CIS Hardened Images
+Réglementation;Référentiels CIS;CIS-CAT Pro
+Réglementation;Référentiels NIST (USA);NIST CSF 2.0
+Réglementation;Référentiels NIST (USA);NIST CSF 1.1
+Réglementation;Référentiels NIST (USA);NIST SP 800-53 Rev. 5
+Réglementation;Référentiels NIST (USA);NIST SP 800-171 Rev. 3
+Réglementation;Référentiels NIST (USA);NIST SP 800-37 (RMF)
+Réglementation;Référentiels NIST (USA);NIST SP 800-30 (Évaluation des risques)
+Réglementation;Référentiels NIST (USA);NIST SP 800-61 (Gestion d'incidents)
+Réglementation;Référentiels NIST (USA);NIST SP 800-63 (Identité numérique)
+Réglementation;Référentiels NIST (USA);NIST SP 800-207 (Zero Trust)
+Réglementation;Référentiels NIST (USA);NIST SP 800-82 (Sécurité OT)
+Réglementation;Référentiels NIST (USA);NIST SP 800-88 (Effacement des supports)
+Réglementation;Référentiels NIST (USA);NIST SP 800-92 (Gestion des logs)
+Réglementation;Référentiels NIST (USA);NIST SP 800-115 (Tests de sécurité)
+Réglementation;Référentiels NIST (USA);NIST SP 800-190 (Conteneurs)
+Réglementation;Référentiels NIST (USA);NIST SP 800-218 (SSDF)
+Réglementation;Référentiels NIST (USA);NIST AI RMF
+Réglementation;Référentiels NIST (USA);FIPS 140-3
+Réglementation;Référentiels NIST (USA);FIPS 140-2
+Réglementation;Référentiels NIST (USA);FIPS 197 (AES)
+Réglementation;Référentiels NIST (USA);NIST PQC (FIPS 203/204/205)
+Réglementation;Référentiels NIST (USA);CMMC 2.0
+Réglementation;Référentiels NIST (USA);FedRAMP
+Réglementation;Référentiels NIST (USA);FISMA
+Réglementation;Réglementations sectorielles / internationales;PCI DSS v4.0.1
+Réglementation;Réglementations sectorielles / internationales;PCI DSS v3.2.1
+Réglementation;Réglementations sectorielles / internationales;PCI PIN
+Réglementation;Réglementations sectorielles / internationales;PCI P2PE
+Réglementation;Réglementations sectorielles / internationales;PA-DSS (obsolète)
+Réglementation;Réglementations sectorielles / internationales;HIPAA (Santé USA)
+Réglementation;Réglementations sectorielles / internationales;SOX (Sarbanes-Oxley)
+Réglementation;Réglementations sectorielles / internationales;GLBA
+Réglementation;Réglementations sectorielles / internationales;CCPA / CPRA (Californie)
+Réglementation;Réglementations sectorielles / internationales;SOC 1 (SSAE 18)
+Réglementation;Réglementations sectorielles / internationales;SOC 2 Type I
+Réglementation;Réglementations sectorielles / internationales;SOC 2 Type II
+Réglementation;Réglementations sectorielles / internationales;SOC 3
+Réglementation;Réglementations sectorielles / internationales;SWIFT CSP (CSCF)
+Réglementation;Réglementations sectorielles / internationales;TISAX (Automobile)
+Réglementation;Réglementations sectorielles / internationales;UNECE R155 / R156 (Automobile)
+Réglementation;Réglementations sectorielles / internationales;DO-326A / ED-202A (Aéronautique)
+Réglementation;Réglementations sectorielles / internationales;NERC CIP (Énergie USA)
+Réglementation;Réglementations sectorielles / internationales;BSI IT-Grundschutz (Allemagne)
+Réglementation;Réglementations sectorielles / internationales;BSI C5 (Cloud Allemagne)
+Réglementation;Réglementations sectorielles / internationales;Cyber Essentials (UK)
+Réglementation;Réglementations sectorielles / internationales;Cyber Essentials Plus (UK)
+Réglementation;Réglementations sectorielles / internationales;NCSC CAF (UK)
+Réglementation;Réglementations sectorielles / internationales;ENS - Esquema Nacional de Seguridad (Espagne)
+Réglementation;Réglementations sectorielles / internationales;ACN / Perimetro (Italie)
+Réglementation;Réglementations sectorielles / internationales;LPD / nLPD (Suisse)
+Réglementation;Réglementations sectorielles / internationales;Essential Eight (Australie)
+Réglementation;Réglementations sectorielles / internationales;CSA STAR
+Réglementation;Réglementations sectorielles / internationales;CSA Cloud Controls Matrix v4
+Réglementation;Réglementations sectorielles / internationales;MITRE ATT&CK
+Réglementation;Réglementations sectorielles / internationales;MITRE D3FEND
+Réglementation;Réglementations sectorielles / internationales;OWASP Top 10 (2021)
+Réglementation;Réglementations sectorielles / internationales;OWASP Top 10 (2025)
+Réglementation;Réglementations sectorielles / internationales;OWASP ASVS 5.0
+Réglementation;Réglementations sectorielles / internationales;OWASP ASVS 4.0.3
+Réglementation;Réglementations sectorielles / internationales;OWASP MASVS
+Réglementation;Réglementations sectorielles / internationales;OWASP API Security Top 10
+Réglementation;Réglementations sectorielles / internationales;OWASP LLM Top 10
+Réglementation;Réglementations sectorielles / internationales;OWASP SAMM
+Réglementation;Réglementations sectorielles / internationales;SLSA
+Réglementation;Réglementations sectorielles / internationales;CVSS v4.0
+Réglementation;Réglementations sectorielles / internationales;CVSS v3.1
+Réglementation;Réglementations sectorielles / internationales;STIG DISA
+Réglementation;Réglementations sectorielles / internationales;Solvabilité II
+Réglementation;Réglementations sectorielles / internationales;Bâle III
+Réglementation;Réglementations sectorielles / internationales;LCB-FT
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;ITIL 4
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;ITIL v3
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;COBIT 2019
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;COBIT 5
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;TOGAF 10
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;PRINCE2
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;PMBOK 7
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Agile / Scrum
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;SAFe
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Lean IT
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;DevSecOps
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;CMMI 3.0
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;EBIOS RM
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;EBIOS 2010
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;MEHARI
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;OCTAVE
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;FAIR
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;CRAMM
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;STRIDE
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;PASTA
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;DREAD
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Zero Trust Architecture
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Défense en profondeur
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Moindre privilège
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Tiering model AD (Tier 0/1/2)
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Modèle Enterprise Access Model (Microsoft)
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Kill Chain (Lockheed Martin)
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Diamond Model
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;PDCA (Roue de Deming)
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;RACI
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;BIA (Business Impact Analysis)
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;PCA / PRA
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;PSSI (Politique de Sécurité des SI)
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Charte informatique
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;AIPD / DPIA
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Registre des traitements RGPD
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;SMSI
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Plan de gestion de crise cyber
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Exercices de crise cyber (ANSSI)
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Bug Bounty / VDP
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;Security.txt (RFC 9116)
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;CERT-FR avis et alertes
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;CVE / NVD
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;EPSS
+Réglementation;Gouvernance / Méthodes / Bonnes pratiques;CISA KEV

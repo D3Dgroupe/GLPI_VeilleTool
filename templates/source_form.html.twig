@@ -1,0 +1,75 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Formulaire d'un flux RSS / Atom.
+ #}
+
+{% extends 'generic_show_form.html.twig' %}
+{% import 'components/form/fields_macros.html.twig' as fields %}
+
+{% block form_fields %}
+    {{ fields.textField('name', item.fields['name'], __('Name'), {'required': true}) }}
+
+    {{ fields.dropdownArrayField(
+        'sourcetype',
+        item.fields['sourcetype'],
+        types,
+        _n('Type', 'Types', 1),
+        {'display_emptychoice': false}
+    ) }}
+
+    {{ fields.textField('url', item.fields['url'], __('URL'), {
+        'required': true,
+        'helper': __('Adresse du flux RSS 2.0, RSS 1.0 (RDF) ou Atom à collecter.', 'veilletool')
+    }) }}
+
+    {{ fields.dropdownField(
+        'GlpiPlugin\\Veilletool\\Category',
+        'categories',
+        categories,
+        __('Catégories appliquées aux cartes collectées', 'veilletool'),
+        {
+            'multiple': true,
+            'entity_restrict': -1,
+            'helper': __('Ce sont ces catégories qui déterminent les onglets dans lesquels les cartes apparaîtront.', 'veilletool')
+        }
+    ) }}
+
+    {{ fields.numberField('max_items', item.fields['max_items'], __('Nombre maximum d\'entrées par collecte', 'veilletool'), {
+        'min': 1,
+        'max': 500,
+        'step': 1
+    }) }}
+
+    {{ fields.numberField('interest', item.fields['interest'], __('Intérêt de la source (0 à 100)', 'veilletool'), {
+        'min': 0,
+        'max': 100,
+        'step': 1,
+        'helper': __('Composante « source » du score d\'intérêt des cartes collectées ici. Sa modification replace ces cartes dans la file de reclassement.', 'veilletool')
+    }) }}
+
+    {{ fields.dropdownYesNo('is_active', item.fields['is_active'], __('Actif')) }}
+
+    {{ fields.textareaField('comment', item.fields['comment'], _n('Comment', 'Comments', get_plural_number())) }}
+
+    {% if not item.isNewItem() %}
+        {{ fields.largeTitle(__('Dernière collecte', 'veilletool'), 'ti ti-refresh') }}
+
+        {{ fields.readOnlyField(
+            'last_import',
+            item.fields['last_import'] ? item.fields['last_import']|formatted_datetime : __('Jamais', 'veilletool'),
+            __('Date', 'veilletool')
+        ) }}
+
+        {{ fields.readOnlyField(
+            'last_message',
+            item.fields['last_message']|default('-'),
+            __('Résultat', 'veilletool')
+        ) }}
+
+        {{ fields.readOnlyField(
+            'imported_count',
+            item.fields['imported_count'],
+            __('Total des cartes collectées', 'veilletool')
+        ) }}
+    {% endif %}
+{% endblock %}

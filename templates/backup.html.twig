@@ -1,0 +1,180 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Écran « Sauvegarde » : export et import de la configuration, bloc par bloc.
+ #}
+
+{% set page_url = path('/plugins/veilletool/front/backup.php') %}
+
+<div class="veille-backup">
+
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+        <h2 class="mb-0">
+            <i class="ti ti-archive me-1"></i>{{ __('Sauvegarde', 'veilletool') }}
+        </h2>
+    </div>
+
+    <div class="alert alert-info">
+        <i class="ti ti-info-circle me-1"></i>
+        {{ __('Chaque bloc produit exactement le fichier que son import sait relire : une sauvegarde se rejoue telle quelle, sur la même instance comme sur une autre. Les fichiers sont en CSV UTF-8, séparateur point-virgule, et s\'ouvrent au tableur.', 'veilletool') }}
+        <div class="mt-2">
+            <i class="ti ti-alert-triangle me-1"></i>
+            {{ __('L\'export ne contient aucune carte de veille, aucun commentaire et aucun favori : c\'est la configuration qu\'il sauvegarde, pas les données collectées.', 'veilletool') }}
+        </div>
+    </div>
+
+    {# ---------------------------------------------------------------- #}
+    {# Barème importé : lequel appliquer ?                               #}
+    {#                                                                   #}
+    {# Un fichier de barème peut en porter plusieurs - celui qui était   #}
+    {# en vigueur, et chaque préréglage. Appliquer d'office le premier   #}
+    {# venu serait un coup de dé.                                        #}
+    {# ---------------------------------------------------------------- #}
+    {% if pending_scoring is not null %}
+        <div class="card border-primary mb-3">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="ti ti-question-mark me-1"></i>{{ __('Quel barème appliquer ?', 'veilletool') }}
+                </h3>
+            </div>
+
+            <form method="post" action="{{ page_url }}">
+                <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="scoring_content" value="{{ pending_scoring.content }}">
+
+                <div class="card-body">
+                    <p class="text-secondary">
+                        {{ _n(
+                            'Ce fichier contient %d barème. Choisissez ce qu\'il faut en faire.',
+                            'Ce fichier contient %d barèmes. Choisissez ce qu\'il faut en faire.',
+                            pending_scoring.blocks|length, 'veilletool')|format(pending_scoring.blocks|length) }}
+                    </p>
+
+                    <div class="veille-check-list">
+                        {% for name, values in pending_scoring.blocks %}
+                            <label class="veille-check-item">
+                                <input class="form-check-input" type="radio" name="scoring_choice"
+                                       value="{{ name }}" {{ loop.first ? 'checked' : '' }}>
+                                <span>
+                                    <i class="ti {{ name == '' ? 'ti-adjustments-star' : 'ti-bookmark' }}"></i>
+                                    <strong>{{ preset_labels[name] ?? name }}</strong>
+                                    <span class="text-secondary">
+                                        {{ _n('%d réglage', '%d réglages', values|length, 'veilletool')|format(values|length) }}
+                                    </span>
+                                </span>
+                            </label>
+                        {% endfor %}
+
+                        <label class="veille-check-item">
+                            <input class="form-check-input" type="radio" name="scoring_choice" value="__all__">
+                            <span>
+                                <i class="ti ti-bookmarks"></i>
+                                <strong>{{ __('Enregistrer tous les préréglages du fichier', 'veilletool') }}</strong>
+                                <span class="text-secondary">
+                                    {{ __('sans toucher au barème en vigueur', 'veilletool') }}
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <small class="form-hint mt-2">
+                        {{ __('Appliquer un barème remplace les réglages en vigueur. Les enregistrer comme préréglages ne change rien tant que vous n\'en appliquez pas un depuis Veille → Score d\'intérêt.', 'veilletool') }}
+                    </small>
+                </div>
+
+                <div class="card-footer d-flex flex-wrap gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ti ti-check me-1"></i>{{ __('Valider', 'veilletool') }}
+                    </button>
+                    <a class="btn btn-ghost-secondary" href="{{ page_url }}">
+                        {{ __('Annuler', 'veilletool') }}
+                    </a>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+
+    <div class="row row-cards">
+        {% for key, block in blocks %}
+            {% set volume = volumes[key] ?? 0 %}
+            {% set may_import = block.right == constant('UPDATE') ? can_update : can_create %}
+
+            <div class="col-12 col-xl-6 d-flex">
+                <div class="card flex-fill">
+                    <div class="card-header d-flex flex-wrap align-items-center justify-content-between gap-2">
+                        <h3 class="card-title mb-0">
+                            <i class="{{ block.icon }} me-1"></i>{{ block.label }}
+                        </h3>
+                        <span class="badge bg-secondary-lt"
+                              title="{{ __('Nombre de lignes que l\'export produirait.', 'veilletool') }}">
+                            {{ volume }}
+                        </span>
+                    </div>
+
+                    <div class="card-body d-flex flex-column">
+                        <p class="text-secondary">{{ block.hint }}</p>
+
+                        <p class="mb-3"><code class="veille-backup-header">{{ block.header }}</code></p>
+
+                        <div class="d-flex flex-wrap gap-2 align-items-start mt-auto">
+                            {# --- Export --- #}
+                            <form method="post" action="{{ page_url }}">
+                                <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="block" value="{{ key }}">
+                                <button type="submit" name="export" value="1"
+                                        class="btn btn-outline-secondary" {{ volume > 0 ? '' : 'disabled' }}>
+                                    <i class="ti ti-download me-1"></i>{{ __('Exporter', 'veilletool') }}
+                                </button>
+                            </form>
+
+                            {# --- Import --- #}
+                            {% if may_import %}
+                                <form method="post" action="{{ page_url }}" enctype="multipart/form-data"
+                                      class="d-flex flex-wrap gap-2 align-items-start flex-fill">
+                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="block" value="{{ key }}">
+
+                                    <input type="file" name="csvfile" class="form-control flex-fill"
+                                           style="min-width: 12rem;" accept=".csv,text/csv" required
+                                           aria-label="{{ __('Fichier à importer', 'veilletool') }}">
+
+                                    <button type="submit" name="import" value="1" class="btn btn-primary"
+                                            onclick="return confirm('{{ __('Importer ce fichier ? Les valeurs qu\'il contient remplaceront la configuration correspondante.', 'veilletool')|e('js') }}');">
+                                        <i class="ti ti-upload me-1"></i>{{ __('Importer', 'veilletool') }}
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+
+                        {% if volume == 0 %}
+                            <small class="form-hint mt-2">
+                                {{ __('Rien à exporter pour le moment.', 'veilletool') }}
+                            </small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="ti ti-help-circle me-1"></i>{{ __('Reconstituer une installation', 'veilletool') }}
+            </h3>
+        </div>
+        <div class="card-body">
+            <p class="text-secondary mb-2">
+                {{ __('Pour reporter une configuration complète sur une autre instance, importez dans cet ordre :', 'veilletool') }}
+            </p>
+            <ol class="text-secondary mb-2">
+                <li>{{ __('Thèmes de veille - les flux s\'y rattachent, ils doivent exister d\'abord.', 'veilletool') }}</li>
+                <li>{{ __('Référentiel technologique.', 'veilletool') }}</li>
+                <li>{{ __('Flux RSS / ATOM.', 'veilletool') }}</li>
+                <li>{{ __('Général, ou Score d\'intérêt seul.', 'veilletool') }}</li>
+            </ol>
+            <small class="form-hint">
+                {{ __('Un thème cité par un flux mais absent de l\'instance est signalé et ignoré : le flux est tout de même créé, sans ce thème.', 'veilletool') }}
+            </small>
+        </div>
+    </div>
+</div>
