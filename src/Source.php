@@ -11,6 +11,8 @@ namespace GlpiPlugin\Veilletool;
 use CommonDBTM;
 use CronTask;
 use Glpi\Application\View\TemplateRenderer;
+use GlpiPlugin\Veilletool\Feed\FeedImporter;
+use GlpiPlugin\Veilletool\Feed\PageExtractor;
 use GlpiPlugin\Veilletool\Feed\SourceCron;
 use GlpiPlugin\Veilletool\Feed\UrlGuard;
 use Session;
@@ -104,6 +106,8 @@ class Source extends CommonDBTM
         $this->fields['sourcetype'] = self::TYPE_RSS;
         $this->fields['is_active']  = 1;
         $this->fields['max_items']  = 50;
+        $this->fields['fetch_full_content'] = 0;
+        $this->fields['content_selector']   = '';
         $this->fields['interest']   = Settings::getInt('default_interest');
     }
 
@@ -203,6 +207,23 @@ class Source extends CommonDBTM
                 );
                 return false;
             }
+        }
+
+        if (array_key_exists('content_selector', $input)) {
+            $input['content_selector'] = trim((string) $input['content_selector']);
+
+            if (!PageExtractor::isValidSelector($input['content_selector'])) {
+                Session::addMessageAfterRedirect(
+                    __('Sélecteur de contenu invalide : utilisez un nom d\'élément, une classe (.nom) ou un identifiant (#nom), éventuellement imbriqués (main .corps) ou en variantes séparées par des virgules.', 'veilletool'),
+                    false,
+                    ERROR
+                );
+                return false;
+            }
+        }
+
+        if (array_key_exists('fetch_full_content', $input)) {
+            $input['fetch_full_content'] = (int) (bool) $input['fetch_full_content'];
         }
 
         if (isset($input['max_items'])) {
@@ -321,6 +342,7 @@ class Source extends CommonDBTM
             'item'       => $this,
             'categories' => $ID > 0 ? $this->getCategoryIds() : [],
             'types'      => self::getTypes(),
+            'max_pages'  => FeedImporter::MAX_PAGES_PER_COLLECT,
             'params'     => $options + ['canedit' => $this->canUpdateItem()],
         ]);
 
@@ -478,7 +500,12 @@ class Source extends CommonDBTM
                     __('%1$d nouvelle(s) carte(s), %2$d mise(s) à jour', 'veilletool'),
                     $result['imported'],
                     $result['updated']
-                )
+                ) . (($result['pages_failed'] ?? 0) > 0
+                    ? ' - ' . sprintf(
+                        __('%d page(s) d\'article non récupérée(s), résumé du flux conservé', 'veilletool'),
+                        $result['pages_failed']
+                    )
+                    : '')
                 : implode(' | ', $result['errors']),
             'imported_count' => (int) $this->fields['imported_count'] + $result['imported'],
         ]);

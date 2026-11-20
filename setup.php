@@ -25,7 +25,13 @@ use GlpiPlugin\Veilletool\ScorePreset;
 use GlpiPlugin\Veilletool\Source;
 use GlpiPlugin\Veilletool\Technology;
 
-define('PLUGIN_VEILLETOOL_VERSION', '1.10.0');
+define('PLUGIN_VEILLETOOL_VERSION', '1.11.0');
+
+/**
+ * Zone de contenu des pages du CERT-FR, reprise par le catalogue et par la
+ * migration vers la 1.11.0.
+ */
+define('PLUGIN_VEILLETOOL_CERTFR_SELECTOR', '.publication-content, article.article');
 
 /** Version minimale de GLPI supportée (incluse) */
 define('PLUGIN_VEILLETOOL_MIN_GLPI', '11.0.0');

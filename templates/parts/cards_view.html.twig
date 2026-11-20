@@ -13,15 +13,21 @@
             {% endif %}
         </div>
     {% else %}
-        <div class="row row-cards">
+        <div class="row row-cards"
+             data-veille-items
+             data-veille-unread-class="veille-card-unread"
+             data-veille-read-class="veille-card-read"
+             {% if favorites_only %}data-veille-drop-unfavorited{% endif %}
+             {% if filters.unread_only %}data-veille-drop-read{% endif %}>
             {% for card in articles %}
                 {% set score_title = __('Score d\'intérêt', 'veilletool') ~ ' : ' ~ card.interest_score ~ '/100' %}
                 {% for part in card.score_detail %}
                     {% set score_title = score_title ~ ' · ' ~ part.label ~ ' ' ~ part.value
                         ~ ' (' ~ __('poids', 'veilletool') ~ ' ' ~ part.weight ~ ')' %}
                 {% endfor %}
-                <div class="col-12 col-md-6 col-xxl-4 d-flex">
-                    <div class="card veille-card flex-fill {{ card.is_read ? 'veille-card-read' : 'veille-card-unread' }}">
+                <div class="col-12 col-md-6 col-xxl-4 d-flex" data-veille-item>
+                    <div class="card veille-card flex-fill {{ card.is_read ? 'veille-card-read' : 'veille-card-unread' }}"
+                         data-veille-read-target>
                         {% if card.image_url is not empty %}
                             <img class="card-img-top veille-card-img" src="{{ card.image_url }}" alt="" loading="lazy">
                         {% endif %}
@@ -35,9 +41,9 @@
                                 {% else %}
                                     <span class="badge bg-secondary-lt">{{ __('Sans catégorie', 'veilletool') }}</span>
                                 {% endfor %}
-                                {% if not card.is_read %}
-                                    <span class="badge bg-azure">{{ __('Non lue', 'veilletool') }}</span>
-                                {% endif %}
+                                {# Toujours rendu, masqué par la feuille de style sur une
+                                   carte lue : une bascule AJAX n'a qu'une classe à changer. #}
+                                <span class="badge bg-azure veille-unread-mark">{{ __('Non lue', 'veilletool') }}</span>
                             </div>
 
                             <h3 class="card-title mb-1">
@@ -104,31 +110,17 @@
                         </div>
 
                         <div class="card-footer veille-card-actions d-flex align-items-center gap-2">
-                            <form method="post" action="{{ form_url }}" class="d-inline">
-                                <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
-                                <input type="hidden" name="articles_id" value="{{ card.id }}">
-                                <button type="submit" name="toggle_read" value="1"
-                                        class="btn btn-sm btn-ghost-secondary"
-                                        title="{{ card.is_read ? __('Marquer comme non lue', 'veilletool') : __('Marquer comme lue', 'veilletool') }}">
-                                    <i class="ti {{ card.is_read ? 'ti-mail-opened' : 'ti-mail' }}"></i>
-                                </button>
-                            </form>
-
+                            {# Favori en premier, comme en tête de ligne dans la vue liste. #}
                             {% if can_update %}
-                                <form method="post" action="{{ form_url }}" class="d-inline">
-                                    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="articles_id" value="{{ card.id }}">
-                                    <button type="submit" name="toggle_favorite" value="1"
-                                            class="btn btn-sm btn-ghost-secondary {{ card.is_favorite ? 'text-yellow' : '' }}"
-                                            title="{{ card.is_favorite ? __('Retirer des favoris', 'veilletool') : __('Ajouter aux favoris', 'veilletool') }}">
-                                        <i class="ti {{ card.is_favorite ? 'ti-star-filled' : 'ti-star' }}"></i>
-                                    </button>
-                                </form>
+                                {{ include('@veilletool/parts/favorite_toggle.html.twig') }}
                             {% elseif card.is_favorite %}
-                                <span class="btn btn-sm btn-ghost-secondary text-yellow disabled">
+                                <span class="btn btn-sm btn-ghost-secondary text-yellow disabled"
+                                      title="{{ __('En favori', 'veilletool') }}">
                                     <i class="ti ti-star-filled"></i>
                                 </span>
                             {% endif %}
+
+                            {{ include('@veilletool/parts/read_toggle.html.twig') }}
 
                             <a class="btn btn-sm btn-ghost-secondary" href="{{ card.ai_url }}"
                                target="_blank" rel="noopener noreferrer"

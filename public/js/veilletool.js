@@ -2,7 +2,9 @@
  * Plugin GLPI « Outils de Veille » (veilletool)
  *
  * Confort d'utilisation uniquement : toutes les actions restent des
- * formulaires HTML classiques et fonctionnent sans JavaScript.
+ * formulaires HTML classiques et fonctionnent sans JavaScript. Les bascules
+ * favori et lu / non lu de l'observatoire passent en AJAX quand le script
+ * est chargé.
  */
 (function () {
     'use strict';
@@ -650,6 +652,161 @@
     }
 
     /**
+     * Met à jour un bouton de bascule et sa carte selon le nouvel état.
+     *
+     * Les deux états du bouton (icône, infobulle, classe) sont décrits par
+     * ses attributs `data-veille-*` : aucun libellé n'est écrit ici.
+     *
+     * @param {HTMLFormElement}   form
+     * @param {HTMLButtonElement} button
+     * @param {boolean}           state  true = en favori / lue
+     */
+    function applyToggle(form, button, state) {
+        var data = button.dataset;
+        var icon = button.querySelector('i.ti');
+
+        if (icon !== null) {
+            icon.classList.remove(data.veilleOnIcon, data.veilleOffIcon);
+            icon.classList.add(state ? data.veilleOnIcon : data.veilleOffIcon);
+        }
+        if (data.veilleOnClass) {
+            button.classList.toggle(data.veilleOnClass, state);
+        }
+        button.title = state ? data.veilleOnTitle : data.veilleOffTitle;
+        button.setAttribute('aria-pressed', state ? 'true' : 'false');
+
+        var item = form.closest('[data-veille-item]');
+        var container = form.closest('[data-veille-items]');
+        if (item === null || container === null) {
+            return;
+        }
+
+        var type = form.dataset.veilleToggle;
+
+        if (type === 'read') {
+            var target = item.querySelector('[data-veille-read-target]') || item;
+            if (container.dataset.veilleUnreadClass) {
+                target.classList.toggle(container.dataset.veilleUnreadClass, !state);
+            }
+            if (container.dataset.veilleReadClass) {
+                target.classList.toggle(container.dataset.veilleReadClass, state);
+            }
+        }
+
+        // L'onglet « Favoris » et le filtre « non lues » ne montrent plus la
+        // carte après la bascule : elle disparaît, comme elle l'aurait fait
+        // au rechargement.
+        if ((type === 'favorite' && !state && container.hasAttribute('data-veille-drop-unfavorited'))
+            || (type === 'read' && state && container.hasAttribute('data-veille-drop-read'))) {
+            item.remove();
+        }
+    }
+
+    /**
+     * Repli : envoi classique du formulaire, avec rechargement de la page.
+     *
+     * `form.submit()` n'emporte pas le bouton cliqué : son nom est donc
+     * ajouté en champ caché.
+     *
+     * @param {HTMLFormElement}   form
+     * @param {HTMLButtonElement} button
+     */
+    function submitClassic(form, button) {
+        var field = document.createElement('input');
+        field.type = 'hidden';
+        field.name = button.name;
+        field.value = button.value;
+        form.appendChild(field);
+        form.submit();
+    }
+
+    /**
+     * Bascules favori et lu / non lu sans recharger la page.
+     *
+     * Recharger l'observatoire ramène en haut du tableau : on perd l'endroit
+     * où l'on était. La bascule part donc en AJAX - GLPI attend alors le
+     * jeton CSRF dans l'en-tête `X-Glpi-Csrf-Token`, et le conserve, ce qui
+     * permet de rebasculer la même carte sans recharger.
+     *
+     * Le serveur répond par le nouvel état ; c'est lui, et non une simple
+     * inversion locale, qui décide de l'affichage.
+     *
+     * En cas d'échec avant traitement (droit, jeton, réseau), le formulaire
+     * repart de façon classique : GLPI affiche alors son message d'erreur.
+     * Une réponse acceptée mais illisible fait recharger la page : la
+     * bascule a pu avoir lieu, la renvoyer l'annulerait.
+     *
+     * Sans JavaScript, les formulaires fonctionnent comme avant.
+     *
+     * @param {ParentNode} root
+     */
+    function initToggles(root) {
+        if (typeof window.fetch !== 'function' || typeof window.FormData !== 'function') {
+            return;
+        }
+
+        root.querySelectorAll('form[data-veille-toggle]').forEach(function (form) {
+            if (form.dataset.veilleToggleReady === '1') {
+                return;
+            }
+            form.dataset.veilleToggleReady = '1';
+
+            form.addEventListener('submit', function (event) {
+                var button = form.querySelector('button[type="submit"][name]');
+                if (button === null) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                if (button.getAttribute('aria-busy') === 'true') {
+                    return;
+                }
+                button.setAttribute('aria-busy', 'true');
+
+                var token = form.querySelector('input[name="_glpi_csrf_token"]');
+                var body = new FormData(form);
+                body.append(button.name, button.value);
+
+                window.fetch(form.action, {
+                    method: 'POST',
+                    body: body,
+                    credentials: 'same-origin',
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-Glpi-Csrf-Token': token === null ? '' : token.value
+                    }
+                }).then(function (response) {
+                    if (!response.ok) {
+                        button.removeAttribute('aria-busy');
+                        submitClassic(form, button);
+                        return;
+                    }
+
+                    return response.json().then(function (payload) {
+                        if (payload === null || payload.ok !== true) {
+                            throw new Error('invalid payload');
+                        }
+
+                        button.removeAttribute('aria-busy');
+                        applyToggle(form, button, payload.state === true);
+
+                        if (payload.message && typeof window.glpi_toast_info === 'function') {
+                            window.glpi_toast_info(payload.message);
+                        }
+                    }).catch(function () {
+                        window.location.reload();
+                    });
+                }, function () {
+                    button.removeAttribute('aria-busy');
+                    submitClassic(form, button);
+                });
+            });
+        });
+    }
+
+    /**
      * @param {ParentNode} root
      */
     function boot(root) {
@@ -662,6 +819,7 @@
         initIconPickers(root);
         initAiComposers(root);
         initCharts(root);
+        initToggles(root);
     }
 
     function start() {

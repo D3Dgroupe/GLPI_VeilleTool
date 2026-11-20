@@ -9,7 +9,7 @@ L'historique des versions est dans [CHANGELOG.md](CHANGELOG.md).
 
 * Clé technique du plugin : `veilletool`
 * Auteur : Kevin D3D
-* Version : 1.10.0
+* Version : 1.11.0
 * Compatibilité : GLPI >= 11.0.0 et < 12.0.0, PHP >= 8.2
 
 ---
@@ -404,8 +404,8 @@ Le même écran accepte un fichier CSV encodé en UTF-8, séparateur
 point-virgule :
 
 ```
-Nom;URL;Type;Thèmes;Intérêt;Actif;Description
-CERT-FR - Avis;https://www.cert.ssi.gouv.fr/avis/feed/;rss;cybersecurite;95;0;Vulnérabilités publiées, versions touchées et correctifs.
+Nom;URL;Type;Thèmes;Intérêt;Actif;Description;Contenu complet;Sélecteur
+CERT-FR - Avis;https://cert.cyber.gouv.fr/avis/feed/;rss;cybersecurite;95;0;Vulnérabilités publiées, versions touchées et correctifs.;1;.publication-content
 Blog interne;https://exemple.test/feed;;technologie-d3d;;oui;Publications de l'équipe infrastructure.
 ```
 
@@ -418,9 +418,34 @@ Blog interne;https://exemple.test/feed;;technologie-d3d;;oui;Publications de l'�
 | **Intérêt** | non | 0 à 100 ; à défaut, la note par défaut des réglages |
 | **Actif** | non | `1`, `oui`, `vrai`... pour activer. **Vide vaut désactivé** |
 | **Description** | non | Ce que le flux publie. Enregistrée dans le champ *Commentaires* du flux, affichée sous son nom et cherchée par le mot clé |
+| **Contenu complet** | non | `1`, `oui`... pour reprendre le contenu de la page de chaque article. **Vide vaut désactivé** |
+| **Sélecteur** | non | Zone de contenu de la page (`article`, `.publication-content`, `main .corps`...). Vide ou invalide : la zone est cherchée seule |
 
 La première ligne peut être un en-tête (`Nom;...`). Les flux déjà connus sont
 ignorés : réimporter le même fichier n'ajoute rien. Taille maximale : 1 Mio.
+
+### Flux qui ne publient qu'un résumé
+
+Certains flux - le CERT-FR en tête - ne donnent pour chaque entrée qu'une
+phrase : les risques, les systèmes affectés et les correctifs ne sont que sur
+la page de l'article. L'option **Récupérer le contenu complet depuis la page
+de l'article**, sur la fiche du flux, fait charger cette page et en reprendre
+la zone de contenu à la place du résumé.
+
+- La page est chargée avec les mêmes garde-fous que le flux : adresse
+  examinée, taille plafonnée, redirections revalidées une à une.
+- La zone se désigne par un **sélecteur** propre au flux : un élément
+  (`article`), une classe (`.publication-content`), un identifiant
+  (`#contenu`), imbriqués (`main .corps`), ou plusieurs variantes séparées
+  par des virgules, essayées dans l'ordre. Vide, ou sans résultat, la zone
+  est cherchée dans `<article>` puis `<main>`.
+- Au plus **15 pages par collecte** d'un flux, les entrées les plus récentes
+  d'abord. Une page inaccessible laisse le résumé en place ; ce n'est pas une
+  erreur de collecte, mais le résultat le signale.
+- Une carte complétée n'est plus écrasée par le résumé aux collectes
+  suivantes. Le contenu reste purifié à l'enregistrement et à l'affichage.
+- Sur la fiche d'une carte importée, **Recharger le contenu** reprend la page
+  à la demande - pour les cartes collectées avant que l'option soit posée.
 
 ### Quand un flux ne se collecte pas
 

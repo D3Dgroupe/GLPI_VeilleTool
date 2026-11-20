@@ -1,7 +1,7 @@
-Nom;URL;Type;Thèmes;Intérêt;Actif;Description
-CERT-FR - Alertes;https://www.cert.ssi.gouv.fr/alerte/feed/;rss;cybersecurite;95;0;Alertes de sécurité du CERT gouvernemental français : menaces en cours d'exploitation appelant une réaction immédiate. Le flux le plus urgent du catalogue.
-CERT-FR - Avis de sécurité;https://www.cert.ssi.gouv.fr/avis/feed/;rss;cybersecurite;95;0;Avis du CERT-FR : vulnérabilités publiées, versions touchées et correctifs, produit par produit. Volume quotidien soutenu.
-CERT-FR - Actualités;https://www.cert.ssi.gouv.fr/actualite/feed/;rss;cybersecurite;80;0;Notes d'information et bulletins d'actualité du CERT-FR, plus analytiques que les avis.
+Nom;URL;Type;Thèmes;Intérêt;Actif;Description;Contenu complet;Sélecteur
+CERT-FR - Alertes;https://cert.cyber.gouv.fr/alerte/feed/;rss;cybersecurite;95;0;Alertes de sécurité du CERT gouvernemental français : menaces en cours d'exploitation appelant une réaction immédiate. Le flux le plus urgent du catalogue.;1;.publication-content, article.article
+CERT-FR - Avis de sécurité;https://cert.cyber.gouv.fr/avis/feed/;rss;cybersecurite;95;0;Avis du CERT-FR : vulnérabilités publiées, versions touchées et correctifs, produit par produit. Volume quotidien soutenu.;1;.publication-content, article.article
+CERT-FR - Actualités;https://cert.cyber.gouv.fr/actualite/feed/;rss;cybersecurite;80;0;Notes d'information et bulletins d'actualité du CERT-FR, plus analytiques que les avis.;1;.publication-content, article.article
 ANSSI - Actualités;https://cyber.gouv.fr/actualites/feed;rss;cybersecurite;80;0;Publications de l'agence nationale : guides d'hygiène, référentiels, recommandations et positions officielles.
 CISA - Cybersecurity Advisories;https://www.cisa.gov/cybersecurity-advisories/all.xml;rss;cybersecurite;90;0;Avis de l'agence américaine de cybersécurité : vulnérabilités activement exploitées, campagnes d'attaque et systèmes industriels.
 NCSC UK - Rapports et avis;https://www.ncsc.gov.uk/api/1/services/v1/report-rss-feed.xml;rss;cybersecurite;75;0;Rapports d'analyse et avis techniques du centre britannique : menaces d'État, guides de durcissement.

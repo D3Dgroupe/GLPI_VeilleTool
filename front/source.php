@@ -71,6 +71,18 @@ $report = static function (Source $source, array $result): void {
         true,
         INFO
     );
+
+    if (($result['pages_failed'] ?? 0) > 0) {
+        Session::addMessageAfterRedirect(
+            sprintf(
+                __('%1$s : %2$d page(s) d\'article non récupérée(s), le résumé du flux a été conservé.', 'veilletool'),
+                htmlescape($source->fields['name']),
+                $result['pages_failed']
+            ),
+            false,
+            WARNING
+        );
+    }
 };
 
 /**

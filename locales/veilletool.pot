@@ -1229,3 +1229,42 @@ msgstr ""
 msgid "... et %d autre(s) ligne(s) ignorée(s)."
 msgstr ""
 
+
+msgid "Contenu rechargé depuis la page de l'article."
+msgstr ""
+
+msgid "Rechargement impossible : %s"
+msgstr ""
+
+msgid "%1$s : %2$d page(s) d'article non récupérée(s), le résumé du flux a été conservé."
+msgstr ""
+
+msgid "La carte n'a pas de lien exploitable vers sa page."
+msgstr ""
+
+msgid "Aucune zone de contenu n'a été reconnue dans la page."
+msgstr ""
+
+msgid "Sélecteur de contenu invalide : utilisez un nom d'élément, une classe (.nom) ou un identifiant (#nom), éventuellement imbriqués (main .corps) ou en variantes séparées par des virgules."
+msgstr ""
+
+msgid "%d page(s) d'article non récupérée(s), résumé du flux conservé"
+msgstr ""
+
+msgid "Remplace le contenu de la carte par celui de la page de l'article"
+msgstr ""
+
+msgid "Recharger le contenu"
+msgstr ""
+
+msgid "Récupérer le contenu complet depuis la page de l'article"
+msgstr ""
+
+msgid "Pour les flux qui ne publient qu'un résumé (CERT-FR par exemple) : la page de chaque nouvel article est chargée, et sa zone de contenu remplace le résumé. Une requête de plus par article, au plus %d par collecte."
+msgstr ""
+
+msgid "Zone de contenu de la page"
+msgstr ""
+
+msgid "Facultatif. Sélecteur de la zone à reprendre : un élément (article), une classe (.publication-content), un identifiant (#contenu), imbriqués (main .corps) ou en variantes séparées par des virgules. Vide, ou sans résultat, la zone est cherchée dans les éléments article, puis main."
+msgstr ""
