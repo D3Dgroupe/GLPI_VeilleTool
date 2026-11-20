@@ -742,9 +742,10 @@ function plugin_veilletool_migrateTo171(Migration $migration)
  * - une colonne sur les cartes, qui date la reprise : une carte complétée
  * n'est plus écrasée par le résumé du flux aux collectes suivantes ;
  * - les flux du CERT-FR suivent le déménagement du site
- * (`www.cert.ssi.gouv.fr` → `cert.cyber.gouv.fr`) et reçoivent l'option :
- * leur flux ne porte qu'une phrase de résumé, la page porte les risques,
- * les systèmes affectés et les correctifs.
+ * (`www.cert.ssi.gouv.fr` → `cert.cyber.gouv.fr`) et reçoivent le
+ * sélecteur de leur zone de contenu. L'option elle-même reste désactivée :
+ * c'est à l'administrateur de décider qu'une collecte va chercher, en plus
+ * du flux, la page de chaque article.
  *
  * @param Migration $migration
  *
@@ -785,9 +786,8 @@ function plugin_veilletool_migrateTo1110(Migration $migration)
             }
 
             $DB->update($sources, [
-                'url'                => $new,
-                'fetch_full_content' => 1,
-                'content_selector'   => PLUGIN_VEILLETOOL_CERTFR_SELECTOR,
+                'url'              => $new,
+                'content_selector' => PLUGIN_VEILLETOOL_CERTFR_SELECTOR,
             ], ['id' => (int) $row['id']]);
         }
     }

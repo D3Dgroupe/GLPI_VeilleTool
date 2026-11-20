@@ -405,7 +405,7 @@ point-virgule :
 
 ```
 Nom;URL;Type;Thèmes;Intérêt;Actif;Description;Contenu complet;Sélecteur
-CERT-FR - Avis;https://cert.cyber.gouv.fr/avis/feed/;rss;cybersecurite;95;0;Vulnérabilités publiées, versions touchées et correctifs.;1;.publication-content
+CERT-FR - Avis;https://cert.cyber.gouv.fr/avis/feed/;rss;cybersecurite;95;0;Vulnérabilités publiées, versions touchées et correctifs.;0;.publication-content
 Blog interne;https://exemple.test/feed;;technologie-d3d;;oui;Publications de l'équipe infrastructure.
 ```
 

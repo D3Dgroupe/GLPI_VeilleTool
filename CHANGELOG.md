@@ -44,17 +44,20 @@ versionnage [SemVer](https://semver.org/lang/fr/).
   la marquer lue la masque. Sans JavaScript, les formulaires fonctionnent
   comme avant.
 - Catalogue livré : les trois flux du CERT-FR suivent le déménagement du
-  site (`www.cert.ssi.gouv.fr` → `cert.cyber.gouv.fr`) et ont le contenu
-  complet activé.
+  site (`www.cert.ssi.gouv.fr` → `cert.cyber.gouv.fr`). Leur sélecteur de
+  zone de contenu est pré-rempli ; l'option de contenu complet reste
+  **désactivée**, à activer sur la fiche du flux.
 
 ### Migration
 
 - Colonnes `fetch_full_content` et `content_selector` sur les flux,
   `date_content_fetched` sur les cartes.
 - Les flux CERT-FR existants, reconnus à leur ancienne adresse, reçoivent la
-  nouvelle et l'option de contenu complet. Les cartes déjà importées
-  (dont la 2173) se corrigent avec *Recharger le contenu*, ou d'elles-mêmes
-  si elles figurent encore dans le flux, à raison de 15 par collecte.
+  nouvelle et le sélecteur de leur zone de contenu. L'option de contenu
+  complet n'est **pas** activée : une fois posée sur le flux, les cartes
+  encore présentes dans le flux se complètent d'elles-mêmes, à raison de 15
+  par collecte. Les autres (dont la 2173) se corrigent avec *Recharger le
+  contenu*, qui fonctionne que l'option soit posée ou non.
 
 ---
 

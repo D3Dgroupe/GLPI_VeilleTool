@@ -28,8 +28,8 @@ use GlpiPlugin\Veilletool\Technology;
 define('PLUGIN_VEILLETOOL_VERSION', '1.11.0');
 
 /**
- * Zone de contenu des pages du CERT-FR, reprise par le catalogue et par la
- * migration vers la 1.11.0.
+ * Zone de contenu des pages du CERT-FR, posée par la migration vers la
+ * 1.11.0 (le catalogue livré la porte aussi, en toutes lettres).
  */
 define('PLUGIN_VEILLETOOL_CERTFR_SELECTOR', '.publication-content, article.article');
 
