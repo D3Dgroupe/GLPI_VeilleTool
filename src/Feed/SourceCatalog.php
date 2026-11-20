@@ -48,7 +48,7 @@ final class SourceCatalog
     public const CSV_MAX_SIZE = 1048576;
 
     /** Colonnes du format d'échange des flux */
-    public const CSV_HEADER = 'Nom;URL;Type;Thèmes;Intérêt;Actif;Description';
+    public const CSV_HEADER = 'Nom;URL;Type;Thèmes;Intérêt;Actif;Description;Contenu complet;Sélecteur';
 
     /**
      * Exporte les flux au format CSV.
@@ -101,6 +101,8 @@ final class SourceCatalog
                     (string) (int) $row['interest'],
                     (string) (int) $row['is_active'],
                     (string) ($row['comment'] ?? ''),
+                    (string) (int) ($row['fetch_full_content'] ?? 0),
+                    (string) ($row['content_selector'] ?? ''),
             ]);
         }
 
@@ -166,7 +168,8 @@ final class SourceCatalog
      * Importe des flux depuis un CSV.
      *
      * Colonnes attendues, séparées par un point-virgule : `Nom ; URL ; Type
-     * ; Thèmes ; Intérêt ; Actif ; Description`.
+     * ; Thèmes ; Intérêt ; Actif ; Description ; Contenu complet ;
+     * Sélecteur`.
      * Seules les deux premières sont obligatoires.
      *
      * - **Type** - `rss` ou `atom`.
@@ -181,6 +184,11 @@ final class SourceCatalog
      * - **Actif** - `1` / `oui` pour activer. **Vide vaut désactivé** : un
      * import ne doit pas mettre en route une collecte que personne n'a
      * demandée.
+     * - **Contenu complet** - `1` / `oui` pour reprendre le contenu de la
+     * page de chaque article, quand le flux n'en publie qu'un résumé.
+     * Vide, désactivé : un fichier d'avant la 1.11.0 se relit tel quel.
+     * - **Sélecteur** - zone de contenu de la page (`.publication-content`,
+     * `article`…). Vide, ou invalide, la zone est cherchée seule.
      * - **Description** - ce que le flux publie, et ce qu'il vaut.
      * C'est ce qui permet de choisir quoi activer sans avoir à ouvrir
      * chaque adresse.
@@ -283,8 +291,14 @@ final class SourceCatalog
                     // La description explique ce que le flux publie : elle
                     // est ce qui permet d'activer en connaissance de cause.
                     'comment'     => trim((string) ($parts[6] ?? '')),
+                    'fetch_full_content' => self::parseFlag((string) ($parts[7] ?? '')) ? 1 : 0,
                     '_no_message' => true,
                 ];
+
+                $selector = trim((string) ($parts[8] ?? ''));
+                if ($selector !== '' && PageExtractor::isValidSelector($selector)) {
+                    $input['content_selector'] = $selector;
+                }
 
                 [$categories, $unknown] = self::resolveCategories((string) ($parts[3] ?? ''));
 

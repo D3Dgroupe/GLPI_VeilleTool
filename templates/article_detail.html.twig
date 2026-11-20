@@ -234,6 +234,19 @@
                     </button>
                 </form>
 
+                {# Reprend le contenu de la page source, pour une carte importée
+                   avec le seul résumé de son flux. #}
+                {% if not card.is_manual and card.url is not empty %}
+                    <form method="post" action="{{ form_url }}" class="d-inline">
+                        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="articles_id" value="{{ card.id }}">
+                        <button type="submit" name="reload_content" value="1" class="btn btn-sm btn-outline-secondary"
+                                title="{{ __('Remplace le contenu de la carte par celui de la page de l\'article', 'veilletool') }}">
+                            <i class="ti ti-file-download me-1"></i>{{ __('Recharger le contenu', 'veilletool') }}
+                        </button>
+                    </form>
+                {% endif %}
+
                 <a class="btn btn-sm btn-outline-secondary" href="{{ form_url }}?id={{ card.id }}&edit=1">
                     <i class="ti ti-edit me-1"></i>{{ __('Modifier', 'veilletool') }}
                 </a>

@@ -18,11 +18,14 @@ use GlpiPlugin\Veilletool\Article_Technology;
 use GlpiPlugin\Veilletool\Cards\ArticleDecorator;
 use GlpiPlugin\Veilletool\Comment;
 use GlpiPlugin\Veilletool\Favorite;
+use GlpiPlugin\Veilletool\Feed\PageContent;
 use GlpiPlugin\Veilletool\Menu;
 use GlpiPlugin\Veilletool\Navigation;
 use GlpiPlugin\Veilletool\ReadStatus;
 use GlpiPlugin\Veilletool\Score;
+use GlpiPlugin\Veilletool\Source;
 use GlpiPlugin\Veilletool\Technology;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 if (!class_exists(Kernel::class, autoload: false)) {
     header('HTTP/1.1 404 Not Found');
@@ -76,12 +79,59 @@ if (isset($_POST['purge'])) {
 }
 
 // --------------------------------------------------------------------------
+// Bascules favori et lu / non lu
+//
+// Envoyées depuis l'observatoire, elles partent en AJAX : la réponse est
+// alors un objet JSON portant le nouvel état, et la page n'est pas
+// rechargée - on garde sa place dans le tableau.
+// Sans JavaScript, le formulaire part normalement et l'on revient à l'écran
+// d'origine.
+// --------------------------------------------------------------------------
+$is_ajax = strtolower((string) ($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '')) === 'xmlhttprequest';
+
+/**
+ * Réponse JSON d'une bascule envoyée en AJAX.
+ *
+ * GLPI 11 transmet tel quel l'objet `Response` rendu par un script de
+ * `front/`.
+ *
+ * @param int                  $status Code HTTP
+ * @param array<string, mixed> $data
+ */
+$send_json = static function (int $status, array $data): JsonResponse {
+    $response = new JsonResponse($data, $status);
+    $response->setEncodingOptions($response->getEncodingOptions() | JSON_UNESCAPED_UNICODE);
+    $response->headers->set('Cache-Control', 'no-store');
+
+    return $response;
+};
+
+// --------------------------------------------------------------------------
 // Favori (partagé entre tous les utilisateurs)
 // --------------------------------------------------------------------------
 if (isset($_POST['toggle_favorite'])) {
+    $articles_id = (int) ($_POST['articles_id'] ?? 0);
+
+    if ($is_ajax) {
+        if (!Session::haveRight(Article::$rightname, UPDATE)) {
+            return $send_json(403, ['ok' => false]);
+        }
+        if (!$article->getFromDB($articles_id)) {
+            return $send_json(404, ['ok' => false]);
+        }
+
+        $now = Favorite::toggle($articles_id, $users_id);
+        return $send_json(200, [
+            'ok'      => true,
+            'state'   => $now,
+            'message' => $now
+                ? __('Carte ajoutée aux favoris.', 'veilletool')
+                : __('Carte retirée des favoris.', 'veilletool'),
+        ]);
+    }
+
     Session::checkRight(Article::$rightname, UPDATE);
 
-    $articles_id = (int) $_POST['articles_id'];
     if ($article->getFromDB($articles_id)) {
         $now = Favorite::toggle($articles_id, $users_id);
         Session::addMessageAfterRedirect(
@@ -93,23 +143,80 @@ if (isset($_POST['toggle_favorite'])) {
         );
     }
 
-    Navigation::back(Article::getFormURLWithID((int) ($_POST['articles_id'] ?? 0)));
+    Navigation::back(Article::getFormURLWithID($articles_id));
 }
 
 // --------------------------------------------------------------------------
 // Marquage lu / non lu (propre à l'utilisateur connecté)
 // --------------------------------------------------------------------------
 if (isset($_POST['toggle_read'])) {
-    $articles_id = (int) $_POST['articles_id'];
-    if ($article->getFromDB($articles_id)) {
+    $articles_id = (int) ($_POST['articles_id'] ?? 0);
+    $found       = $article->getFromDB($articles_id);
+    $now         = false;
+
+    if ($found) {
         if (ReadStatus::isRead($articles_id, $users_id)) {
             ReadStatus::markAsUnread($articles_id, $users_id);
         } else {
             ReadStatus::markAsRead($articles_id, $users_id);
+            $now = true;
         }
     }
 
-    Navigation::back(Article::getFormURLWithID((int) ($_POST['articles_id'] ?? 0)));
+    if ($is_ajax) {
+        return $send_json($found ? 200 : 404, ['ok' => $found, 'state' => $now]);
+    }
+
+    Navigation::back(Article::getFormURLWithID($articles_id));
+}
+
+// --------------------------------------------------------------------------
+// Rechargement du contenu depuis la page de l'article
+//
+// Corrige une carte importée avec le seul résumé du flux - avant que
+// l'option « contenu complet » ne soit posée sur sa source, ou quand la
+// page était alors inaccessible. Une carte saisie à la main n'a pas de page
+// à relire : son contenu est celui de son auteur.
+// --------------------------------------------------------------------------
+if (isset($_POST['reload_content'])) {
+    Session::checkRight(Article::$rightname, UPDATE);
+
+    $articles_id = (int) ($_POST['articles_id'] ?? 0);
+
+    if ($article->getFromDB($articles_id) && $article->fields['origin'] !== Article::ORIGIN_MANUAL) {
+        $selector = '';
+        $source   = new Source();
+        if ($source->getFromDB((int) $article->fields['plugin_veilletool_sources_id'])) {
+            $selector = (string) ($source->fields['content_selector'] ?? '');
+        }
+
+        $page = PageContent::fetch((string) $article->fields['url'], $selector);
+
+        if ($page->isSuccess()) {
+            $article->update([
+                'id'                   => $articles_id,
+                'content'              => $page->html,
+                'date_content_fetched' => $_SESSION['glpi_currenttime'] ?? date('Y-m-d H:i:s'),
+            ]);
+
+            Session::addMessageAfterRedirect(
+                __('Contenu rechargé depuis la page de l\'article.', 'veilletool'),
+                true,
+                INFO
+            );
+        } else {
+            Session::addMessageAfterRedirect(
+                sprintf(
+                    __('Rechargement impossible : %s', 'veilletool'),
+                    htmlescape((string) $page->error)
+                ),
+                false,
+                ERROR
+            );
+        }
+    }
+
+    Navigation::back(Article::getFormURLWithID($articles_id));
 }
 
 // --------------------------------------------------------------------------

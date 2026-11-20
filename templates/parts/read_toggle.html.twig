@@ -1,0 +1,21 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Bouton lu / non lu d'une carte, commun aux vues liste et cartes.
+ #
+ # Même principe que le bouton favori : formulaire classique sans
+ # JavaScript, bascule AJAX sur place avec. L'état « on » est « lue ».
+ #}
+<form method="post" action="{{ form_url }}" class="d-inline" data-veille-toggle="read">
+    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="articles_id" value="{{ card.id }}">
+    <button type="submit" name="toggle_read" value="1"
+            class="btn btn-sm btn-ghost-secondary"
+            aria-pressed="{{ card.is_read ? 'true' : 'false' }}"
+            title="{{ card.is_read ? __('Marquer comme non lue', 'veilletool') : __('Marquer comme lue', 'veilletool') }}"
+            data-veille-on-title="{{ __('Marquer comme non lue', 'veilletool') }}"
+            data-veille-off-title="{{ __('Marquer comme lue', 'veilletool') }}"
+            data-veille-on-icon="ti-mail-opened"
+            data-veille-off-icon="ti-mail">
+        <i class="ti {{ card.is_read ? 'ti-mail-opened' : 'ti-mail' }}"></i>
+    </button>
+</form>

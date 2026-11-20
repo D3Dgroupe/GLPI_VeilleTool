@@ -63,6 +63,12 @@ final class FeedFetcher
      */
     private const MAX_REDIRECTS = 5;
 
+    /** Types acceptés pour un flux */
+    public const ACCEPT_FEED = 'application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.9, */*;q=0.8';
+
+    /** Types acceptés pour la page d'un article */
+    public const ACCEPT_PAGE = 'text/html, application/xhtml+xml;q=0.9, */*;q=0.5';
+
     /** Codes de réponse qui désignent une redirection */
     private const REDIRECT_STATUSES = [301, 302, 303, 307, 308];
 
@@ -73,10 +79,13 @@ final class FeedFetcher
      * Récupère un document, en revalidant chaque étape du chemin.
      *
      * @param string $url
+     * @param string $accept Contenu de l'en-tête `Accept` : un flux par
+     *                       défaut, une page HTML pour le contenu complet
+     *                       d'un article
      *
      * @return FetchResult
      */
-    public function fetch(string $url): FetchResult
+    public function fetch(string $url, string $accept = self::ACCEPT_FEED): FetchResult
     {
         $current = trim($url);
         $chain   = [];
@@ -105,7 +114,7 @@ final class FeedFetcher
             $sink = new CappedStream(Utils::streamFor(Utils::tryFopen('php://temp', 'w+')), self::MAX_DOCUMENT_SIZE);
 
             try {
-                $response = $this->request($destination, $sink);
+                $response = $this->request($destination, $sink, $accept);
             } catch (\Throwable $e) {
                 return FetchResult::failure($this->describeFailure($e, $sink), $chain);
             }
@@ -157,10 +166,11 @@ final class FeedFetcher
      *
      * @param Destination  $destination
      * @param CappedStream $sink
+     * @param string       $accept
      *
      * @return ResponseInterface
      */
-    private function request(Destination $destination, CappedStream $sink): ResponseInterface
+    private function request(Destination $destination, CappedStream $sink, string $accept): ResponseInterface
     {
         global $CFG_GLPI;
 
@@ -190,7 +200,7 @@ final class FeedFetcher
             'curl'            => $curl,
             'headers'         => [
                 'User-Agent' => 'GLPI/' . trim((string) ($CFG_GLPI['version'] ?? '')) . ' (veilletool)',
-                'Accept'     => 'application/rss+xml, application/atom+xml, application/xml;q=0.9, text/xml;q=0.9, */*;q=0.8',
+                'Accept'     => $accept,
             ],
         ]);
     }

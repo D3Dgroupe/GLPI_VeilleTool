@@ -385,6 +385,31 @@
     font-weight: 600;
 }
 
+/*
+ * Marque « non lue » : toujours présente dans le HTML, affichée selon la
+ * classe de la ligne ou de la carte. Une bascule faite sans recharger la
+ * page n'a ainsi qu'une classe à changer.
+ */
+.veille-list .veille-unread-mark {
+    margin-right: .25rem;
+}
+
+.veille-list tr:not(.veille-list-unread) .veille-unread-mark,
+.veille-card-read .veille-unread-mark {
+    display: none;
+}
+
+/* Le bouton favori en tête de ligne ne doit pas élargir la colonne. */
+.veille-list-fav .btn {
+    padding: .125rem .25rem;
+}
+
+/* Bascule en cours : le bouton reste visible mais ne répond plus. */
+[data-veille-toggle] .btn[aria-busy="true"] {
+    opacity: .5;
+    pointer-events: none;
+}
+
 .veille-list .veille-badge {
     margin-right: .2rem;
 }

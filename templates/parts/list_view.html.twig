@@ -11,10 +11,16 @@
 {% else %}
     <div class="card">
         <div class="table-responsive">
-            <table class="table table-hover table-vcenter card-table veille-list">
+            <table class="table table-hover table-vcenter card-table veille-list"
+                   data-veille-items
+                   data-veille-unread-class="veille-list-unread"
+                   {% if favorites_only %}data-veille-drop-unfavorited{% endif %}
+                   {% if filters.unread_only %}data-veille-drop-read{% endif %}>
                 <thead>
                     <tr>
-                        <th style="width: 2.5rem;"></th>
+                        <th class="text-center" style="width: 3rem;">
+                            <i class="ti ti-star" title="{{ _n('Favori', 'Favoris', 1, 'veilletool') }}"></i>
+                        </th>
                         <th>{{ __('Titre', 'veilletool') }}</th>
                         <th>{{ __('Thèmes', 'veilletool') }}</th>
                         <th>{{ __('Source', 'veilletool') }}</th>
@@ -23,23 +29,34 @@
                         <th class="text-center" style="width: 4rem;">
                             <i class="ti ti-message-circle" title="{{ _n('Commentaire', 'Commentaires', 2, 'veilletool') }}"></i>
                         </th>
-                        <th class="text-end" style="width: 11rem;"></th>
+                        <th class="text-end" style="width: 9rem;"></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for card in articles %}
-                        <tr class="{{ card.is_read ? '' : 'veille-list-unread' }}">
-                            <td class="text-center">
-                                {% if card.is_favorite %}
+                        <tr class="{{ card.is_read ? '' : 'veille-list-unread' }}" data-veille-item>
+                            {#
+                             # Favori en tête de ligne : c'est le geste le plus
+                             # fréquent sur un tableau de tri, il est sous la
+                             # main sans traverser la ligne.
+                             # Sans droit d'écriture, l'étoile reste un simple
+                             # indicateur.
+                             #}
+                            <td class="text-center veille-list-fav">
+                                {% if can_update %}
+                                    {{ include('@veilletool/parts/favorite_toggle.html.twig') }}
+                                {% elseif card.is_favorite %}
                                     <i class="ti ti-star-filled text-yellow"
                                        title="{{ __('En favori', 'veilletool') }}"></i>
-                                {% elseif not card.is_read %}
-                                    <i class="ti ti-point-filled text-azure"
-                                       title="{{ __('Non lue', 'veilletool') }}"></i>
                                 {% endif %}
                             </td>
 
                             <td>
+                                {# Toujours rendue : la feuille de style la masque
+                                   quand la ligne est lue, ce qui suffit à suivre
+                                   une bascule faite sans recharger la page. #}
+                                <i class="ti ti-point-filled text-azure veille-unread-mark"
+                                   title="{{ __('Non lue', 'veilletool') }}"></i>
                                 <a href="{{ form_url }}?id={{ card.id }}"
                                    target="_blank" rel="noopener">{{ card.name }}</a>
                                 {% if card.author is not empty %}
@@ -89,27 +106,7 @@
 
                             <td class="text-end">
                                 <div class="d-flex justify-content-end gap-1">
-                                    <form method="post" action="{{ form_url }}" class="d-inline">
-                                        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
-                                        <input type="hidden" name="articles_id" value="{{ card.id }}">
-                                        <button type="submit" name="toggle_read" value="1"
-                                                class="btn btn-sm btn-ghost-secondary"
-                                                title="{{ card.is_read ? __('Marquer comme non lue', 'veilletool') : __('Marquer comme lue', 'veilletool') }}">
-                                            <i class="ti {{ card.is_read ? 'ti-mail-opened' : 'ti-mail' }}"></i>
-                                        </button>
-                                    </form>
-
-                                    {% if can_update %}
-                                        <form method="post" action="{{ form_url }}" class="d-inline">
-                                            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
-                                            <input type="hidden" name="articles_id" value="{{ card.id }}">
-                                            <button type="submit" name="toggle_favorite" value="1"
-                                                    class="btn btn-sm btn-ghost-secondary {{ card.is_favorite ? 'text-yellow' : '' }}"
-                                                    title="{{ card.is_favorite ? __('Retirer des favoris', 'veilletool') : __('Ajouter aux favoris', 'veilletool') }}">
-                                                <i class="ti {{ card.is_favorite ? 'ti-star-filled' : 'ti-star' }}"></i>
-                                            </button>
-                                        </form>
-                                    {% endif %}
+                                    {{ include('@veilletool/parts/read_toggle.html.twig') }}
 
                                     <a class="btn btn-sm btn-ghost-secondary" href="{{ card.ai_url }}"
                                        target="_blank" rel="noopener noreferrer"

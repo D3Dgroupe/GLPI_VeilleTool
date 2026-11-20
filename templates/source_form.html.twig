@@ -40,6 +40,20 @@
         'step': 1
     }) }}
 
+    {{ fields.dropdownYesNo(
+        'fetch_full_content',
+        item.fields['fetch_full_content'],
+        __('Récupérer le contenu complet depuis la page de l\'article', 'veilletool'),
+        {
+            'helper': __('Pour les flux qui ne publient qu\'un résumé (CERT-FR par exemple) : la page de chaque nouvel article est chargée, et sa zone de contenu remplace le résumé. Une requête de plus par article, au plus %d par collecte.', 'veilletool')|format(max_pages)
+        }
+    ) }}
+
+    {{ fields.textField('content_selector', item.fields['content_selector'], __('Zone de contenu de la page', 'veilletool'), {
+        'placeholder': 'article, main',
+        'helper': __('Facultatif. Sélecteur de la zone à reprendre : un élément (article), une classe (.publication-content), un identifiant (#contenu), imbriqués (main .corps) ou en variantes séparées par des virgules. Vide, ou sans résultat, la zone est cherchée dans les éléments article, puis main.', 'veilletool')
+    }) }}
+
     {{ fields.numberField('interest', item.fields['interest'], __('Intérêt de la source (0 à 100)', 'veilletool'), {
         'min': 0,
         'max': 100,

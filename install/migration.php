@@ -98,6 +98,10 @@ function plugin_veilletool_doMigration(Migration $migration, string $from_versio
     // La 1.9.0 n'ajoute elle aussi qu'une table, celle des filtres
     // enregistrés, déjà créée plus haut.
 
+    if (version_compare($from_version, '1.11.0', '<')) {
+        plugin_veilletool_migrateTo1110($migration);
+    }
+
     // L'index de tri de l'observatoire, introduit en 1.9.1.
     // Sans garde de version, volontairement : l'étape compare l'index en
     // place au calcul du score, et n'agit que s'ils divergent.
@@ -728,6 +732,65 @@ function plugin_veilletool_migrateTo171(Migration $migration)
     );
 
     $migration->migrationOneTable(Article::getTable());
+}
+
+/**
+ * Vers la 1.11.0 : contenu complet repris de la page de l'article.
+ *
+ * - deux colonnes sur les flux : l'option elle-même, et le sélecteur de la
+ * zone de contenu propre au site ;
+ * - une colonne sur les cartes, qui date la reprise : une carte complétée
+ * n'est plus écrasée par le résumé du flux aux collectes suivantes ;
+ * - les flux du CERT-FR suivent le déménagement du site
+ * (`www.cert.ssi.gouv.fr` → `cert.cyber.gouv.fr`) et reçoivent le
+ * sélecteur de leur zone de contenu. L'option elle-même reste désactivée :
+ * c'est à l'administrateur de décider qu'une collecte va chercher, en plus
+ * du flux, la page de chaque article.
+ *
+ * @param Migration $migration
+ *
+ * @return void
+ */
+function plugin_veilletool_migrateTo1110(Migration $migration)
+{
+    /** @var DBmysql $DB */
+    global $DB;
+
+    $sources  = Source::getTable();
+    $articles = Article::getTable();
+
+    $migration->addField($sources, 'fetch_full_content', 'bool', [
+        'value' => 0,
+        'after' => 'max_items',
+    ]);
+    $migration->addField($sources, 'content_selector', "varchar(255) NOT NULL DEFAULT ''", [
+        'after' => 'fetch_full_content',
+    ]);
+    $migration->addField($articles, 'date_content_fetched', 'timestamp NULL DEFAULT NULL', [
+        'after' => 'content_hash',
+    ]);
+
+    $migration->migrationOneTable($sources);
+    $migration->migrationOneTable($articles);
+
+    // Les trois flux du CERT-FR, reconnus à leur ancienne adresse, avec ou
+    // sans `www`, en http comme en https.
+    foreach (['alerte', 'avis', 'actualite'] as $section) {
+        $new = 'https://cert.cyber.gouv.fr/' . $section . '/feed/';
+
+        foreach ($DB->request(['SELECT' => ['id', 'url'], 'FROM' => $sources]) as $row) {
+            $url = strtolower(rtrim(trim((string) $row['url']), '/'));
+
+            if (preg_match('#^https?://(www\.)?cert\.ssi\.gouv\.fr/' . $section . '/feed$#', $url) !== 1) {
+                continue;
+            }
+
+            $DB->update($sources, [
+                'url'              => $new,
+                'content_selector' => PLUGIN_VEILLETOOL_CERTFR_SELECTOR,
+            ], ['id' => (int) $row['id']]);
+        }
+    }
 }
 
 /**

@@ -7,6 +7,60 @@ versionnage [SemVer](https://semver.org/lang/fr/).
 
 ---
 
+## [1.11.0] - 2026-11-20
+
+### Ajouté
+
+- **Contenu complet repris de la page de l'article** (#3).
+  Certains flux ne publient qu'une phrase de résumé : c'est le cas du
+  CERT-FR, dont la page d'un avis porte seule les risques, les systèmes
+  affectés, les solutions et les liens vers les bulletins.
+  Une option par flux, *Récupérer le contenu complet depuis la page de
+  l'article* (désactivée par défaut), fait charger la page de chaque nouvel
+  article - avec les mêmes garde-fous que le flux lui-même : adresse
+  examinée, taille plafonnée, redirections revalidées une à une - et en
+  reprend la zone de contenu.
+  Cette zone se désigne par un sélecteur propre au flux (`article`,
+  `.publication-content`, `main .corps`…) ; vide ou sans résultat, elle est
+  cherchée dans `<article>` puis `<main>`.
+  Au plus 15 pages par collecte d'un flux ; une page inaccessible laisse le
+  résumé du flux en place et n'est pas comptée comme une erreur de collecte.
+  Une carte complétée n'est plus écrasée par le résumé aux collectes
+  suivantes.
+- **« Recharger le contenu »** sur la fiche d'une carte importée, pour
+  corriger les cartes déjà collectées avec le seul résumé.
+- Format CSV des flux : deux colonnes facultatives, *Contenu complet* et
+  *Sélecteur*. Un fichier d'avant la 1.11.0 se relit tel quel.
+
+### Modifié
+
+- **Vue liste : le bouton favori passe en tête de ligne** (#1), à la place
+  de l'indicateur statique. Sans droit d'écriture, l'étoile reste un simple
+  indicateur. La marque « non lue » passe devant le titre. Vue cartes : le
+  favori devient la première action du pied de carte.
+- **Favori et lu / non lu basculent sans recharger la page** (#2) : l'icône
+  change sur place et l'on garde sa position dans le tableau. Dans l'onglet
+  *Favoris*, retirer un favori masque la carte ; avec le filtre *non lues*,
+  la marquer lue la masque. Sans JavaScript, les formulaires fonctionnent
+  comme avant.
+- Catalogue livré : les trois flux du CERT-FR suivent le déménagement du
+  site (`www.cert.ssi.gouv.fr` → `cert.cyber.gouv.fr`). Leur sélecteur de
+  zone de contenu est pré-rempli ; l'option de contenu complet reste
+  **désactivée**, à activer sur la fiche du flux.
+
+### Migration
+
+- Colonnes `fetch_full_content` et `content_selector` sur les flux,
+  `date_content_fetched` sur les cartes.
+- Les flux CERT-FR existants, reconnus à leur ancienne adresse, reçoivent la
+  nouvelle et le sélecteur de leur zone de contenu. L'option de contenu
+  complet n'est **pas** activée : une fois posée sur le flux, les cartes
+  encore présentes dans le flux se complètent d'elles-mêmes, à raison de 15
+  par collecte. Les autres (dont la 2173) se corrigent avec *Recharger le
+  contenu*, qui fonctionne que l'option soit posée ou non.
+
+---
+
 ## [1.10.0] - 2026-09-29
 
 ### Sécurité

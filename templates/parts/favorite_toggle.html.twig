@@ -1,0 +1,25 @@
+{#
+ # Plugin GLPI « Outils de Veille » (veilletool)
+ # Bouton favori d'une carte, commun aux vues liste et cartes.
+ #
+ # Sans JavaScript, c'est un formulaire classique : la page est rechargée.
+ # Avec, `veilletool.js` envoie la bascule en AJAX et met à jour l'étoile sur
+ # place - les deux états du bouton sont donc décrits ici, dans les
+ # attributs `data-veille-*`, pour que le script n'ait aucun libellé à
+ # connaître.
+ #}
+<form method="post" action="{{ form_url }}" class="d-inline" data-veille-toggle="favorite">
+    <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="articles_id" value="{{ card.id }}">
+    <button type="submit" name="toggle_favorite" value="1"
+            class="btn btn-sm btn-ghost-secondary {{ card.is_favorite ? 'text-yellow' : '' }}"
+            aria-pressed="{{ card.is_favorite ? 'true' : 'false' }}"
+            title="{{ card.is_favorite ? __('Retirer des favoris', 'veilletool') : __('Ajouter aux favoris', 'veilletool') }}"
+            data-veille-on-title="{{ __('Retirer des favoris', 'veilletool') }}"
+            data-veille-off-title="{{ __('Ajouter aux favoris', 'veilletool') }}"
+            data-veille-on-icon="ti-star-filled"
+            data-veille-off-icon="ti-star"
+            data-veille-on-class="text-yellow">
+        <i class="ti {{ card.is_favorite ? 'ti-star-filled' : 'ti-star' }}"></i>
+    </button>
+</form>

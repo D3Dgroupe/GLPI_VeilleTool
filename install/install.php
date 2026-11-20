@@ -186,6 +186,8 @@ function plugin_veilletool_createSchema()
             `url`             text,
             `is_active`       tinyint NOT NULL DEFAULT '1',
             `max_items`       int NOT NULL DEFAULT '50',
+            `fetch_full_content` tinyint NOT NULL DEFAULT '0',
+            `content_selector` varchar(255) NOT NULL DEFAULT '',
             `interest`        int NOT NULL DEFAULT '50',
             `users_id`        int {$default_key_sign} NOT NULL DEFAULT '0',
             `last_import`     timestamp NULL DEFAULT NULL,
@@ -235,6 +237,10 @@ function plugin_veilletool_createSchema()
     // résumé et le contenu.
     // L'auteur en est exclu et reste cherché en sous-chaîne.
     //
+    // `date_content_fetched` date la reprise du contenu complet depuis la
+    // page de l'article : une carte qui la porte n'est plus écrasée par le
+    // résumé du flux.
+    //
     // `content_hash` retient l'empreinte du contenu **brut**, avant
     // purification : elle permet à une collecte de reconnaître une entrée
     // inchangée et de ne pas repurifier pour rien.
@@ -264,6 +270,7 @@ function plugin_veilletool_createSchema()
             `summary`                         text,
             `content`                         longtext,
             `content_hash`                    varchar(40) NOT NULL DEFAULT '',
+            `date_content_fetched`            timestamp NULL DEFAULT NULL,
             `url`                             text,
             `guid`                            varchar(191) NOT NULL DEFAULT '',
             `author`                          varchar(255) DEFAULT NULL,
